@@ -8,91 +8,87 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 /* ============================================================
-   デザインシステム変数
+   Sober — Design System (Executive Analytics)
 ============================================================ */
 :root{
-  --bg:#0A0F1A; --gl:#131B2B; --gl2:#1A2438;
-  --bd:rgba(255,255,255,.06); --bd2:rgba(255,255,255,.1);
-  --gold:#D4AF37; --gold-d:rgba(212,175,55,.12);
-  --cyan:#3B82F6; --green:#10B981; --amber:#F59E0B; --red:#EF4444; --orange:#F97316;
-  --tx:#F8FAFC; --tx2:#94A3B8; --tx3:#475569;
+  --bg:       #0A0F1A;
+  --gl:       #131B2B;
+  --gl2:      #1A2438;
+  --bd:       rgba(255,255,255,0.06);
+  --bd2:      rgba(255,255,255,0.1);
+  --gold:     #D4AF37;
+  --gold-d:   rgba(212,175,55,0.12);
+  --cyan:     #3B82F6; 
+  --green:    #10B981;
+  --amber:    #F59E0B;
+  --red:      #EF4444;
+  --orange:   #F97316;
+  --tx:       #F8FAFC;
+  --tx2:      #94A3B8;
+  --tx3:      #475569;
 }
+
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
-body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-.mono{font-family:'Playfair Display',serif;letter-spacing:.02em}
-.serif{font-family:'Noto Serif JP',serif}
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+body{ font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--tx); min-height:100vh; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+.mono{font-family:'Playfair Display',serif; letter-spacing: 0.02em;}
+.serif{font-family:'Noto Serif JP',serif;}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 input[type=number]{-moz-appearance:textfield}
-select.inp{appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:12px;padding-right:32px}
+select.inp { appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 12px; padding-right: 32px; }
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes breathe{0%,100%{transform:scale(.8);opacity:.1}50%{transform:scale(1.5);opacity:.3}}
-@keyframes pulseDot{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
-.a0{animation:fadeUp .4s cubic-bezier(.16,1,.3,1) both}
-.a1{animation:fadeUp .4s .05s cubic-bezier(.16,1,.3,1) both}
-.a2{animation:fadeUp .4s .1s cubic-bezier(.16,1,.3,1) both}
-.a3{animation:fadeUp .4s .15s cubic-bezier(.16,1,.3,1) both}
-.a4{animation:fadeUp .4s .2s cubic-bezier(.16,1,.3,1) both}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
+@keyframes breathe{ 0%, 100%{ transform: scale(0.8); opacity: 0.1; } 50%{ transform: scale(1.5); opacity: 0.3; } }
+@keyframes pulseDot{ 0%, 100%{ opacity:0.3; transform:scale(0.8); } 50%{ opacity:1; transform:scale(1.2); } }
+
+.a0{animation:fadeUp .4s cubic-bezier(0.16, 1, 0.3, 1) both}
+.a1{animation:fadeUp .4s .05s cubic-bezier(0.16, 1, 0.3, 1) both}
+.a2{animation:fadeUp .4s .10s cubic-bezier(0.16, 1, 0.3, 1) both}
+.a3{animation:fadeUp .4s .15s cubic-bezier(0.16, 1, 0.3, 1) both}
+.a4{animation:fadeUp .4s .20s cubic-bezier(0.16, 1, 0.3, 1) both}
 .a-fade{animation:fadeIn 1s ease both}
-.tap{transition:transform .15s ease,opacity .15s ease;cursor:pointer;-webkit-user-select:none;user-select:none}
-.tap:active{transform:scale(.96);opacity:.8}
-/* カードベース */
-.gc{background:var(--gl);border:1px solid var(--bd);border-radius:8px}
-.gc2{background:var(--gl2);border:1px solid var(--bd2);border-radius:6px}
-.gc-gold{background:var(--gl);border:1px solid var(--bd);border-left:3px solid var(--gold);border-radius:8px}
-/* 入力フォーム */
-.inp{width:100%;background:rgba(0,0,0,.2);border:1px solid var(--bd2);border-radius:6px;color:var(--tx);outline:none;padding:12px 14px;font-size:13px;font-family:'Noto Sans JP',sans-serif;transition:all .2s}
-.inp:focus{border-color:var(--gold);background:rgba(0,0,0,.4)}
-.inp[readonly]{opacity:.55;cursor:not-allowed}
-.inp-xl{width:100%;background:transparent;border:none;border-bottom:1px solid var(--bd2);border-radius:0;color:var(--tx);outline:none;padding:12px 40px 12px 12px;font-size:42px;font-family:'Playfair Display',serif;text-align:center;transition:all .2s}
-.inp-xl:focus{border-color:var(--gold)}
-.inp-xl[readonly]{opacity:.55;cursor:not-allowed;border-bottom-color:rgba(212,175,55,.3)}
+
+.tap{transition:transform .15s ease,opacity .15s ease;cursor:pointer;-webkit-user-select:none;user-select:none;}
+.tap:active{transform:scale(0.96);opacity:0.8}
+
+.gc{ background:var(--gl); border:1px solid var(--bd); border-radius:8px; }
+.gc2{ background:var(--gl2); border:1px solid var(--bd2); border-radius:6px; }
+.gc-cyan{ background:var(--gl); border:1px solid var(--bd); border-left: 3px solid var(--gold); border-radius:8px; }
+
+.inp{ width:100%; background:rgba(0,0,0,0.2); border:1px solid var(--bd2); border-radius:6px; color:var(--tx); outline:none; padding:12px 14px; font-size:13px; font-family:'Noto Sans JP',sans-serif; transition:all .2s; }
+.inp:focus{ border-color:var(--gold); background:rgba(0,0,0,0.4); }
+.inp[readonly]{ opacity:0.55; cursor:not-allowed; }
+.inp-xl{ width:100%; background:transparent; border:none; border-bottom: 1px solid var(--bd2); border-radius:0; color:var(--tx); outline:none; padding:12px 40px 12px 12px; font-size:42px; font-family:'Playfair Display',serif; text-align:center; transition:all .2s; }
+.inp-xl:focus{ border-color:var(--gold); }
+.inp-xl[readonly]{ opacity:0.55; cursor:not-allowed; border-bottom-color: rgba(212,175,55,0.3); }
 textarea.inp{resize:none;line-height:1.6;font-size:12px}
-/* スライダー */
-.desire-track{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;outline:none;cursor:pointer;background:var(--bd2)}
-.desire-track::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:2px;background:var(--tx);cursor:pointer;border:1px solid var(--tx2)}
-/* ボトムナビ */
-.bot-nav{position:fixed;bottom:0;left:0;right:0;height:64px;background:rgba(10,15,26,.95);backdrop-filter:blur(10px);border-top:1px solid var(--bd);display:flex;z-index:40;padding-bottom:env(safe-area-inset-bottom)}
-.nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--tx3);transition:color .2s;cursor:pointer}
-.nb.on{color:var(--gold)}.nb i{font-size:16px}
-.pb-nav{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+
+.bot-nav{ position:fixed;bottom:0;left:0;right:0;height:64px; background:rgba(10,15,26,0.95); backdrop-filter:blur(10px); border-top:1px solid var(--bd); display:flex;z-index:40; padding-bottom:env(safe-area-inset-bottom); }
+.nb{ flex:1;display:flex;flex-direction:column;align-items:center; justify-content:center;gap:4px; font-size:9px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase; color:var(--tx3);transition:color .2s;cursor:pointer; }
+.nb.on{color:var(--gold)} .nb i{font-size:16px} .pb-nav{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
 .prog{transition:width .7s cubic-bezier(.4,0,.2,1),background .4s}
-/* チャットバブル */
-.bw{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
-.bw.r{flex-direction:row-reverse}
-.bw.l,.bw.r{animation:fadeIn .4s ease both}
-.bi{width:32px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;overflow:hidden;background:rgba(0,0,0,.3);border:1px solid var(--bd2)}
-.bi img{width:100%;height:100%;object-fit:cover}
-.bc{max-width:82%}
-.bn{font-size:10px;font-weight:700;color:var(--tx2);margin-bottom:4px;letter-spacing:.02em}
-.bw.r .bn{text-align:right}
+
+.bw{display:flex;align-items:flex-start;gap:12px; margin-bottom:12px;} .bw.r{flex-direction:row-reverse} .bw.l{animation:fadeIn .4s ease both} .bw.r{animation:fadeIn .4s ease both}
+.bi{ width:32px;height:32px;border-radius:4px; display:flex;align-items:center;justify-content:center; font-size:14px;flex-shrink:0;overflow:hidden; background:rgba(0,0,0,0.3);border:1px solid var(--bd2); } .bi img{width:100%;height:100%;object-fit:cover}
+.bc{max-width:82%} .bn{font-size:10px;font-weight:700;color:var(--tx2);margin-bottom:4px;letter-spacing:0.02em} .bw.r .bn{text-align:right}
 .bl{padding:12px 14px;border-radius:2px 8px 8px 8px;font-size:13px;font-family:'Noto Serif JP',serif;line-height:1.6;background:var(--gl);border:1px solid var(--bd);color:var(--tx)}
-.br{padding:12px 14px;border-radius:8px 2px 8px 8px;font-size:13px;line-height:1.6;background:var(--gold-d);border:1px solid rgba(212,175,55,.2);color:var(--gold)}
-/* シートオーバーレイ */
-.s-ov{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.8);backdrop-filter:blur(4px);display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .3s}
-.s-ov.open{opacity:1;pointer-events:all}
-.s-body{width:100%;background:var(--bg);border-radius:12px 12px 0 0;border-top:1px solid var(--bd);transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);max-height:88vh;overflow-y:auto;padding-bottom:calc(24px + env(safe-area-inset-bottom))}
-.s-ov.open .s-body{transform:translateY(0)}
-.drag-h{width:36px;height:4px;border-radius:2px;background:var(--bd2);margin:12px auto 0}
-/* タブ・ラベル */
-.tab-btn{flex:1;padding:12px 4px;font-size:10px;font-weight:700;letter-spacing:.05em;border-bottom:1px solid transparent;color:var(--tx3);transition:all .2s;cursor:pointer;text-align:center;text-transform:uppercase}
-.tab-btn.on{color:var(--gold);border-bottom-color:var(--gold)}
-.lbl{font-size:10px;font-weight:700;color:var(--tx2);letter-spacing:.05em;margin-bottom:4px}
-.hint{font-size:10px;color:var(--tx3);line-height:1.5;margin-top:4px;font-family:'Noto Serif JP',serif}
-.sec{font-size:10px;font-weight:700;color:var(--tx2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
-/* トースト */
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(10px);opacity:0;transition:all .3s ease;z-index:200;pointer-events:none;max-width:calc(100% - 40px);text-align:center}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-/* 事後記録ボタン */
-.late-btn{width:100%;padding:14px;background:transparent;border:1px dashed var(--bd2);border-radius:6px;color:var(--tx2);font-size:11px;font-weight:700;letter-spacing:.05em;cursor:pointer;transition:background .2s;text-align:center;text-transform:uppercase}
-.late-btn:active{background:rgba(255,255,255,.02)}
+.br{padding:12px 14px;border-radius:8px 2px 8px 8px;font-size:13px;line-height:1.6;background:var(--gold-d);border:1px solid rgba(212,175,55,0.2);color:var(--gold)}
+
+.s-ov{ position:fixed;inset:0;z-index:60; background:rgba(0,0,0,0.8);backdrop-filter:blur(4px); display:flex;align-items:flex-end; opacity:0;pointer-events:none;transition:opacity .3s; } .s-ov.open{opacity:1;pointer-events:all}
+.s-body{ width:100%; background:var(--bg); border-radius:12px 12px 0 0; border-top:1px solid var(--bd); transform:translateY(100%); transition:transform .4s cubic-bezier(.16,1,.3,1); max-height:88vh;overflow-y:auto; padding-bottom:calc(24px + env(safe-area-inset-bottom)); } .s-ov.open .s-body{transform:translateY(0)} .drag-h{width:36px;height:4px;border-radius:2px;background:var(--bd2);margin:12px auto 0}
+
+.tab-btn{flex:1;padding:12px 4px;font-size:10px;font-weight:700;letter-spacing:0.05em;border-bottom:1px solid transparent;color:var(--tx3);transition:all .2s;cursor:pointer;text-align:center;text-transform:uppercase;} .tab-btn.on{color:var(--gold);border-bottom-color:var(--gold)}
+.lbl{font-size:10px;font-weight:700;color:var(--tx2);letter-spacing:.05em;margin-bottom:4px} .hint{font-size:10px;color:var(--tx3);line-height:1.5;margin-top:4px;font-family:'Noto Serif JP',serif;} .sec{font-size:10px;font-weight:700;color:var(--tx2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.toast{ position:fixed;bottom:80px;left:50%; transform:translateX(-50%) translateY(10px); opacity:0;transition:all .3s ease;z-index:200; pointer-events:none;max-width:calc(100% - 40px);text-align:center; } .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.late-btn{ width:100%;padding:14px; background:transparent;border:1px dashed var(--bd2); border-radius:6px;color:var(--tx2);font-size:11px;font-weight:700;letter-spacing:0.05em; cursor:pointer;transition:background .2s;text-align:center;text-transform:uppercase; } .late-btn:active{background:rgba(255,255,255,0.02)}
 ::-webkit-scrollbar{display:none}
-/* マインドフルネス呼吸リング */
-.mindful-ring{width:240px;height:240px;border-radius:50%;background:var(--gold);filter:blur(30px);animation:breathe 10s infinite ease-in-out;position:absolute;top:50%;left:50%;margin-top:-120px;margin-left:-120px;pointer-events:none}
-/* AI分析ローディングドット */
+
+.mindful-ring { width: 240px; height: 240px; border-radius: 50%; background: var(--gold); filter: blur(30px); animation: breathe 10s infinite ease-in-out; position: absolute; top: 50%; left: 50%; margin-top: -120px; margin-left: -120px; pointer-events: none;}
 .ai-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--cyan);margin:0 2px;animation:pulseDot .6s ease infinite alternate}
 .ai-dot:nth-child(2){animation-delay:.2s}
 .ai-dot:nth-child(3){animation-delay:.4s}
@@ -100,80 +96,65 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
 </head>
 <body>
 
-<!-- ============================================================
-     ① セットアップ画面
-============================================================ -->
+<!-- ① セットアップ画面 -->
 <div id="scSetup" style="display:none">
 <div class="min-h-screen px-6 py-14 overflow-y-auto" style="padding-bottom:40px">
 <div class="max-w-sm mx-auto">
   <div class="text-center mb-10 a0 border-b border-white/5 pb-8">
     <div class="inline-flex items-center justify-center w-12 h-12 rounded bg-black/50 border border-white/10 mb-4">
-      <span class="mono text-xl" style="color:var(--gold)">S</span>
+      <span class="mono text-xl text-gold">S</span>
     </div>
     <h1 class="text-3xl font-normal mono tracking-tight text-white">Sober</h1>
-    <p class="text-[9px] mt-2 font-bold tracking-widest uppercase text-slate-500">衝動買い防止 · Executive Analytics</p>
+    <p class="text-[9px] mt-2 font-bold tracking-widest uppercase text-slate-500">Executive Analytics</p>
   </div>
 
   <div class="mb-6 a1">
-    <div class="sec">財務ベースライン / Financial Baseline</div>
+    <div class="sec">Financial Baseline</div>
     <div class="gc p-5 space-y-4">
-      <div>
-        <div class="lbl">月収（手取り）</div>
-        <div class="relative"><input id="su_i" type="number" inputmode="numeric" placeholder="250000" class="inp num text-lg pr-8"><span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">円</span></div>
+      <div><div class="lbl">月収（手取り）</div>
+        <div class="relative"><input id="su_i" type="number" inputmode="numeric" placeholder="280000" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
       </div>
-      <div>
-        <div class="lbl">月の貯金目標</div>
-        <div class="relative"><input id="su_g" type="number" inputmode="numeric" placeholder="30000" class="inp num text-lg text-emerald-400 pr-8"><span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">円</span></div>
+      <div><div class="lbl">月の貯金目標</div>
+        <div class="relative"><input id="su_g" type="number" inputmode="numeric" placeholder="30000" class="inp num text-lg text-emerald-400 pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
       </div>
-      <div>
-        <div class="lbl">固定費合計（家賃・光熱費等）</div>
-        <div class="relative"><input id="su_f" type="number" inputmode="numeric" placeholder="98000" class="inp num text-lg pr-8"><span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">円</span></div>
+      <div><div class="lbl">固定費合計</div>
+        <div class="relative"><input id="su_f" type="number" inputmode="numeric" placeholder="98000" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
       </div>
-      <div id="su_prev" class="gc2 px-4 py-3 mt-4" style="display:none;border-color:rgba(16,185,129,.3)">
-        <div class="text-[10px] text-slate-400">月の自由資金 (Free Budget)</div>
+      <div id="su_prev" class="gc2 px-4 py-3 mt-4" style="display:none; border-color:rgba(16,185,129,0.3)">
+        <div class="text-[10px] text-slate-400">自由に使えるお金 (Free Budget)</div>
         <div id="su_free" class="mono text-2xl mt-1 text-emerald-400"></div>
       </div>
     </div>
   </div>
 
   <div class="mb-8 a2">
-    <div class="sec">外部連携 / Integration</div>
-    <div class="gc p-5 space-y-4">
-      <div>
-        <div class="lbl">Gemini API Key（任意）</div>
-        <input id="su_k" type="password" placeholder="AIzaSy..." class="inp text-xs">
-        <div class="hint mt-2">AI分析・エージェント対話・レポート生成に使用します。未設定時はモックで動作します。</div>
-      </div>
-      <div>
-        <div class="lbl">GAS Webhook URL（任意）</div>
-        <input id="su_gas" type="url" placeholder="https://script.google.com/macros/s/..." class="inp text-xs">
-        <div class="hint mt-2">Googleスプレッドシートへのバックアップ・失敗DB同期に使用します。</div>
-      </div>
+    <div class="sec">AI Integration</div>
+    <div class="gc p-5">
+      <div class="lbl">Gemini API Key（任意）</div>
+      <input id="su_k" type="password" placeholder="AIzaSy..." class="inp text-xs">
+      <div class="hint mt-2">APIキー未設定の場合でも、レビュー用のAIモック機能で全画面動作確認が可能です。</div>
     </div>
   </div>
 
-  <button onclick="doSetup()" class="tap w-full py-4 rounded font-bold text-xs a3 tracking-widest uppercase bg-gold/10 border border-gold/40" style="color:var(--gold)">
+  <button onclick="doSetup()" class="tap w-full py-4 rounded font-bold text-xs a3 tracking-widest uppercase bg-gold/10 border border-gold/40 text-gold">
     Initialize Dashboard
   </button>
 </div></div>
 </div>
 
-<!-- ============================================================
-     ② ホーム画面
-============================================================ -->
+<!-- ② ホーム画面 -->
 <div id="scHome" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 flex justify-between items-end border-b border-white/5 mb-4">
     <div>
       <h1 class="text-2xl font-normal mono tracking-tight">Sober</h1>
       <div id="hm_month" class="text-[9px] font-bold tracking-widest uppercase mt-1 text-slate-500"></div>
     </div>
-    <button onclick="navTo('scSettings','nb_s')" class="tap w-8 h-8 rounded flex items-center justify-center border border-white/10">
+    <button onclick="navTo('scSettings','nb_s')" class="tap w-8 h-8 rounded flex items-center justify-center border border-white/10 hover:bg-white/5 transition">
       <i class="fa-solid fa-sliders text-xs text-slate-500"></i>
     </button>
   </div>
 
   <div class="px-5 space-y-4 overflow-y-auto">
-    <!-- 月フェーズ・ステータスパネル -->
     <div id="hm_status_panel" class="gc p-4 a0 flex flex-col justify-center">
       <div class="flex justify-between items-center mb-1">
         <span class="text-[10px] font-bold tracking-widest uppercase" id="hm_status_title"></span>
@@ -183,354 +164,254 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
       <div class="mt-2 text-[10px] font-bold tracking-widest" id="hm_burn_rate"></div>
     </div>
 
-    <!-- メインカード：今日使える金額をヒーロー指標に -->
-    <div class="gc-gold p-6 a0 relative overflow-hidden">
+    <div class="gc-cyan p-6 a0 relative overflow-hidden">
       <div class="absolute -right-4 -top-6 text-9xl mono opacity-5 select-none pointer-events-none text-white">S</div>
       <div class="flex justify-between items-start mb-2 relative z-10">
         <div>
-          <div class="text-[10px] tracking-widest font-bold uppercase text-slate-400">Today's Available</div>
-          <div class="text-[10px] text-slate-500">今日まだ使える金額</div>
+          <div class="text-[10px] tracking-widest font-bold uppercase text-slate-400">Remaining Budget</div>
+          <div class="text-[10px] text-slate-500">今月の残り自由資金</div>
         </div>
         <div class="text-right">
-          <div class="text-[9px] tracking-widest font-bold uppercase text-slate-500">Monthly Left</div>
-          <div id="hm_remM" class="mono text-sm text-slate-400">¥0</div>
+          <div class="text-[9px] tracking-widest font-bold uppercase text-slate-500">Today's Limit</div>
+          <div id="hm_daily" class="mono text-sm text-slate-300">¥0</div>
         </div>
       </div>
-      <!-- 今日使える金額（日予算 − 今日の支出） -->
-      <div id="hm_today" class="mono mt-1 relative z-10 text-white" style="font-size:2.5rem;line-height:1">¥0</div>
-      <!-- 日次プログレスバー（今日の消費率） -->
+      <div id="hm_remM" class="mono mt-1 relative z-10 text-white" style="font-size:2.5rem;line-height:1">¥0</div>
+      
       <div class="w-full h-[3px] rounded-full mt-5 mb-2 relative z-10 bg-white/5">
-        <div id="hm_bar" class="prog h-[3px] rounded-full" style="width:100%;background:var(--gold)"></div>
+        <div id="hm_bar" class="prog h-[3px] rounded-full bg-gold" style="width:100%"></div>
       </div>
       <div class="flex justify-between mt-1 relative z-10 text-[9px] font-bold tracking-widest text-slate-500">
-        <span id="hm_bar_left">TODAY ¥0 使用</span>
-        <span id="hm_bar_right">日予算 ¥0</span>
+        <span id="hm_up">USED 0%</span><span id="hm_rp">LEFT 100%</span>
       </div>
     </div>
 
-    <!-- 月次サマリー 3指標 -->
     <div class="grid grid-cols-3 gap-2 a1">
       <div class="gc p-3 border-t-2 border-t-emerald-500/50 text-center">
         <div class="text-[9px] tracking-widest font-bold uppercase mb-1 text-slate-500">Avoided</div>
-        <div class="text-[9px] text-slate-600 mb-1">回避</div>
         <div id="hm_ac" class="mono text-lg text-white">0</div>
         <div id="hm_ay" class="mono text-[10px] mt-1 text-emerald-400">¥0</div>
       </div>
       <div class="gc p-3 border-t-2 border-t-slate-500/50 text-center">
         <div class="text-[9px] tracking-widest font-bold uppercase mb-1 text-slate-500">Bought</div>
-        <div class="text-[9px] text-slate-600 mb-1">購入済み</div>
         <div id="hm_bc" class="mono text-lg text-white">0</div>
         <div id="hm_by" class="mono text-[10px] mt-1 text-slate-400">¥0</div>
       </div>
       <div class="gc p-3 border-t-2 border-t-orange-500/50 text-center">
-        <div class="text-[9px] tracking-widest font-bold uppercase mb-1 text-slate-500">Unverified</div>
-        <div class="text-[9px] text-slate-600 mb-1">事後記録</div>
+        <div class="text-[9px] tracking-widest font-bold uppercase mb-1 text-slate-500">Late Rec</div>
         <div id="hm_gc" class="mono text-lg text-white">0</div>
         <div id="hm_gy" class="mono text-[10px] mt-1 text-orange-400">¥0</div>
       </div>
     </div>
 
-    <!-- シチュエーション別分析ボタン -->
     <div class="a2 mt-6">
-      <div class="sec mb-1">Situational Analysis</div>
-      <div class="text-[9px] text-slate-500 mb-3 serif">今から何をしようとしていますか？</div>
+      <div class="sec mb-2">Situational Analysis</div>
       <div class="grid grid-cols-2 gap-3">
-        <button onclick="startAnalysis('conv')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-1">
-          <span class="text-2xl">🏪</span>
-          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">Daily Trap</span>
-          <span class="text-[9px] text-slate-500">コンビニ · ¥2,000固定</span>
+        <button onclick="startAnalysis('conv')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
+          <span class="text-2xl mb-1">🏪</span>
+          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">対 コンビニ</span>
+          <span class="text-[9px] text-slate-500 tracking-widest">¥2,000 固定</span>
         </button>
-        <button onclick="startAnalysis('amazon')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-1">
-          <span class="text-2xl">📦</span>
-          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">Cart Rush</span>
-          <span class="text-[9px] text-slate-500">EC購入 · URL入力</span>
+        <button onclick="startAnalysis('amazon')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
+          <span class="text-2xl mb-1">📦</span>
+          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">対 Amazon</span>
+          <span class="text-[9px] text-slate-500 tracking-widest">URL + 動機入力</span>
         </button>
-        <button onclick="startAnalysis('uber')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-1">
-          <span class="text-2xl">🍔</span>
-          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">Lazy Levy</span>
-          <span class="text-[9px] text-slate-500">デリバリー · ¥3,000固定</span>
+        <button onclick="startAnalysis('uber')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
+          <span class="text-2xl mb-1">🍔</span>
+          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">対 Uber</span>
+          <span class="text-[9px] text-slate-500 tracking-widest">¥3,000 固定</span>
         </button>
-        <button onclick="startAnalysis('drink')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-1">
-          <span class="text-2xl">🍻</span>
-          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">Night Spiral</span>
-          <span class="text-[9px] text-slate-500">飲み・タクシー · ¥6,000固定</span>
+        <button onclick="startAnalysis('drink')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
+          <span class="text-2xl mb-1">🍻</span>
+          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">対 飲み・タクシー</span>
+          <span class="text-[9px] text-slate-500 tracking-widest">¥6,000 固定</span>
         </button>
       </div>
       <button onclick="startAnalysis('other')" class="tap w-full mt-3 p-4 rounded-lg bg-[#131B2B] border border-white/10 flex items-center justify-center gap-3">
-        <span class="text-lg">🛍️</span>
-        <div class="text-left">
-          <div class="text-[10px] font-bold tracking-widest uppercase text-slate-300">その他の出費</div>
-          <div class="text-[9px] text-slate-500 mt-0.5">金額と用途を入力して詳細分析</div>
-        </div>
+        <span class="text-lg">🛍️</span><span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">詳細分析 (その他の出費)</span>
       </button>
     </div>
 
-    <!-- 直近ログ -->
     <div class="a4 mt-6">
       <div class="flex justify-between items-center mb-3">
-        <div>
-          <div class="sec" style="margin-bottom:0">Recent Log</div>
-          <div class="text-[9px] text-slate-500">直近の記録</div>
-        </div>
-        <button onclick="navTo('scHistory','nb_hi')" class="tap text-[9px] font-bold tracking-widest uppercase" style="color:var(--gold)">
-          View All <i class="fa-solid fa-chevron-right text-[8px] ml-0.5"></i>
-        </button>
+        <div class="sec" style="margin-bottom:0">Recent Log</div>
+        <button onclick="navTo('scHistory','nb_hi')" class="tap text-[9px] font-bold tracking-widest uppercase text-gold">View All <i class="fa-solid fa-chevron-right text-[8px] ml-0.5"></i></button>
       </div>
       <div id="hm_list" class="space-y-2"></div>
     </div>
   </div>
 </div>
 
-<!-- ============================================================
-     Step 1: Analyzer（金額入力・インパクト確認）
-============================================================ -->
+<!-- Step 1: Analyzer -->
 <div id="scChecker" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 flex items-center gap-3 border-b border-white/5 mb-5">
-    <button onclick="showScreen('scHome')" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400">
-      <i class="fa-solid fa-arrow-left text-xs"></i>
+    <button onclick="cancelProcess()" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 hover:text-white shrink-0">
+      <i class="fa-solid fa-xmark text-xs"></i>
     </button>
     <div>
       <div class="num text-lg" id="ck_title">Analyzer</div>
-      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-0.5">Step 1 : Input Data</div>
-      <!-- 状況別の日本語説明 -->
-      <div class="text-[9px] serif mt-0.5" id="ck_subtitle" style="color:var(--tx3)"></div>
+      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-0.5">Step 1 : Impact Analysis</div>
     </div>
   </div>
 
   <div class="px-5 space-y-6 overflow-y-auto">
-    <!-- 金額入力エリア -->
     <div class="a0 text-center mt-2">
-      <div class="text-[10px] tracking-widest text-slate-500 uppercase font-bold mb-1" id="ck_amt_label">金額 / Target Price</div>
+      <div class="text-[10px] tracking-widest text-slate-500 uppercase font-bold mb-1" id="ck_amt_label">Target Price</div>
       <div class="relative inline-block mt-2">
         <input id="ck_a" type="number" inputmode="numeric" placeholder="0" class="inp-xl text-5xl" oninput="onAmt()">
         <span class="absolute left-2 bottom-[14px] text-sm text-slate-500">¥</span>
       </div>
-      <!-- 固定金額バッジ（コンビニ・Uber・飲みで表示） -->
-      <div id="ck_fixed_badge" style="display:none" class="mt-2 inline-flex items-center gap-1 px-2 py-1 rounded text-[9px] font-bold tracking-widest uppercase" style="background:var(--gold-d);border:1px solid rgba(212,175,55,.3);color:var(--gold)">
-        <i class="fas fa-lock text-[8px]"></i> 固定金額（変更不可）
+      <div id="ck_fixed_badge" style="display:none" class="mt-2 inline-flex items-center gap-1 px-2 py-1 rounded bg-gold/10 border border-gold/30 text-gold text-[9px] font-bold tracking-widest uppercase">
+        <i class="fas fa-lock text-[8px]"></i> 固定金額
       </div>
     </div>
 
-    <!-- 品名・URL入力 -->
     <div class="a1 space-y-4">
       <div id="f_url" style="display:none">
-        <div class="lbl flex items-center gap-1">商品URL <i class="fas fa-globe text-cyan-500 text-[10px]"></i></div>
+        <div class="lbl flex items-center gap-1">URL (Market Analysis) <i class="fas fa-globe text-cyan-500 text-[10px]"></i></div>
         <input id="ck_u" type="url" placeholder="https://amazon.co.jp/..." class="inp text-xs">
-        <div class="hint mt-1">AIが商品情報・価格を参照して分析精度を高めます</div>
       </div>
       <div>
-        <div class="lbl">品名・用途 / Item Name</div>
-        <input id="ck_n" type="text" placeholder="何を買おうとしていますか？" maxlength="40" class="inp">
+        <div class="lbl" id="lbl_name">Item Name</div>
+        <input id="ck_n" type="text" placeholder="品名や用途" maxlength="40" class="inp">
       </div>
     </div>
 
-    <!-- 財務インパクトダッシュボード（金額入力後に表示） -->
     <div id="ck_cmp" style="display:none" class="space-y-2 a3">
-      <div class="sec mt-2">財務インパクト / Financial Impact</div>
-      <div class="gc p-4">
-        <div class="flex justify-between items-center">
-          <div>
-            <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Labor Cost</div>
-            <div class="text-[10px] text-slate-500">労働時間換算</div>
-          </div>
-          <div id="ck_h" class="text-right"></div>
-        </div>
+      <div class="sec mt-2">Financial Impact</div>
+      <div class="gc p-4"><div class="flex justify-between items-center"><div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Labor Cost</div><div class="text-[10px] text-slate-500">労働時間損失</div></div><div id="ck_h" class="text-right"></div></div></div>
+      <div class="gc p-4" id="ck_tc">
+        <div class="flex justify-between items-center mb-2"><div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Daily Limit</div><div class="text-[10px] text-slate-500">今日の予算への影響</div></div><div id="ck_t" class="text-xs text-right whitespace-nowrap shrink-0"></div></div>
+        <div class="w-full h-1 rounded-full bg-white/5 border border-white/5"><div id="ck_tb" class="prog h-1 rounded-full bg-emerald-500" style="width:100%;"></div></div>
       </div>
-      <div class="gc p-4">
-        <div class="flex justify-between items-center mb-2">
-          <div>
-            <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Today's Impact</div>
-            <div class="text-[10px] text-slate-500">今日の予算への影響</div>
-          </div>
-          <div id="ck_t" class="text-xs text-right"></div>
-        </div>
-        <div class="w-full h-1 rounded-full bg-white/5"><div id="ck_tb" class="prog h-1 rounded-full bg-emerald-500" style="width:100%"></div></div>
-      </div>
-      <div class="gc p-4">
-        <div class="flex justify-between items-center">
-          <div>
-            <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Month Forecast</div>
-            <div class="text-[10px] text-slate-500">購入後の月末残高予測</div>
-          </div>
-          <div id="ck_m" class="text-xs text-right"></div>
-        </div>
-      </div>
+      <div class="gc p-4" id="ck_mc"><div class="flex justify-between items-center"><div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Month Forecast</div><div class="text-[10px] text-slate-500">月末残高予測</div></div><div id="ck_m" class="text-xs text-right whitespace-nowrap shrink-0"></div></div></div>
     </div>
 
-    <!-- 詳細入力フォーム（EC購入・その他で表示） -->
+    <!-- URL、金額、なぜ欲しいか（自由記述）の3つに絞った詳細入力 -->
     <div id="f_detail" style="display:none" class="space-y-5 a2 mt-6 border-t border-white/5 pt-6">
-      <div class="sec text-cyan-500"><i class="fas fa-robot mr-1"></i> AIエージェント用データ / Data for AI Agent</div>
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <div class="lbl">想定利用期間</div>
-          <select id="ck_period" class="inp text-xs text-slate-300">
-            <option value="1回限り・消費">1回限り・消費</option>
-            <option value="数ヶ月程度">数ヶ月程度</option>
-            <option value="1年以上">1年以上（長期）</option>
-          </select>
-        </div>
-        <div>
-          <div class="lbl">購入の緊急度</div>
-          <select id="ck_urgency" class="inp text-xs text-slate-300">
-            <option value="いつか欲しかった">いつか欲しかった</option>
-            <option value="今月中には欲しい">今月中には欲しい</option>
-            <option value="今すぐ絶対に必要">今すぐ絶対に必要</option>
-          </select>
-        </div>
-      </div>
-      <div class="gc p-4">
-        <div class="flex justify-between items-end mb-3">
-          <div>
-            <div class="text-[10px] tracking-widest font-bold uppercase text-slate-400">Impulse Level</div>
-            <div class="text-[10px] text-slate-500">衝動レベル（自己評価）</div>
-            <div id="desire_lbl" class="serif text-[10px] mt-1 text-slate-400">冷静</div>
-          </div>
-          <div id="desire_num" class="mono text-xl text-white">5</div>
-        </div>
-        <input type="range" id="ck_d" min="1" max="10" value="5" class="desire-track" oninput="onDesire(this.value)">
-      </div>
-      <div class="gc p-4 border-l-2 border-l-cyan-500">
+      <div class="sec text-cyan-500"><i class="fas fa-robot mr-1"></i> Data for AI Agent</div>
+      <div class="gc p-4 border-l-2 border-l-cyan">
         <div class="flex items-start gap-3 mb-3">
-          <div class="w-7 h-7 rounded bg-black/50 flex items-center justify-center border border-white/10 shrink-0">
-            <i class="fas fa-robot text-xs text-cyan-400"></i>
-          </div>
-          <div class="text-xs text-slate-300 serif leading-relaxed">
-            なぜ今、それが必要なのですか？
-            <span class="text-[9px] text-slate-500 font-sans mt-1 block">言語化によりAIの分析精度が上がります（任意）</span>
-          </div>
+          <div class="w-7 h-7 rounded bg-black/50 flex items-center justify-center border border-white/10 shrink-0"><i class="fas fa-robot text-xs text-cyan-400"></i></div>
+          <div class="text-xs text-slate-300 serif leading-relaxed">なぜ今、それが必要なのですか？<span class="text-[9px] text-slate-500 font-sans mt-1 block">言語化による自己認識が分析精度を高めます。</span></div>
         </div>
-        <textarea id="ck_r" rows="2" placeholder="例：仕事で使う、ずっと欲しかった..." class="inp bg-black/30 border-white/5"></textarea>
+        <textarea id="ck_r" rows="3" placeholder="分析用メモ（例：仕事の効率を上げるため、ストレス解消など）" class="inp bg-black/30 border-white/5"></textarea>
       </div>
     </div>
 
-    <!-- 進むボタン（金額未入力時は非活性） -->
-    <button id="ck_btn_next" onclick="goNextStep()" disabled
-      class="tap w-full py-4 rounded font-bold text-[11px] tracking-widest uppercase mt-6 mb-4 border transition-all"
-      style="background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06);color:var(--tx3);cursor:not-allowed">
-      金額を入力してください
+    <button id="ck_btn_next" onclick="goNextStep()" style="display:none" class="tap w-full py-4 rounded font-bold text-[11px] tracking-widest uppercase mt-6 mb-4 border transition-all bg-white/5 border-white/10 text-white">
+      Proceed to AI Review <i class="fa-solid fa-robot ml-1 text-cyan-400"></i>
     </button>
   </div>
 </div>
 
-<!-- ============================================================
-     Step 2: AI対話フェーズ
-============================================================ -->
+<!-- Step 2: AI Chat -->
 <div id="scAiChat" class="relative bg-[#0A0F1A]" style="display:none">
   <div class="px-6 pt-12 pb-3 flex items-center gap-3 border-b border-white/5 mb-2 bg-[#0A0F1A] sticky top-0 z-20">
-    <button onclick="showScreen('scChecker')" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 shrink-0">
-      <i class="fa-solid fa-arrow-left text-xs"></i>
+    <button onclick="cancelProcess()" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 shrink-0">
+      <i class="fa-solid fa-xmark text-xs"></i>
     </button>
     <div>
       <div class="num text-lg text-cyan-400">Agent Consultation</div>
-      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-0.5">Step 2 : AIエージェント対話</div>
+      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-0.5">Step 2 : Interactive Review</div>
     </div>
   </div>
+
   <div class="px-5 pb-[140px] flex flex-col h-[calc(100vh-140px)]">
     <div id="chat_loading" class="text-center py-10 text-slate-500">
       <i class="fas fa-circle-notch fa-spin text-2xl mb-3 text-cyan-500"></i>
       <div class="text-[9px] tracking-widest uppercase" id="chat_loading_txt">Connecting to Agent...</div>
     </div>
     <div id="ai_chat_area" class="flex-1 overflow-y-auto space-y-4 pb-4 scroll-smooth"></div>
-    <div class="fixed bottom-0 left:0 right:0 left-0 right-0 bg-[#0A0F1A] border-t border-white/10 px-5 py-4 z-30" id="chat_action_area" style="display:none;padding-bottom:calc(16px + env(safe-area-inset-bottom))">
+    <div class="fixed bottom-0 left-0 right-0 bg-[#0A0F1A] border-t border-white/10 px-5 py-4 z-30" id="chat_action_area" style="display:none; padding-bottom:calc(16px + env(safe-area-inset-bottom));">
       <div class="flex gap-2 mb-3">
-        <input type="text" id="chat_input" class="inp flex-1 text-xs" placeholder="反論・理由を入力（Enterで送信）" onkeypress="if(event.key==='Enter') sendChat()">
-        <button onclick="sendChat()" id="chat_send_btn" class="tap w-11 h-11 rounded bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 border border-cyan-500/30">
-          <i class="fas fa-paper-plane text-sm"></i>
-        </button>
+        <input type="text" id="chat_input" class="inp flex-1 text-xs" placeholder="反論や理由を入力..." onkeypress="if(event.key==='Enter') sendChat()">
+        <button onclick="sendChat()" id="chat_send_btn" class="tap w-11 h-11 rounded bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 border border-cyan-500/30"><i class="fas fa-paper-plane text-sm"></i></button>
       </div>
       <div class="flex gap-2">
-        <button onclick="doAvoidFromChat()" class="tap flex-1 py-3 rounded bg-emerald-500/10 text-emerald-400 font-bold text-[10px] tracking-widest uppercase border border-emerald-500/30">
-          AVOID (やめる)
-        </button>
-        <button onclick="goSummary()" class="tap flex-1 py-3 rounded bg-white/5 text-slate-400 font-bold text-[10px] tracking-widest uppercase border border-white/10">
-          → リスク確認へ
-        </button>
+        <button onclick="doAvoidFromChat()" class="tap flex-1 py-3 rounded bg-emerald-500/10 text-emerald-400 font-bold text-[10px] tracking-widest uppercase border border-emerald-500/30">AVOID (やめる)</button>
+        <button onclick="goSummary()" class="tap flex-1 py-3 rounded bg-white/5 text-slate-400 font-bold text-[10px] tracking-widest uppercase border border-white/10">Proceed to Summary</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ============================================================
-     Step 3: エグゼクティブサマリー
-============================================================ -->
+<!-- Step 3: Summary -->
 <div id="scSummary" class="relative bg-[#0A0F1A]" style="display:none">
   <div class="px-6 pt-12 pb-3 flex items-center gap-3 border-b border-white/5 mb-5">
-    <button onclick="showScreen('scAiChat')" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 shrink-0">
-      <i class="fa-solid fa-arrow-left text-xs"></i>
+    <button onclick="cancelProcess()" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 shrink-0">
+      <i class="fa-solid fa-xmark text-xs"></i>
     </button>
     <div>
       <div class="num text-lg">Executive Summary</div>
-      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-0.5">Step 3 : リスク評価 / Risk Assessment</div>
+      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-0.5">Step 3 : Risk Assessment</div>
     </div>
   </div>
+
   <div class="px-5 pb-24 space-y-4">
-    <div class="gc p-5">
+    <div class="gc p-5" id="sum_imp_card">
       <div class="text-[10px] tracking-widest font-bold uppercase text-slate-400 mb-1">AI Impulse Score</div>
-      <div class="text-[9px] text-slate-500 mb-2">衝動度スコア</div>
       <div id="sum_impulse" class="num text-2xl text-white mb-1"></div>
       <div id="sum_impulse_reason" class="text-[11px] serif text-slate-300"></div>
     </div>
+
     <div class="gc p-5">
-      <div class="text-[10px] tracking-widest font-bold uppercase text-slate-400 mb-3">財務インパクト / Financial Impact</div>
+      <div class="text-[10px] tracking-widest font-bold uppercase text-slate-400 mb-3">Financial Impact</div>
       <div class="space-y-3">
         <div class="flex justify-between border-b border-white/5 pb-2"><span class="text-[11px] text-slate-500">購入予定額</span><span id="sum_amt" class="mono text-sm"></span></div>
         <div class="flex justify-between border-b border-white/5 pb-2"><span class="text-[11px] text-slate-500">労働時間損失</span><span id="sum_hrs" class="mono text-sm text-amber-400"></span></div>
-        <div class="flex justify-between"><span class="text-[11px] text-slate-500">購入後の月末残高</span><span id="sum_end" class="mono text-sm"></span></div>
+        <div class="flex justify-between"><span class="text-[11px] text-slate-500">月末残高への影響</span><span id="sum_end" class="mono text-sm"></span></div>
       </div>
     </div>
-    <!-- 過去の同カテゴリ支出警告 -->
+
     <div id="sum_past_area" class="gc p-5" style="display:none">
-      <div class="text-[10px] tracking-widest font-bold uppercase text-orange-500 mb-1">Past Warnings</div>
-      <div class="text-[9px] text-slate-500 mb-3">過去の同カテゴリ支出</div>
-      <div class="text-[11px] serif text-slate-400 mb-3">過去に同カテゴリで以下の支出を行っています。それらは今も本当に活用されていますか？</div>
+      <div class="text-[10px] tracking-widest font-bold uppercase text-orange-500 mb-3">Past Warnings</div>
+      <div class="text-[11px] serif text-slate-400 mb-3">過去に同カテゴリで以下の支出を行っています。これらは本当に現在活用されていますか？</div>
       <div id="sum_past_list" class="space-y-2"></div>
     </div>
-    <button onclick="goMindful()" class="tap w-full py-4 mt-6 rounded font-bold text-xs tracking-widest uppercase bg-white text-black">
-      Acknowledge & Meditate → 60秒間の内省へ
+
+    <button onclick="goMindful()" class="tap w-full py-4 mt-6 rounded font-bold text-xs tracking-widest uppercase bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+      Acknowledge & Meditate
     </button>
   </div>
 </div>
 
-<!-- ============================================================
-     Step 4 & 5: マインドフルネス → 最終決断
-============================================================ -->
+<!-- Step 4 & 5: Mindfulness & Decision -->
 <div id="scMindful" class="relative bg-black min-h-screen flex flex-col items-center justify-center overflow-hidden" style="display:none">
   <div class="mindful-ring"></div>
   <div class="relative z-10 text-center w-full px-8">
     <div id="mf_timer" class="num text-6xl text-white font-light tracking-widest mb-8 transition-opacity duration-1000">60</div>
     <div id="mf_msg" class="serif text-sm text-slate-300 leading-loose h-20 transition-opacity duration-1000 opacity-0"></div>
-    <!-- 60秒後に表示される決断ボタン群 -->
-    <div id="mf_decision" class="w-full space-y-3 mt-12 transition-opacity duration-1000" style="opacity:0;pointer-events:none;display:none">
-      <button onclick="doAvoid()" class="w-full py-5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 font-bold text-[13px] tracking-widest uppercase active:scale-95">
-        AVOID — 我慢する
+    <div id="mf_decision" class="w-full space-y-3 mt-12 transition-opacity duration-1000" style="opacity:0; pointer-events:none; display:none;">
+      <button onclick="doAvoid()" class="w-full py-5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 font-bold text-[13px] tracking-widest uppercase transition-transform active:scale-95">
+        AVOID (やめる)
       </button>
-      <button onclick="doBuy()" class="w-full py-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-[11px] tracking-widest uppercase active:scale-95">
-        BUY — 購入する（記録する）
+      <button id="btn_buy_locked" onclick="doBuy()" class="w-full py-4 rounded-lg bg-transparent border border-white/10 text-slate-600 font-bold text-[11px] tracking-widest uppercase transition-all">
+        <span id="txt_buy_locked">PROCEED TO BUY / GO</span>
       </button>
     </div>
   </div>
 </div>
 
-<!-- ============================================================
-     ⑤ 月次レポート画面
-============================================================ -->
+<!-- ⑤ 月末レポート -->
 <div id="scReport" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 flex justify-between items-end border-b border-white/5 mb-4">
     <div>
       <div class="num text-2xl tracking-tight">Report</div>
-      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">月次レポート / Monthly Analytics</div>
+      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">Monthly Analytics</div>
     </div>
     <span id="rp_b" class="text-[10px] font-bold tracking-widest uppercase text-slate-400"></span>
   </div>
   <div class="px-5 space-y-4 overflow-y-auto">
     <div class="flex gap-2 a0">
-      <button onclick="rpPrev()" class="tap w-10 h-10 rounded flex items-center justify-center border border-white/10 text-slate-400"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+      <button onclick="rpPrev()" class="tap w-10 h-10 rounded flex items-center justify-center border border-white/10 hover:bg-white/5 text-slate-400"><i class="fa-solid fa-chevron-left text-xs"></i></button>
       <div id="rp_ml" class="flex-1 text-center font-bold py-2 rounded border border-white/5 bg-black/20 text-xs flex items-center justify-center tracking-widest uppercase"></div>
-      <button onclick="rpNext()" class="tap w-10 h-10 rounded flex items-center justify-center border border-white/10 text-slate-400"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+      <button onclick="rpNext()" class="tap w-10 h-10 rounded flex items-center justify-center border border-white/10 hover:bg-white/5 text-slate-400"><i class="fa-solid fa-chevron-right text-xs"></i></button>
     </div>
-    <div class="gc p-5 a1 border-l-2 border-l-cyan-500">
-      <div class="lbl text-cyan-500">ZAIM Data Integration</div>
-      <div class="hint mt-1 mb-3">ZAIM等から今月の裁量支出合計を入力してください。未入力でもSYNCで分析開始できます。</div>
+    <div class="gc p-5 a1 border-l-2 border-l-cyan">
+      <div class="lbl text-cyan-500">Data Integration</div>
+      <div class="hint mt-1 mb-3">ZAIM等から今月の裁量支出合計を入力し、精度を高めます。</div>
       <div class="flex gap-2">
         <div class="relative flex-1">
           <input id="rp_zi" type="number" inputmode="numeric" placeholder="0" class="inp num text-lg pl-8">
@@ -541,7 +422,7 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
     </div>
     <div id="rp_score" style="display:none">
       <div class="gc p-5 a2">
-        <div class="sec text-center mb-4">裁量支出内訳 / Discretionary Spending</div>
+        <div class="sec text-center mb-4">Discretionary Spending</div>
         <div id="rp_bd" class="space-y-3"></div>
         <div class="flex justify-between items-center mt-3 pt-3 border-t border-white/5">
           <div class="text-[10px] font-bold tracking-widest uppercase text-slate-400">Total</div>
@@ -549,64 +430,48 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
         </div>
         <div class="mt-5 p-4 rounded bg-emerald-500/10 border border-emerald-500/20 text-center">
           <div class="text-[9px] font-bold tracking-widest uppercase text-emerald-500 mb-1">Saved by Sober</div>
-          <div class="text-[9px] text-emerald-700 mb-1">アプリで回避した金額</div>
           <div id="rp_sh" class="mono text-2xl text-emerald-400"></div>
         </div>
       </div>
       <div id="rp_mc" class="gc p-5 a3 mt-4 text-center">
         <div id="rp_mi" class="text-2xl mb-2"></div>
         <div id="rp_mt" class="text-xs font-bold mb-2 tracking-widest uppercase"></div>
-        <!-- AI分析テキスト（ローディング含む） -->
-        <div id="rp_mx" class="text-[11px] font-serif leading-relaxed text-slate-400">
-          <span id="rp_ai_loading" style="display:none"><span class="ai-dot"></span><span class="ai-dot"></span><span class="ai-dot"></span></span>
-        </div>
+        <div id="rp_mx" class="text-[11px] font-serif leading-relaxed text-slate-400"></div>
       </div>
     </div>
     <div id="rp_emp" class="text-center py-12 a1" style="display:none">
       <i class="fa-solid fa-chart-bar text-2xl mb-3 block text-slate-600"></i>
       <div class="text-[10px] tracking-widest uppercase text-slate-500">NO DATA</div>
-      <div class="text-[9px] text-slate-600 mt-1">今月の記録がありません</div>
     </div>
   </div>
 </div>
 
-<!-- ============================================================
-     ⑥ 設定画面
-============================================================ -->
+<!-- ⑥ 設定画面 -->
 <div id="scSettings" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 border-b border-white/5 mb-4">
     <div class="num text-2xl tracking-tight">Settings</div>
-    <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">設定 / System Config</div>
+    <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">System Config</div>
   </div>
   <div class="flex border-b border-white/5 px-5 mb-4 overflow-x-auto" style="scrollbar-width:none">
     <button class="tab-btn on shrink-0" id="tb_base" onclick="switchTab('base')">BASE</button>
-    <button class="tab-btn shrink-0" id="tb_fail" onclick="switchTab('fail')">FAILURE DB</button>
-    <button class="tab-btn shrink-0" id="tb_char" onclick="switchTab('char')">AGENT</button>
+    <button class="tab-btn shrink-0"   id="tb_fail" onclick="switchTab('fail')">FAILURE DB</button>
+    <button class="tab-btn shrink-0"   id="tb_char" onclick="switchTab('char')">AGENT</button>
   </div>
 
   <div id="tb_base_b" class="px-5 space-y-5 overflow-y-auto">
     <div class="gc p-5 space-y-4">
-      <div class="sec">財務設定 / Financial Settings</div>
-      <div><div class="lbl">月収（手取り）</div><input id="st_i" type="number" class="inp"></div>
-      <div><div class="lbl">月の貯金目標</div><input id="st_g" type="number" class="inp text-emerald-400"></div>
-      <div><div class="lbl">固定費合計</div><input id="st_f" type="number" class="inp"></div>
-      <div class="text-[10px] text-slate-400 mt-2">月の自由資金: <span id="st_fp" class="mono text-emerald-400 ml-1 text-sm"></span></div>
+      <div class="sec">Financial Settings</div>
+      <div><div class="lbl">月収</div><input id="st_i" type="number" class="inp"></div>
+      <div><div class="lbl">貯金目標</div><input id="st_g" type="number" class="inp text-emerald-400"></div>
+      <div><div class="lbl">固定費</div><input id="st_f" type="number" class="inp"></div>
+      <div class="text-[10px] text-slate-400 mt-2">自由資金: <span id="st_fp" class="mono text-emerald-400 ml-1 text-sm"></span></div>
     </div>
     <div class="gc p-5 space-y-4">
-      <div class="sec">外部連携 / Integration</div>
+      <div class="sec">API Keys & Threshold</div>
       <div><div class="lbl">Gemini API Key</div><input id="st_k" type="password" class="inp text-xs"></div>
       <div>
-        <div class="lbl">GAS Webhook URL</div>
-        <input id="st_gas" type="url" class="inp text-xs" placeholder="https://script.google.com/macros/s/...">
-        <div class="hint mt-2">Googleスプレッドシートとの連携に使用します</div>
-      </div>
-      <div class="flex gap-2 mt-2">
-        <button onclick="backupToGAS()" class="tap flex-1 py-3 rounded font-bold text-[10px] tracking-widest uppercase bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
-          <i class="fas fa-cloud-upload-alt mr-1"></i>バックアップ
-        </button>
-        <button onclick="fetchFailuresFromGAS()" class="tap flex-1 py-3 rounded font-bold text-[10px] tracking-widest uppercase bg-amber-500/10 border border-amber-500/30 text-amber-400">
-          <i class="fas fa-sync mr-1"></i>失敗DB同期
-        </button>
+        <div class="lbl">月初ロック対象の高額設定（¥ 以上）</div>
+        <input id="st_wt" type="number" class="inp" placeholder="3000">
       </div>
     </div>
     <button onclick="saveBase()" class="tap w-full py-4 rounded font-bold text-[10px] tracking-widest uppercase bg-transparent border border-white/20 text-white">Save Config</button>
@@ -614,10 +479,7 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
 
   <div id="tb_fail_b" class="px-5 overflow-y-auto" style="display:none">
     <div class="flex justify-between items-center mb-3">
-      <div>
-        <div class="text-[10px] font-bold text-slate-300">失敗パターンデータベース</div>
-        <div class="text-[9px] text-slate-500 mt-0.5">AIが購入前に参照する自分の「負けパターン」</div>
-      </div>
+      <div class="text-[10px] text-slate-400">AIが参照する「過去の失敗パターン」</div>
       <button onclick="addFail()" class="tap px-3 py-1.5 rounded text-[10px] font-bold tracking-widest uppercase border border-white/10 text-slate-300">+ ADD</button>
     </div>
     <div id="st_fails" class="space-y-3 mb-4"></div>
@@ -625,20 +487,18 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   </div>
 
   <div id="tb_char_b" class="px-5 space-y-4 overflow-y-auto" style="display:none">
-    <div class="text-[9px] text-slate-500 mb-3">AIエージェントの人格・発言スタイルをカスタマイズできます</div>
+    <div class="text-[9px] text-slate-500 mb-3">エージェントのアイコンを任意の画像に変更できます</div>
     <div id="st_chars" class="space-y-4"></div>
     <button onclick="saveChars()" class="tap w-full py-4 rounded font-bold text-[10px] tracking-widest uppercase bg-transparent border border-white/20 text-white">Save Agents</button>
   </div>
 </div>
 
-<!-- ============================================================
-     ⑦ 履歴画面
-============================================================ -->
+<!-- ⑦ 履歴画面 -->
 <div id="scHistory" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 flex justify-between items-end border-b border-white/5 mb-4">
     <div>
       <div class="num text-2xl tracking-tight">History</div>
-      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">取引履歴 / Transaction Log</div>
+      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">Transaction Log</div>
     </div>
     <span id="hi_b" class="text-[10px] font-bold tracking-widest uppercase text-slate-400"></span>
   </div>
@@ -651,37 +511,32 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   <div class="px-5 space-y-2 overflow-y-auto" id="hi_list"></div>
   <div id="hi_emp" class="text-center py-12" style="display:none">
     <div class="text-[10px] tracking-widest uppercase text-slate-500">NO RECORDS</div>
-    <div class="text-[9px] text-slate-600 mt-1">記録がありません</div>
   </div>
   <div class="px-5 mt-6 mb-2">
-    <button onclick="openLate()" class="late-btn">+ 事後記録を追加 (アプリを通さなかった支出)</button>
+    <button onclick="openLate()" class="late-btn">+ Add Unverified Record (事後記録)</button>
   </div>
 </div>
 
-<!-- ボトムナビゲーション -->
+<!-- ボトムナビ -->
 <div id="botNav" class="bot-nav" style="display:none">
-  <div class="nb on" id="nb_h"  onclick="navTo('scHome','nb_h')"><i class="fa-solid fa-layer-group"></i><span>Dash</span></div>
-  <div class="nb"    id="nb_hi" onclick="navTo('scHistory','nb_hi')"><i class="fa-solid fa-list"></i><span>Log</span></div>
-  <div class="nb"    id="nb_r"  onclick="navTo('scReport','nb_r')"><i class="fa-solid fa-chart-bar"></i><span>Report</span></div>
-  <div class="nb"    id="nb_s"  onclick="navTo('scSettings','nb_s')"><i class="fa-solid fa-sliders"></i><span>Config</span></div>
+  <div class="nb on" id="nb_h" onclick="navTo('scHome','nb_h')"><i class="fa-solid fa-layer-group"></i><span>Dash</span></div>
+  <div class="nb" id="nb_hi" onclick="navTo('scHistory','nb_hi')"><i class="fa-solid fa-list"></i><span>Log</span></div>
+  <div class="nb" id="nb_r" onclick="navTo('scReport','nb_r')"><i class="fa-solid fa-chart-bar"></i><span>Report</span></div>
+  <div class="nb" id="nb_s" onclick="navTo('scSettings','nb_s')"><i class="fa-solid fa-sliders"></i><span>Config</span></div>
 </div>
 
-<!-- 「やめた理由」選択オーバーレイ（15秒自動クローズ） -->
+<!-- Why Overlay -->
 <div id="whyOv" class="s-ov">
   <div id="whySh" class="s-body">
     <div class="drag-h"></div>
     <div class="px-6 pt-5 pb-3">
       <div class="font-bold text-sm tracking-widest uppercase mb-1">Reason for Avoidance</div>
-      <div class="text-[10px] text-slate-500 serif">何が決め手でしたか？（分析データとして記録します）</div>
-      <div class="w-full h-[2px] rounded-full mt-3 bg-white/5">
-        <div id="why_bar" class="h-[2px] rounded-full" style="width:100%;background:var(--gold)"></div>
-      </div>
+      <div class="text-[10px] text-slate-500 serif">何が決め手でしたか？(分析用データ)</div>
+      <div id="why_prog" class="w-full h-[2px] rounded-full mt-3 bg-white/5"><div id="why_bar" class="h-[2px] rounded-full bg-gold" style="width:100%;"></div></div>
     </div>
     <div class="px-5 py-2 space-y-2" id="why_opts"></div>
     <div class="px-5 pt-2 mb-4">
-      <button onclick="selectWhy(null)" class="tap w-full py-3 rounded text-[10px] font-bold tracking-widest uppercase text-slate-500 border border-white/5">
-        SKIP（記録しない）
-      </button>
+      <button onclick="selectWhy(null)" class="tap w-full py-3 rounded text-[10px] font-bold tracking-widest uppercase text-slate-500 border border-white/5">SKIP</button>
     </div>
   </div>
 </div>
@@ -693,28 +548,22 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
     <div class="mt-4 mb-5 text-center">
       <div class="text-[9px] font-bold tracking-widest uppercase text-amber-500 mb-1">Unverified Record</div>
       <div class="text-lg font-bold text-white">事後記録</div>
-      <div class="text-[10px] text-slate-400 mt-1 serif">アプリを通さずに使ったお金を記録します</div>
+      <div class="text-[10px] text-slate-400 mt-1 serif">正確なデータが自己分析の精度を高めます。</div>
     </div>
     <div class="space-y-4">
-      <div><div class="lbl">品名（必須）</div><input id="lt_n" type="text" placeholder="何を買いましたか？" maxlength="40" class="inp"></div>
-      <div>
-        <div class="lbl">金額（必須）</div>
-        <div class="relative"><input id="lt_a" type="number" inputmode="numeric" placeholder="0" class="inp num text-lg pr-8"><span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">円</span></div>
+      <div><div class="lbl">Item Name (必須)</div><input id="lt_n" type="text" placeholder="品名" maxlength="40" class="inp"></div>
+      <div><div class="lbl">Price (必須)</div>
+        <div class="relative"><input id="lt_a" type="number" inputmode="numeric" placeholder="0" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
       </div>
       <div>
-        <div class="lbl">購入場所（カテゴリ）</div>
-        <div class="flex flex-wrap gap-1.5 mt-1 mb-2">
-          <button onclick="setLtW('Amazon')"   class="tap px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400">Amazon</button>
-          <button onclick="setLtW('楽天')"     class="tap px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400">楽天</button>
-          <button onclick="setLtW('実店舗')"   class="tap px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400">実店舗</button>
-          <button onclick="setLtW('コンビニ')" class="tap px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400">コンビニ</button>
-          <button onclick="setLtW('Uber Eats')"class="tap px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400">Uber Eats</button>
-          <button onclick="setLtW('飲み')"     class="tap px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400">飲み</button>
+        <div class="lbl">Category</div>
+        <div class="flex flex-wrap gap-1.5 mt-1 mb-2" id="lt_cats_area">
+          <!-- ここはJSで動的生成されます -->
         </div>
         <input id="lt_w" type="text" placeholder="自由入力" class="inp text-xs">
       </div>
-      <div><div class="lbl">理由（必須）</div><textarea id="lt_y" rows="2" placeholder="なぜアプリを通さなかったか（例：急いでいた、セールだった）" class="inp"></textarea></div>
-      <div id="lt_rep" class="gc p-4" style="display:none;border-color:rgba(245,158,11,.2)">
+      <div><div class="lbl">Reason (必須)</div><textarea id="lt_y" rows="2" placeholder="分析用メモ (なぜアプリを通さなかったか)" class="inp"></textarea></div>
+      <div id="lt_rep" class="gc p-4 rounded border-amber-500/20" style="display:none;">
         <div class="text-[9px] font-bold tracking-widest uppercase text-amber-500 mb-2">Agent Feedback</div>
         <div id="lt_rt" class="text-xs serif leading-relaxed text-slate-300"></div>
       </div>
@@ -723,65 +572,45 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   </div>
 </div>
 
-<!-- トースト通知 -->
-<div id="toast" class="toast px-6 py-3 rounded bg-white text-black text-[10px] font-bold tracking-widest uppercase shadow-[0_4px_20px_rgba(0,0,0,.5)]">
-  <span id="toast_t"></span>
-</div>
+<div id="toast" class="toast px-6 py-3 rounded bg-white text-black text-[10px] font-bold tracking-widest uppercase shadow-[0_4px_20px_rgba(0,0,0,0.5)]"><span id="toast_t"></span></div>
 
 <script>
 'use strict';
+const STORE = 'sober_v11';
 
-// ============================================================
-// 定数定義
-// ============================================================
-const STORE = 'sober_v6'; // localStorageキー
+const HIGH_PRICE_THRESHOLD = 3000;
 
-// シチュエーション別の固定金額マップ（仕様書 Section 2 準拠）
-const FIXED_AMOUNTS = { conv:2000, uber:3000, drink:6000 };
+const FIXED_AMOUNTS = { conv: 2000, uber: 3000, drink: 6000 };
 
-// シチュエーション別メタ情報（タイトル・日本語説明・デフォルト品名）
-const SITUATION_META = {
-  conv:   { title:'Daily Trap',   sub:'コンビニ・ドラッグストア等への立ち寄り衝動',  name:'コンビニ購入' },
-  amazon: { title:'Cart Rush',    sub:'ECサイトでの衝動買い・カート決済前の確認',     name:'' },
-  uber:   { title:'Lazy Levy',    sub:'デリバリーサービスの「怠惰への課金」を検証',   name:'デリバリー食費' },
-  drink:  { title:'Night Spiral', sub:'2次会・深夜タクシー等の限界効用チェック',      name:'飲み代 / タクシー代' },
-  other:  { title:'その他の出費', sub:'金額と用途を入力して詳細分析を行います',        name:'' }
-};
-
-// デフォルトAIエージェント定義
 const DEF_CHARS = [
-  { id:1, name:'Logic',       icon:'🧠', img:'', side:'left',  role:'データメンター',  persona:'冷静なアナリスト。「このままいくと月末に赤字です。数時間分の労働が消えるのが心配です」と事実ベースで優しく諭す。' },
+  { id:1, name:'Logic',       icon:'🧠', img:'', side:'left',  role:'データメンター',  persona:'冷静なアナリスト。「月末に赤字です。数時間分の労働が消えるのが心配です」と事実ベースで優しく諭す。' },
   { id:2, name:'Alternative', icon:'💡', img:'', side:'right', role:'ライフプランナー', persona:'優しいコンサルタント。「そのお金、別の経験に使いませんか？家にあるもので代用してみましょう」と提案する。' },
   { id:3, name:'Guardian',    icon:'🛡️', img:'', side:'left',  role:'良き理解者',      persona:'愛のある親友。過去のデータから「前も同じもので後悔してたよね？また同じ思いをしてほしくないな」と引き留める。' }
 ];
 
-// デフォルト失敗パターンDB
 const DEF_FAILS = [
   { id:1, cat:'コンビニ', name:'導線トラップ浪費',  cond:'仕事帰りに「ちょっと寄るだけ」と思い、つい新作スイーツやビールを買ってしまう。' },
-  { id:2, cat:'Amazon',  name:'深夜のドーパミン買い',cond:'23時以降、仕事のストレスから解放された反動で、不要なガジェットをポチる。' },
-  { id:3, cat:'Uber',    name:'悪天候の妥協',        cond:'雨が降っていると「買い物に行く時間と労力がもったいない」と自分に言い訳してしまう。' }
+  { id:2, cat:'Amazon',  name:'深夜のドーパミン買い', cond:'23時以降、仕事のストレスから解放された反動で、不要なガジェットをポチる。' },
+  { id:3, cat:'Uber',    name:'悪天候の妥協',       cond:'雨が降っていると「買い物に行く時間と労力がもったいない」と自分に言い訳してしまう。' }
 ];
 
-// 60秒マインドフルネスメッセージ
 const MINDFUL_MSGS = [
-  { t:60, msg:'目を閉じて、深く息を吸い込んでください...' },
-  { t:45, msg:'息をゆっくりと吐き出します...' },
-  { t:30, msg:'それは、本当にあなたの人生の価値を高めるものですか？' },
-  { t:15, msg:'衝動は波のようなものです。波が過ぎ去るのを静かに待ちましょう...' },
-  { t:0,  msg:'決断の時です。' }
+  { t: 60, msg: "目を閉じて、深く息を吸い込んでください..." },
+  { t: 45, msg: "息をゆっくりと吐き出します..." },
+  { t: 30, msg: "それは、本当にあなたの人生の価値を高めるものですか？" },
+  { t: 15, msg: "衝動は波のようなものです。波が過ぎ去るのを静かに待ちましょう..." },
+  { t: 0,  msg: "決断の時です。" }
 ];
 
-// 「やめた理由」選択肢
 const WHY_OPTS = [
   { id:'hours',   icon:'fa-briefcase',  label:'時給換算の非効率性',   color:'var(--amber)' },
-  { id:'ai',      icon:'fa-robot',      label:'AIの論理的指摘',       color:'var(--cyan)' },
-  { id:'deficit', icon:'fa-chart-line', label:'赤字リスクの回避',     color:'var(--red)' },
+  { id:'ai',      icon:'fa-robot',      label:'AIの諭し・客観的指摘',       color:'var(--cyan)' },
+  { id:'deficit', icon:'fa-chart-line', label:'赤字リスクへの危機感',     color:'var(--red)' },
   { id:'cooled',  icon:'fa-snowflake',  label:'冷却期間による冷静化', color:'var(--tx2)' },
   { id:'price',   icon:'fa-tag',        label:'価格の妥当性欠如',     color:'var(--green)' },
 ];
 
-// 事後記録へのフィードバックテキスト（キーワードマッチ）
-const LATE_FEEDBACK = [
+const LATE_TX = [
   { kw:['セール','割引','限定','タイムセール'], txt:'セールはマーケティングの基本です。本来の価値を見失っています。' },
   { kw:['気づいたら','無意識','なんとなく'],   txt:'認知バイアスに負けましたね。プロセスを経ない支出はリスクです。' },
   { kw:['急い','時間','すぐ','今すぐ'],        txt:'決断を遅らせる猶予を持てない状況での支出は、往々にして不合理です。' },
@@ -790,792 +619,496 @@ const LATE_FEEDBACK = [
   { kw:[], txt:'記録処理完了。データとしての正確性が次回の判断材料になります。' }
 ];
 
-// API未設定時のモックチャット台本
-const MOCK_CHAT = {
-  conv:  [
-    { ci:0, msg:'コンビニ出費¥2,000は月換算で約¥60,000になります。今日、本当に家に代替品はありませんか？' },
-    { ci:1, msg:'手持ちの食材やお茶で代用できませんか？少しの我慢が、来月の余裕を生みます。' },
-    { ci:2, msg:'「ちょっとだけ」が積み重なって毎月の赤字につながっています。今日は引き返しましょう。' }
-  ],
-  uber:  [
-    { ci:0, msg:'¥3,000のデリバリーは実質「怠惰への課金」です。同じ料理が近くの店なら約¥1,000で手に入ります。' },
-    { ci:1, msg:'外に出ることで気分転換にもなります。15分歩くことで、この衝動も冷めるかもしれません。' },
-    { ci:2, msg:'以前も「もったいなかった」と後悔していましたよね？今日は本当に動けない状況ですか？' }
-  ],
-  drink: [
-    { ci:0, msg:'2次会の¥6,000は翌日の生産性低下コストを含むと実質¥15,000相当です。明日の仕事は大丈夫ですか？' },
-    { ci:1, msg:'1次会で十分に楽しめたはずです。今夜はここで帰って、明日に備えましょう。' },
-    { ci:2, msg:'「もう1軒だけ」という言葉、過去に何度後悔しましたか？今夜は素直に帰りましょう。' }
-  ],
-  amazon:[
-    { ci:0, msg:'Amazonの衝動買いの多くは「3ヶ月後に後悔」するというデータがあります。24時間後も同じ気持ちですか？' },
-    { ci:1, msg:'同じ機能のものが既に家にありませんか？「今あるものを最大限活用する」が資産形成の基本です。' },
-    { ci:2, msg:'前回のAmazon購入、今も使っていますか？「また使わないかも」という直感は案外正確ですよ。' }
-  ],
-  other: [
-    { ci:0, msg:'この金額を労働時間に換算すると、相応の時間が消えます。今このタイミングで本当に必要ですか？' },
-    { ci:1, msg:'同じ満足感を得られる、より低コストな代替案はありませんか？少し立ち止まって考えてみましょう。' },
-    { ci:2, msg:'過去の同じような衝動的な決断を振り返ると、今回も同じ結果になる可能性が高いです。慎重に。' }
-  ]
-};
-const MOCK_REPLIES = [
-  'その考えは理解できます。でも本当に今必要ですか？',
-  'もう少し時間を置いて考えてみませんか？',
-  '衝動を感じているとき、最善の判断はできません。'
-];
+function mKey(d = new Date()) { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; }
+function today() { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function daysInM(key = mKey()) { const [y,m] = key.split('-').map(Number); return new Date(y,m,0).getDate(); }
+function remDays(key = mKey()) { const d = new Date(); return daysInM(key) - d.getDate() + 1; }
+function yenHtml(n) { const num = Number(n||0); const sign = num < 0 ? '-' : ''; return `${sign}<span class="text-[0.6em] text-slate-500 mr-0.5 font-sans font-normal">¥</span>${Math.abs(num).toLocaleString()}`; }
+function fmtM(k) { const [y,m] = k.split('-'); return `${y}.${parseInt(m)}`; }
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,5); }
+function hourly(data) { return Math.round((data.income||0)/160); }
+function freeAmt(data) { return (data.income||0) - (data.savingsGoal||0) - (data.fixedCost||0); }
+function usedAmt(data, key=mKey()) { const m = data.months?.[key]; if(!m) return 0; return m.records.filter(r=>r.result==='buy'||r.result==='late_buy').reduce((s,r)=>s+r.amount,0); }
+function load() { try { const r = localStorage.getItem(STORE); return r ? JSON.parse(r) : null; } catch { return null; } }
+function save(d) { try { localStorage.setItem(STORE, JSON.stringify(d)); } catch(e) { console.error(e); } }
+function getMonth(data, key=mKey()) { if(!data.months) data.months={}; if(!data.months[key]) data.months[key]={records:[],zaimTotal:null}; return data.months[key]; }
 
-// ============================================================
-// ユーティリティ関数
-// ============================================================
+let _toastTimer = null;
+function showToast(msg) { const el = document.getElementById('toast'); document.getElementById('toast_t').textContent = msg; el.classList.add('show'); if(_toastTimer) clearTimeout(_toastTimer); _toastTimer = setTimeout(()=>el.classList.remove('show'),3000); }
 
-/** 年月キーを生成（例: "2025-04"） */
-function mKey(d=new Date()){
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
-}
+const ALL_SCR = ['scSetup','scHome','scChecker','scAiChat','scSummary','scMindful','scReport','scSettings','scHistory'];
+const NAV_SCR = ['scHome','scHistory','scReport','scSettings'];
 
-/** 今日の日付文字列を生成（例: "2025-04-01"） */
-function today(){
-  const d=new Date();
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-}
-
-/** 指定月の日数を返す */
-function daysInM(key=mKey()){
-  const [y,m]=key.split('-').map(Number);
-  return new Date(y,m,0).getDate();
-}
-
-/** 月末までの残日数を返す（当日含む） */
-function remDays(key=mKey()){
-  return daysInM(key)-new Date().getDate()+1;
-}
-
-/** 金額をYen HTMLフォーマットで返す（例: ¥12,345） */
-function yenHtml(n){
-  const num=Number(n)||0;
-  const sign=num<0?'-':'';
-  return `${sign}<span class="text-[0.6em] text-slate-500 mr-0.5 font-sans font-normal">¥</span>${Math.abs(num).toLocaleString()}`;
-}
-
-/** 年月キーを表示フォーマットに変換（例: "2025.4"） */
-function fmtM(k){
-  if(!k) return '';
-  const [y,m]=k.split('-');
-  return `${y}.${parseInt(m)}`;
-}
-
-/** ユニークIDを生成 */
-function uid(){
-  return Date.now().toString(36)+Math.random().toString(36).slice(2,5);
-}
-
-/** 時給を計算（月160時間稼働として概算） */
-function calcHourlyWage(data){
-  return Math.round((data.income||0)/160);
-}
-
-/** 月の自由資金を計算（収入 − 貯金目標 − 固定費） */
-function calcFreeBudget(data){
-  return (data.income||0)-(data.savingsGoal||0)-(data.fixedCost||0);
-}
-
-/**
- * 当月の購入・事後記録の合計支出を返す
- * result: 'buy' または 'late_buy' のレコードを集計
- */
-function calcMonthlyUsed(data,key=mKey()){
-  const m=data.months?.[key];
-  if(!m?.records) return 0;
-  return m.records
-    .filter(r=>r.result==='buy'||r.result==='late_buy')
-    .reduce((sum,r)=>sum+(r.amount||0),0);
-}
-
-/**
- * 今日の購入・事後記録の合計支出を返す
- */
-function calcTodayUsed(data,key=mKey()){
-  const m=data.months?.[key];
-  if(!m?.records) return 0;
-  const t=today();
-  return m.records
-    .filter(r=>(r.result==='buy'||r.result==='late_buy')&&r.date===t)
-    .reduce((sum,r)=>sum+(r.amount||0),0);
-}
-
-/** localStorageからデータを安全に読み込む */
-function load(){
-  try{
-    const raw=localStorage.getItem(STORE);
-    return raw?JSON.parse(raw):null;
-  }catch(e){
-    console.error('データ読み込みエラー:',e);
-    return null;
-  }
-}
-
-/** データをlocalStorageに安全に保存する */
-function save(d){
-  try{
-    localStorage.setItem(STORE,JSON.stringify(d));
-  }catch(e){
-    console.error('データ保存エラー:',e);
-    showToast('SAVE ERROR');
-  }
-}
-
-/**
- * 指定月のデータオブジェクトを取得または初期化する
- * wishlistは廃止済みのため含めない
- */
-function getMonth(data,key=mKey()){
-  if(!data.months) data.months={};
-  if(!data.months[key]) data.months[key]={records:[],zaimTotal:null};
-  return data.months[key];
-}
-
-// ============================================================
-// 画面遷移管理
-// ============================================================
-const ALL_SCR=['scSetup','scHome','scChecker','scAiChat','scSummary','scMindful','scReport','scSettings','scHistory'];
-const NAV_SCR=['scHome','scHistory','scReport','scSettings']; // ボトムナビを表示する画面
-
-let _toastTimer=null;
-/** トースト通知を表示する（3秒で自動消去） */
-function showToast(msg){
-  const el=document.getElementById('toast');
-  document.getElementById('toast_t').textContent=msg;
-  el.classList.add('show');
-  if(_toastTimer) clearTimeout(_toastTimer);
-  _toastTimer=setTimeout(()=>el.classList.remove('show'),3000);
-}
-
-/** 指定IDの画面に遷移する */
-function showScreen(id){
-  ALL_SCR.forEach(s=>document.getElementById(s).style.display='none');
-  document.getElementById(id).style.display='block';
-  document.getElementById('botNav').style.display=NAV_SCR.includes(id)?'flex':'none';
-  // 各画面の初期化処理
-  if(id==='scHome')     renderHome();
-  if(id==='scHistory')  renderHistory();
-  if(id==='scReport')   renderReport();
+function showScreen(id) {
+  ALL_SCR.forEach(s => document.getElementById(s).style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+  document.getElementById('botNav').style.display = NAV_SCR.includes(id) ? 'flex' : 'none';
+  if(id==='scHome') renderHome();
+  if(id==='scHistory') renderHistory();
+  if(id==='scReport') renderReport();
   if(id==='scSettings') renderSettings();
-  if(id==='scChecker')  initChecker();
   window.scrollTo(0,0);
 }
 
-/** ボトムナビと連動して画面遷移する */
-function navTo(scr,nid){
+function navTo(scr, nid) {
   showScreen(scr);
-  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
   if(nid) document.getElementById(nid).classList.add('on');
 }
 
-// ============================================================
-// Checker 初期化
-// ============================================================
-/**
- * Checker画面（Step1）を初期状態にリセットする
- * showScreen('scChecker')から自動呼び出しされる
- * 注意: startAnalysis()はこの後に固定金額等を上書きするため
- *       initCheckerはリセットのみを担当する
- */
-function initChecker(){
-  // 金額フィールドをリセット（前回の値が残らないように）
-  const amtInput=document.getElementById('ck_a');
-  amtInput.value='';
-  amtInput.readOnly=false;
-
-  // UI要素をリセット
-  document.getElementById('ck_cmp').style.display='none';
-  document.getElementById('ck_fixed_badge').style.display='none';
-  document.getElementById('ck_amt_label').textContent='金額 / Target Price';
-
-  // Proceedボタンを非活性にリセット
-  const btn=document.getElementById('ck_btn_next');
-  btn.disabled=true;
-  btn.style.cssText='background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06);color:var(--tx3);cursor:not-allowed';
-  btn.textContent='金額を入力してください';
+// ======================================================
+// Cancel Process
+// ======================================================
+// 中断してホームへ戻る（左上の×ボタン用）
+function cancelProcess() {
+  const data = load();
+  if (data && _jgItem) {
+    // pendingBuysに一時的に保存されたデータを破棄
+    data.pendingBuys = (data.pendingBuys || []).filter(p => p.id !== _jgItem.id);
+    save(data);
+  }
+  _jgItem = null;
+  clearTimers();
+  navTo('scHome', 'nb_h');
+  showToast('分析を中断しました');
 }
 
-// ============================================================
-// セットアップ
-// ============================================================
-/** エージェント設定フォームをDOMに描画する */
-function buildCharForm(containerId,chars){
-  const el=document.getElementById(containerId);
-  if(!el) return;
-  el.innerHTML=chars.map(c=>`
+// ======================================================
+// Setup
+// ======================================================
+function buildCharForm(containerId, chars) {
+  const el = document.getElementById(containerId); if(!el) return;
+  el.innerHTML = chars.map((c,i) => `
     <div class="gc p-4">
       <div class="text-[9px] uppercase tracking-widest text-slate-500 font-bold mb-2">${c.role}</div>
       <div class="flex gap-3 mb-3">
-        <div id="cp_${c.id}" class="w-10 h-10 rounded flex items-center justify-center text-lg overflow-hidden bg-black/50 border border-white/10 shrink-0" data-b64="${c.img||''}">
-          ${c.img?`<img src="${c.img}" style="width:100%;height:100%;object-fit:cover">`:(c.icon||'👤')}
+        <div class="relative flex-shrink-0">
+          <div id="cp_${c.id}" class="w-10 h-10 rounded flex items-center justify-center text-lg overflow-hidden bg-black/50 border border-white/10" data-b64="${c.img||''}">
+            ${c.img ? `<img src="${c.img}" style="width:100%;height:100%;object-fit:cover">` : (c.icon||'👤')}
+          </div>
+          <!-- 画像アップロード用のカメラアイコン復活 -->
+          <label for="ci_${c.id}" class="tap absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center bg-gold cursor-pointer border border-black shadow">
+            <i class="fa-solid fa-camera text-[10px] text-black"></i>
+          </label>
+          <input type="file" id="ci_${c.id}" accept="image/*" style="display:none" onchange="onCharImg(event,${c.id})">
         </div>
-        <div class="flex-1 flex gap-2">
-          <input type="text" id="ck_${c.id}" value="${c.icon}" class="inp text-center w-12" style="padding:6px" placeholder="絵文字">
-          <input type="text" id="cn_${c.id}" value="${c.name}" class="inp flex-1 text-xs" placeholder="名前">
+        <div class="flex-1 space-y-2 flex gap-2">
+          <input type="text" id="ck_${c.id}" value="${c.icon}" placeholder="絵文字" class="inp text-center w-12" style="padding:6px">
+          <input type="text" id="cn_${c.id}" value="${c.name}" placeholder="Name" class="inp flex-1 text-xs">
         </div>
       </div>
-      <textarea id="cp2_${c.id}" rows="2" class="inp text-[10px] text-slate-400" style="resize:none">${c.persona}</textarea>
+      <textarea id="cp2_${c.id}" rows="2" placeholder="Persona" class="inp text-[10px] text-slate-400" style="resize:none">${c.persona}</textarea>
     </div>`).join('');
 }
 
-/** セットアップ画面の初期値を読み込む */
-function initSetup(){
-  const data=load()||{};
-  if(data.income)      document.getElementById('su_i').value=data.income;
-  if(data.savingsGoal) document.getElementById('su_g').value=data.savingsGoal;
-  if(data.fixedCost)   document.getElementById('su_f').value=data.fixedCost;
-  if(data.geminiKey)   document.getElementById('su_k').value=data.geminiKey;
-  if(data.gasUrl)      document.getElementById('su_gas').value=data.gasUrl;
-
-  // 自由資金のリアルタイムプレビュー
-  ['su_i','su_g','su_f'].forEach(id=>{
-    document.getElementById(id).addEventListener('input',()=>{
-      const income=parseInt(document.getElementById('su_i').value)||0;
-      const goal=parseInt(document.getElementById('su_g').value)||0;
-      const fixed=parseInt(document.getElementById('su_f').value)||0;
-      const preview=document.getElementById('su_prev');
-      if(income>0){
-        document.getElementById('su_free').innerHTML=yenHtml(income-goal-fixed);
-        preview.style.display='block';
-      }else{
-        preview.style.display='none';
-      }
-    });
+function compressImg(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const cv = document.createElement('canvas'); cv.width = cv.height = 100;
+        const ctx = cv.getContext('2d'); const side = Math.min(img.width, img.height);
+        ctx.drawImage(img, (img.width - side) / 2, (img.height - side) / 2, side, side, 0, 0, 100, 100);
+        resolve(cv.toDataURL('image/jpeg', 0.75));
+      }; img.onerror = reject; img.src = e.target.result;
+    }; reader.onerror = reject; reader.readAsDataURL(file);
   });
 }
 
-/** セットアップ完了処理 */
-function doSetup(){
-  const income=parseInt(document.getElementById('su_i').value)||0;
-  const goal=parseInt(document.getElementById('su_g').value)||0;
-  const fixed=parseInt(document.getElementById('su_f').value)||0;
-  const geminiKey=document.getElementById('su_k').value.trim();
-  const gasUrl=document.getElementById('su_gas').value.trim();
-
-  // バリデーション
-  if(!income||income<1000){showToast('月収を入力してください');return;}
-  if(!goal||goal<100){showToast('貯金目標を入力してください');return;}
-  if(goal>=income){showToast('貯金目標が月収を超えています');return;}
-
-  const data=load()||{months:{},pendingBuys:[]};
-  Object.assign(data,{income,savingsGoal:goal,fixedCost:fixed,geminiKey,gasUrl,setup:true});
-  if(!data.chars)    data.chars=DEF_CHARS;
-  if(!data.failures) data.failures=DEF_FAILS;
-  if(!data.months)   data.months={};
-  if(!data.pendingBuys) data.pendingBuys=[];
-  save(data);
-  navTo('scHome','nb_h');
-  showToast('SYSTEM READY');
+async function onCharImg(event, charId) {
+  const file = event.target.files[0]; if (!file) return;
+  try {
+    const b64 = await compressImg(file);
+    const prev = document.getElementById(`cp_${charId}`);
+    prev.innerHTML = `<img src="${b64}" style="width:100%;height:100%;object-fit:cover">`;
+    prev.dataset.b64 = b64;
+    showToast('IMAGE UPDATED');
+  } catch { showToast('IMAGE ERROR'); }
 }
 
-// ============================================================
-// ホーム画面レンダリング
-// ============================================================
-/** ホーム画面を最新データで描画する */
-function renderHome(){
-  const data=load();
-  if(!data) return;
 
-  const key=mKey();
-  const month=getMonth(data,key);
-  save(data); // getMonthで初期化した場合に保存
+function initSetup() {
+  const data = load()||{}; buildCharForm('su_chars', data.chars || DEF_CHARS);
+  document.getElementById('su_i').value = data.income || 280000;
+  document.getElementById('su_g').value = data.savingsGoal || 30000;
+  document.getElementById('su_f').value = data.fixedCost !== undefined ? data.fixedCost : 98000;
+  if(data.geminiKey) document.getElementById('su_k').value=data.geminiKey;
+  
+  const updatePrev = () => {
+    const i=parseInt(document.getElementById('su_i').value)||0;
+    const g=parseInt(document.getElementById('su_g').value)||0;
+    const f=parseInt(document.getElementById('su_f').value)||0;
+    const pr=document.getElementById('su_prev');
+    if(i>0){document.getElementById('su_free').innerHTML=yenHtml(i-g-f);pr.style.display='block';}
+    else pr.style.display='none';
+  };
 
-  // --- 財務計算 ---
-  const freeBudget=calcFreeBudget(data);         // 月の自由資金
-  const monthlyUsed=calcMonthlyUsed(data,key);   // 今月の総支出
-  const monthlyLeft=freeBudget-monthlyUsed;       // 月末までの残り資金
+  ['su_i','su_g','su_f'].forEach(id => {
+    document.getElementById(id).addEventListener('input', updatePrev);
+  });
+  updatePrev();
+}
 
-  const dNum=new Date().getDate();
-  const dRem=remDays(key);
+function doSetup() {
+  const inc=parseInt(document.getElementById('su_i').value);
+  const goal=parseInt(document.getElementById('su_g').value);
+  const fix=parseInt(document.getElementById('su_f').value)||0;
+  const key=document.getElementById('su_k').value.trim();
+  if(!inc||inc<1000){showToast('月収を入力してください');return;}
+  if(!goal||goal<100){showToast('貯金目標を入力してください');return;}
+  if(goal>=inc){showToast('目標が月収を超えています');return;}
+  const data=load()||{months:{},pendingBuys:[]};
+  data.income=inc; data.savingsGoal=goal; data.fixedCost=fix; data.geminiKey=key; data.setup=true;
+  if(!data.chars) data.chars=DEF_CHARS;
+  if(!data.failures) data.failures=DEF_FAILS;
+  if(!data.months) data.months={};
+  if(!data.pendingBuys) data.pendingBuys=[];
+  save(data); navTo('scHome','nb_h'); showToast('SYSTEM READY');
+}
 
-  // 日予算 = 残り資金 ÷ 残日数（マイナスの場合は0）
-  const dailyBudget=monthlyLeft>0?Math.round(monthlyLeft/dRem):0;
-  const todayUsed=calcTodayUsed(data,key);       // 今日の支出
-  const todayAvail=dailyBudget-todayUsed;         // 今日まだ使える金額
+// ======================================================
+// Home
+// ======================================================
+function renderHome() {
+  const data=load(); if(!data) return;
+  const key=mKey(); const month=getMonth(data,key); save(data);
+  const free=freeAmt(data); const used=usedAmt(data,key); const remM=free-used;
+  const remPct=free>0 ? Math.max(0,Math.round((remM/free)*100)) : 0;
+  const dNum=new Date().getDate(); const dRem=remDays(key);
+  const dailyLimit=remM>0 ? Math.round(remM/dRem) : 0;
+  const dailyBurn=used/dNum;
 
-  // 日次消費率（プログレスバー用）
-  const dayUsedPct=dailyBudget>0?Math.min(100,Math.round((todayUsed/dailyBudget)*100)):100;
-
-  // バーンレート計算（資金枯渇予測日）
-  const dailyAverage=monthlyUsed/Math.max(dNum,1);
-
-  // --- ステータスパネル（月のフェーズ） ---
-  const sp=document.getElementById('hm_status_panel');
+  const statusPanel=document.getElementById('hm_status_panel');
   const sTitle=document.getElementById('hm_status_title');
   const sIcon=document.getElementById('hm_status_icon');
   const sDesc=document.getElementById('hm_status_desc');
   const sBurn=document.getElementById('hm_burn_rate');
+  const thr = data.wishThreshold || HIGH_PRICE_THRESHOLD;
 
   if(dNum<=10){
-    sp.className='gc p-4 a0 flex flex-col justify-center border-l-2 border-l-amber-500 bg-amber-500/5';
-    sTitle.textContent='STATUS: 月初バイアス警戒期';
-    sTitle.className='text-[10px] font-bold tracking-widest uppercase text-amber-500';
+    statusPanel.className='gc p-4 a0 flex flex-col justify-center border-l-2 border-l-amber-500 bg-amber-500/5';
+    sTitle.textContent='STATUS: 月初バイアス警戒期'; sTitle.className='text-[10px] font-bold tracking-widest uppercase text-amber-500';
     sIcon.className='fas fa-exclamation-triangle text-amber-500';
-    sDesc.textContent='給料日後のメンタルアカウンティングに注意してください。「余裕がある」という錯覚に陥りやすい時期です。';
-  }else if(dNum<=20){
-    sp.className='gc p-4 a0 flex flex-col justify-center border-l-2 border-l-cyan-500 bg-cyan-500/5';
-    sTitle.textContent='STATUS: 適正判断フェーズ';
-    sTitle.className='text-[10px] font-bold tracking-widest uppercase text-cyan-400';
+    sDesc.textContent=`給料日後のメンタルアカウンティングに注意。${thr.toLocaleString()}円以上の決済は強力に抑制されます。`;
+  } else if(dNum<=20){
+    statusPanel.className='gc p-4 a0 flex flex-col justify-center border-l-2 border-l-cyan-500 bg-cyan-500/5';
+    sTitle.textContent='STATUS: 適正判断フェーズ'; sTitle.className='text-[10px] font-bold tracking-widest uppercase text-cyan-400';
     sIcon.className='fas fa-scale-balanced text-cyan-400';
-    sDesc.textContent='フラットに判断できる時期です。日予算の消化ペースを確認しながら行動しましょう。';
-  }else{
-    sp.className='gc p-4 a0 flex flex-col justify-center border-l-2 border-l-red-500 bg-red-500/5';
-    sTitle.textContent='STATUS: 予算防衛フェーズ';
-    sTitle.className='text-[10px] font-bold tracking-widest uppercase text-red-500';
+    sDesc.textContent='フラットな判断ができる時期です。予算の消化ペースに注意してください。';
+  } else {
+    statusPanel.className='gc p-4 a0 flex flex-col justify-center border-l-2 border-l-red-500 bg-red-500/5';
+    sTitle.textContent='STATUS: 予算防衛フェーズ'; sTitle.className='text-[10px] font-bold tracking-widest uppercase text-red-500';
     sIcon.className='fas fa-shield-halved text-red-500';
-    sDesc.textContent='予算が枯渇しはじめる時期です。来月の前借りになる支出は厳しく判断してください。';
+    sDesc.textContent='予算が枯渇しはじめる時期です。来月の前借りになるような支出は控えてください。';
   }
 
-  // バーンレートアラート
-  if(dailyAverage>0){
-    const daysToZero=Math.round(freeBudget/dailyAverage);
-    if(daysToZero<=daysInM(key)){
-      sBurn.innerHTML=`<span class="text-red-400"><i class="fas fa-fire-flame-curved mr-1"></i>BURN RATE ALERT: このペースだと ${daysToZero}日目 に資金ショートします</span>`;
-    }else{
-      sBurn.innerHTML=`<span class="text-emerald-400"><i class="fas fa-check mr-1"></i>SAFE BURN RATE: 月末まで資金は維持される予測です</span>`;
-    }
-  }else{
-    sBurn.innerHTML=`<span class="text-emerald-400"><i class="fas fa-check mr-1"></i>NO SPEND: 本日の支出ゼロです</span>`;
-  }
+  if(dailyBurn>0){
+    const daysToZero=free/dailyBurn; const shortDate=Math.round(daysToZero); const dInM=daysInM(key);
+    if(shortDate<=dInM){ sBurn.innerHTML=`<span class="text-red-400"><i class="fas fa-fire-flame-curved mr-1"></i>BURN RATE ALERT: このペースだと ${shortDate}日 に資金がショートします</span>`; }
+    else { sBurn.innerHTML=`<span class="text-emerald-400"><i class="fas fa-check mr-1"></i>SAFE BURN RATE: 月末まで資金は維持される予測です</span>`; }
+  } else { sBurn.innerHTML=`<span class="text-emerald-400"><i class="fas fa-check mr-1"></i>NO SPEND: 支出ゼロを維持しています</span>`; }
 
-  // --- メインカード: Today's Available ---
   document.getElementById('hm_month').textContent=fmtM(key);
-  document.getElementById('hm_remM').innerHTML=yenHtml(monthlyLeft);
+  document.getElementById('hm_daily').innerHTML=yenHtml(dailyLimit);
+  document.getElementById('hm_remM').innerHTML=yenHtml(remM);
+  document.getElementById('hm_remM').style.color=remPct>40?'var(--tx)':remPct>15?'var(--amber)':'var(--red)';
+  const bar=document.getElementById('hm_bar'); bar.style.width=remPct+'%'; bar.style.background=remPct>40?'var(--gold)':remPct>15?'var(--amber)':'var(--red)';
+  document.getElementById('hm_up').textContent=`USED ${100-remPct}%`;
+  document.getElementById('hm_rp').textContent=`LEFT ${remPct}%`;
 
-  const todayEl=document.getElementById('hm_today');
-  todayEl.innerHTML=yenHtml(todayAvail);
-  // 残金に応じて色を変える
-  todayEl.style.color=todayAvail>0?'var(--tx)':todayAvail>-2000?'var(--amber)':'var(--red)';
+  const av=month.records.filter(r=>r.result==='avoid');
+  const bu=month.records.filter(r=>r.result==='buy');
+  const la=month.records.filter(r=>r.result==='late_buy');
+  document.getElementById('hm_ac').textContent=av.length; document.getElementById('hm_ay').innerHTML=yenHtml(av.reduce((s,r)=>s+r.amount,0));
+  document.getElementById('hm_bc').textContent=bu.length; document.getElementById('hm_by').innerHTML=yenHtml(bu.reduce((s,r)=>s+r.amount,0));
+  document.getElementById('hm_gc').textContent=la.length; document.getElementById('hm_gy').innerHTML=yenHtml(la.reduce((s,r)=>s+r.amount,0));
 
-  // 日次プログレスバー
-  const bar=document.getElementById('hm_bar');
-  const barPct=100-dayUsedPct; // 残り割合
-  bar.style.width=barPct+'%';
-  bar.style.background=barPct>60?'var(--gold)':barPct>30?'var(--amber)':'var(--red)';
-  document.getElementById('hm_bar_left').textContent=`TODAY ¥${todayUsed.toLocaleString()} 使用`;
-  document.getElementById('hm_bar_right').textContent=`日予算 ¥${dailyBudget.toLocaleString()}`;
-
-  // --- 月次サマリー 3指標 ---
-  const avoidRecs=month.records.filter(r=>r.result==='avoid');
-  const buyRecs=month.records.filter(r=>r.result==='buy');
-  const lateRecs=month.records.filter(r=>r.result==='late_buy');
-  document.getElementById('hm_ac').textContent=avoidRecs.length;
-  document.getElementById('hm_ay').innerHTML=yenHtml(avoidRecs.reduce((s,r)=>s+(r.amount||0),0));
-  document.getElementById('hm_bc').textContent=buyRecs.length;
-  document.getElementById('hm_by').innerHTML=yenHtml(buyRecs.reduce((s,r)=>s+(r.amount||0),0));
-  document.getElementById('hm_gc').textContent=lateRecs.length;
-  document.getElementById('hm_gy').innerHTML=yenHtml(lateRecs.reduce((s,r)=>s+(r.amount||0),0));
-
-  // --- 直近ログ（最新5件） ---
-  const recent=[...month.records].reverse().slice(0,5);
+  const recent=[...month.records].reverse().slice(0, 5);
   const listEl=document.getElementById('hm_list');
-  listEl.innerHTML=recent.length
-    ?recent.map((r,i)=>recRow(r,i,false)).join('')
-    :`<div class="text-center py-6 text-[10px] tracking-widest text-slate-600 uppercase border border-white/5 rounded">今月の記録はまだありません</div>`;
+  if(!recent.length){ listEl.innerHTML=`<div class="text-center py-6 text-[10px] tracking-widest text-slate-600 uppercase border border-white/5 rounded">No Data Available</div>`; }
+  else { listEl.innerHTML=recent.map((r,i)=>recRow(r,i,false)).join(''); }
 }
 
-// ============================================================
-// Checker（Step 1）: 金額入力・インパクト計算
-// ============================================================
-let _currentSituation='other'; // 現在のシチュエーション種別
+// ======================================================
+// Checker (Situational Input)
+// ======================================================
+let _currentSituation = 'other';
 
-/**
- * シチュエーション選択時の画面遷移と初期化
- * showScreen → initChecker でリセット後に上書きする設計
- */
-function startAnalysis(type){
-  _currentSituation=type;
+function startAnalysis(type) {
+  _currentSituation = type;
 
-  // 先にshowScreen（内部でinitChecker実行 → フォームリセット）
+  // 1. まず画面を表示し、要素を展開できるようにする
   showScreen('scChecker');
 
-  const meta=SITUATION_META[type]||SITUATION_META.other;
+  // 2. フォームリセット
+  const amtInput = document.getElementById('ck_a');
+  amtInput.readOnly = false;
+  amtInput.style.opacity = '1';
+  document.getElementById('ck_cmp').style.display = 'none';
+  
+  const btnNext = document.getElementById('ck_btn_next');
+  btnNext.style.display = 'none';
+  btnNext.disabled = true;
 
-  // タイトルと日本語説明を設定
-  document.getElementById('ck_title').textContent=meta.title;
-  document.getElementById('ck_subtitle').textContent=meta.sub;
+  document.getElementById('ck_fixed_badge').style.display = 'none';
+  document.getElementById('ck_amt_label').textContent = 'Target Price';
+  
+  ['ck_a','ck_n','ck_r','ck_u'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
 
-  // フォーム表示制御
-  document.getElementById('f_url').style.display=type==='amazon'?'block':'none';
-  document.getElementById('f_detail').style.display=(type==='other'||type==='amazon')?'block':'none';
+  // 3. タイトル設定
+  const titles = { conv:'対コンビニ', amazon:'対Amazon', uber:'対Uber Eats', drink:'対飲み会', other:'詳細分析' };
+  document.getElementById('ck_title').textContent = titles[type] || 'Analyzer';
 
-  // デフォルト品名を設定
-  document.getElementById('ck_n').value=meta.name||'';
+  // 4. 表示制御
+  document.getElementById('f_url').style.display = type==='amazon' ? 'block' : 'none';
+  document.getElementById('f_detail').style.display = (type==='other'||type==='amazon') ? 'block' : 'none';
 
-  // 詳細フォームをリセット
-  const rEl=document.getElementById('ck_r');
-  const uEl=document.getElementById('ck_u');
-  if(rEl) rEl.value='';
-  if(uEl) uEl.value='';
+  const defaultNames = { drink:'飲み代 / タクシー代', uber:'デリバリー食費', conv:'コンビニ購入' };
+  document.getElementById('ck_n').value = defaultNames[type] || '';
 
-  // 固定金額のシチュエーション（conv/uber/drink）の処理
-  const fixedAmt=FIXED_AMOUNTS[type];
-  const amtInput=document.getElementById('ck_a');
-  const badge=document.getElementById('ck_fixed_badge');
-  const lbl=document.getElementById('ck_amt_label');
+  // 5. 固定金額の自動セットとAIレビューへの展開
+  const fixedAmt = FIXED_AMOUNTS[type];
+  const badge = document.getElementById('ck_fixed_badge');
+  const lbl = document.getElementById('ck_amt_label');
 
   if(fixedAmt){
-    // 固定金額を自動入力してreadOnlyに
-    amtInput.value=fixedAmt;
-    amtInput.readOnly=true;
-    badge.style.cssText='display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:4px;background:var(--gold-d);border:1px solid rgba(212,175,55,.3);color:var(--gold);font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase';
-    lbl.textContent=`Fixed Amount (¥${fixedAmt.toLocaleString()})`;
-    // インパクト計算とProceedボタンを有効化（initChecker後に呼ぶので上書きされない）
-    onAmt();
-  }else{
-    // 自由入力シチュエーション: フォーカスを当てる
-    setTimeout(()=>amtInput.focus(),350);
+    amtInput.value = fixedAmt;
+    amtInput.readOnly = true;
+    amtInput.style.opacity = '0.55';
+    badge.style.display = 'inline-flex';
+    lbl.textContent = `Fixed Amount (¥${fixedAmt.toLocaleString()})`;
+    onAmt(); // 金額セット後にインパクト計算とボタン表示をトリガー
+  } else {
+    setTimeout(()=>{ amtInput.focus(); }, 350);
   }
 }
 
-/** 金額入力時にリアルタイムでインパクトを計算・表示する */
-function onAmt(){
-  const data=load();
-  const amt=parseInt(document.getElementById('ck_a').value)||0;
-  const cmp=document.getElementById('ck_cmp');
-  const btn=document.getElementById('ck_btn_next');
-
-  // 金額が0以下の場合はボタンを非活性に
+function onAmt() {
+  const data=load(); const amt=parseInt(document.getElementById('ck_a').value)||0;
+  const cmp=document.getElementById('ck_cmp'); const btnNext=document.getElementById('ck_btn_next');
+  
   if(amt<=0||!data){
     cmp.style.display='none';
-    btn.disabled=true;
-    btn.style.cssText='background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06);color:var(--tx3);cursor:not-allowed';
-    btn.textContent='金額を入力してください';
+    btnNext.style.display='none';
     return;
   }
-
-  // インパクト表示エリアを表示
+  
   cmp.style.display='block';
-  btn.disabled=false;
-  btn.style.cssText='background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.15);color:white;cursor:pointer';
-  btn.innerHTML='AIエージェントに相談する <i class="fa-solid fa-robot ml-1 text-cyan-400"></i>';
+  
+  // ボタンを明示的に表示し、クリック可能にする
+  btnNext.style.display='block';
+  btnNext.disabled=false;
+  btnNext.className='tap w-full py-4 rounded font-bold text-[11px] tracking-widest uppercase mt-6 mb-4 transition-all bg-white/5 border border-white/10 text-white';
+  btnNext.innerHTML='Proceed to AI Review <i class="fa-solid fa-robot ml-1 text-cyan-400"></i>';
 
-  // --- 財務計算 ---
-  const freeBudget=calcFreeBudget(data);
-  const monthlyUsed=calcMonthlyUsed(data);
-  const monthlyLeft=freeBudget-monthlyUsed;
-  const dRem=remDays();
-  const dailyBudget=monthlyLeft>0?Math.round(monthlyLeft/dRem):0;
-  const todayUsed=calcTodayUsed(data);
-  const todayAvail=dailyBudget-todayUsed;
+  const hr=hourly(data); const free=freeAmt(data); const used=usedAmt(data);
+  const remM=free-used; const dRem=remDays(); const dailyLimit=remM>0?Math.round(remM/dRem):0;
+  const remAfterT=dailyLimit-amt; const remAfterM=remM-amt;
+  const hrs=hr>0?(amt/hr).toFixed(1):'---';
 
-  // 時給換算
-  const hourlyWage=calcHourlyWage(data);
-  const laborHours=hourlyWage>0?(amt/hourlyWage).toFixed(1):'---';
-  document.getElementById('ck_h').innerHTML=
-    `<span class="mono text-xl text-white">${laborHours}</span><span class="text-[10px] text-slate-500 ml-1">時間分</span>`;
-
-  // 今日の残り予算への影響
-  const afterToday=todayAvail-amt;
-  const tPct=dailyBudget>0?Math.max(0,Math.round((afterToday/dailyBudget)*100)):0;
-  const tColor=tPct>40?'var(--gold)':tPct>10?'var(--amber)':'var(--red)';
-  document.getElementById('ck_t').innerHTML=
-    `<span class="mono text-slate-500 line-through mr-2">${yenHtml(todayAvail)}</span>`+
-    `<span class="mono" style="color:${tColor}">${yenHtml(afterToday)}</span>`;
-  const tb=document.getElementById('ck_tb');
-  tb.style.width=tPct+'%';
-  tb.style.background=tColor;
-
-  // 月末残高への影響
-  const afterMonth=monthlyLeft-amt;
-  const mColor=afterMonth<0?'var(--red)':'var(--green)';
-  document.getElementById('ck_m').innerHTML=
-    `<span class="mono" style="color:${mColor}">${yenHtml(afterMonth)}</span>`+
-    (afterMonth<0?` <span class="text-[8px] tracking-widest text-red-500 uppercase ml-1 block">予算オーバー</span>`:'');
+  document.getElementById('ck_h').innerHTML=`<span class="mono text-xl text-white">${hrs}</span><span class="text-[10px] text-slate-500 ml-1 font-sans">h</span>`;
+  const tpct=dailyLimit>0?Math.max(0,Math.round((remAfterT/dailyLimit)*100)):0;
+  const tc=tpct>40?'var(--gold)':tpct>10?'var(--amber)':'var(--red)';
+  document.getElementById('ck_t').innerHTML=`<span class="mono text-slate-500 line-through mr-2">${yenHtml(dailyLimit)}</span> <span class="mono" style="color:${tc}">${yenHtml(remAfterT)}</span>`;
+  const tb=document.getElementById('ck_tb'); tb.style.width=tpct+'%'; tb.style.background=tc;
+  
+  const mc=remAfterM<0?'var(--red)':'var(--green)';
+  document.getElementById('ck_m').innerHTML=`<span class="mono" style="color:${mc}">${yenHtml(remAfterM)}</span>`+(remAfterM<0?` <span class="text-[8px] tracking-widest text-red-500 uppercase ml-1 block">Deficit</span>`:'');
 }
 
-/** 衝動レベルスライダー変更時のラベル更新 */
-function onDesire(v){
-  document.getElementById('desire_num').textContent=v;
-  const labels={1:'超冷静',2:'冷静',3:'やや冷静',4:'普通',5:'普通',6:'やや欲しい',7:'欲しい',8:'かなり欲しい',9:'我慢できない',10:'衝動的'};
-  document.getElementById('desire_lbl').textContent=labels[v]||'';
-}
+let _jgItem=null; let _imp='mid'; let _impRsn=''; let _chatHistory=[];
 
-// ============================================================
-// Step 1 → Step 2: AI Chat へ移行
-// ============================================================
-let _jgItem=null;    // 現在判断中のアイテム
-let _imp='mid';      // 衝動度スコア (high/mid/low)
-let _impRsn='';      // 衝動度の理由
-let _chatHistory=[]; // Gemini API の会話履歴
-
-/** Proceedボタン押下: アイテムを記録してAI Chatへ */
-async function goNextStep(){
-  const amt=parseInt(document.getElementById('ck_a').value)||0;
-  const name=document.getElementById('ck_n').value.trim()||'ITEM';
+async function goNextStep() {
+  const amt=parseInt(document.getElementById('ck_a').value); const name=document.getElementById('ck_n').value.trim()||'ITEM';
   const url=document.getElementById('ck_u').value.trim();
-
-  if(!amt||amt<=0){showToast('金額を入力してください');return;}
+  if(!amt||amt<=0){showToast('AMOUNT REQUIRED');return;}
 
   const data=load();
-  if(!data){showToast('データ読み込みエラー');return;}
-
-  // EC購入・その他のみ詳細入力を収集
-  let reason='',desire=5,period='',urgency='';
+  let reason='';
   if(_currentSituation==='other'||_currentSituation==='amazon'){
     reason=document.getElementById('ck_r').value.trim();
-    desire=parseInt(document.getElementById('ck_d').value)||5;
-    period=document.getElementById('ck_period').value;
-    urgency=document.getElementById('ck_urgency').value;
   }
 
-  // 判断アイテムを生成（pendingBuysに追加して後で追跡可能に）
-  _jgItem={id:uid(),name,amount:amt,cat:_currentSituation,catIcon:'🛒',reason,url,desire,period,urgency,createdAt:Date.now()};
+  _jgItem={id:uid(),name,amount:amt,cat:_currentSituation,catIcon:'🛒',reason,url,createdAt:Date.now()};
   if(!data.pendingBuys) data.pendingBuys=[];
-  data.pendingBuys.push(_jgItem);
-  save(data);
+  data.pendingBuys.push(_jgItem); save(data);
 
-  // 全シチュエーション共通: AI Chat画面へ
   showScreen('scAiChat');
   document.getElementById('ai_chat_area').innerHTML='';
   document.getElementById('chat_action_area').style.display='none';
   document.getElementById('chat_loading').style.display='block';
-  document.getElementById('chat_loading_txt').textContent='エージェントに接続中...';
-
-  // APIキーあり: 本物のAI / なし: モックで動作
-  data.geminiKey?startAiChat(data):startMockChat();
+  
+  if (data.geminiKey) {
+    startAiChat(data);
+  } else {
+    startAiChatMock(data);
+  }
 }
 
-// ============================================================
-// AI プロンプト生成
-// ============================================================
-/** Gemini APIへのプロンプトを生成する */
-function buildAiPrompt(data,forChat){
-  const chars=data.chars||DEF_CHARS;
-  const hourlyWage=calcHourlyWage(data);
-  const laborHours=hourlyWage>0?(_jgItem.amount/hourlyWage).toFixed(1):'不明';
-  const dNum=new Date().getDate();
+// ======================================================
+// AI Prompts & Chat
+// ======================================================
+function buildAiPrompt(data, forChat) {
+  const chars = data.chars || DEF_CHARS; const hrs = hourly(data) > 0 ? (_jgItem.amount / hourly(data)).toFixed(1) : '不明';
+  const dateNum = new Date().getDate();
+  const thr = data.wishThreshold || HIGH_PRICE_THRESHOLD;
+  let timeContext = '';
+  if(dateNum <= 10) timeContext = `月初(${dateNum}日)です。給料日直後の『余裕がある錯覚（Payday Effect）』に陥っています。${_jgItem.amount >= thr ? 'この出費は本当に今必要でしょうか？' : ''}「今は月初特有の錯覚に陥っています」と強く警告し、購入（または外出）をやめるよう説得してください。`;
+  else if(dateNum <= 20) timeContext = `月中(${dateNum}日)です。フラットに判断できる時期ですが、予算の消化ペースに注意喚起してください。`;
+  else timeContext = `月末(${dateNum}日)です。予算が枯渇しはじめる防衛期です。この支出が来月の負担にならないか厳しく追及してください。`;
 
-  // 月フェーズコンテキスト
-  let timeCtx;
-  if(dNum<=10)  timeCtx=`月初(${dNum}日)です。給料日直後の「余裕がある錯覚（Payday Effect）」に陥っています。`;
-  else if(dNum<=20) timeCtx=`月中(${dNum}日)です。フラットに判断できる時期ですが、予算消化ペースに注意を。`;
-  else timeCtx=`月末(${dNum}日)です。予算防衛期です。この支出が来月の負担にならないか厳しく指摘してください。`;
+  let sitCtx = '';
+  if(_jgItem.cat==='conv') sitCtx = '【状況】コンビニへ行く前です。「行く」か「行かない」かの2択で葛藤しています。時給換算や、数百円の積み重ねによる健康・習慣への悪影響を心配して、「家のコーヒーで一息つきませんか？」と引き留めてください。';
+  else if(_jgItem.cat==='amazon') sitCtx = `【状況】AmazonなどのECで決済する前です。URL(${_jgItem.url})が提供されていれば市場価格やブランド代を推測し、「本当にいる？代用できない？使わなくなるでしょ？」という切り口で徹底的に検討させ、スペック過剰でないか諭してください。必要に応じてユーザーの理由（${_jgItem.reason}）も参考にしてください。`;
+  else if(_jgItem.cat==='uber') sitCtx = '【状況】Uber Eatsを頼む前です。店舗価格より割高な手数料・配達料（怠惰への課金）を分解し、歩いて買いに行くメリットや自炊の提案など「怠惰への課金」を諭してください。';
+  else if(_jgItem.cat==='drink') sitCtx = '【状況】飲み会の2次会または深夜タクシーです。限界効用（これ以上の満足度は下がり、明日のパフォーマンスを落とす）の観点から身体を気遣って引き留めてください。';
+  else sitCtx = `【状況】高額決済前・その他の出費です。ユーザーの入力した理由（${_jgItem.reason}）を基にインパクトを可視化し、引き留めを行ってください。`;
 
-  // シチュエーションコンテキスト
-  const sitCtxMap={
-    conv:'【コンビニへ行く前】時給換算と積み重ねによる習慣リスクを強調してください。',
-    amazon:`【Amazon決済前】URL(${_jgItem.url||'不明'})、動機(${_jgItem.reason||'未入力'})から過剰スペックや衝動性を分析してください。`,
-    uber:'【Uber Eats注文前】手数料を分解し、外出・自炊のメリットを提案してください。',
-    drink:'【2次会・タクシー前】限界効用の観点から身体を気遣って引き留めてください。',
-    other:`【高額決済前】利用期間(${_jgItem.period||'不明'})、緊急度(${_jgItem.urgency||'不明'})、理由(${_jgItem.reason||'未入力'})を基に分析してください。`
-  };
-  const sitCtx=sitCtxMap[_currentSituation]||sitCtxMap.other;
+  const fails = (data.failures || DEF_FAILS).map(f => `・${f.cat}「${f.name}」: ${f.cond}`).join('\n');
 
-  // 失敗DBの整形
-  const failsText=(data.failures||DEF_FAILS).map(f=>`・${f.cat}「${f.name}」: ${f.cond}`).join('\n');
-
-  if(forChat){
-    return `あなたは衝動買い防止のためのエグゼクティブAIコンサルタントです。「心配・諭す」トーンで説得してください。
-【商品】${_jgItem.name} 【金額】${_jgItem.amount}円 【労働換算】約${laborHours}時間
-【時期コンテキスト】${timeCtx}
+  return `あなたは衝動買い防止のためのエグゼクティブAIコンサルタントです。ユーザーの無駄遣いを論理的かつ厳しく、しかし「心配・諭す」トーンで説得してください。
+【行動/商品】${_jgItem.name} 【金額インパクト】${_jgItem.amount}円 【労働換算】約${hrs}h
+【行動経済学コンテキスト】${timeContext}
 ${sitCtx}
-【失敗DB】\n${failsText}
-以下3人格を使い分けてください。最初は①で発言してください。
+【ユーザーのFailure DB (過去の失敗パターン)】\n${fails}
+これを参照し、今回の行動が過去の失敗パターンに該当しないか優しく警告してください。
+
+あなたは以下の3つの人格を使い分けます。最初は①として第一声を発してください。
 ①${chars[0].name}(${chars[0].persona}) ②${chars[1].name}(${chars[1].persona}) ③${chars[2].name}(${chars[2].persona})
-【出力ルール】JSONのみ: {"impulse":"high/mid/low","speaker":"①のキャラ名","message":"指摘(60字)"}`;
-  }
-  return `衝動度を判定してください。
-【商品】${_jgItem.name} 【金額】${_jgItem.amount}円 【状況】${sitCtx}
-【出力ルール】JSONのみ: {"impulse":"high/mid/low","impulse_reason":"理由(20字)"}`;
+
+【出力ルール】JSONのみ。{"impulse":"high/mid/low","speaker":"①のキャラ名","message":"最初の指摘(60字)","impulse_reason":"15字以内"}`;
 }
 
-// ============================================================
-// モックチャット（API未設定時）
-// ============================================================
-/** API未設定時にモックで3エージェントのメッセージを順番に表示する */
-function startMockChat(){
-  const data=load();
-  const msgs=MOCK_CHAT[_currentSituation]||MOCK_CHAT.other;
-  const chars=data?.chars||DEF_CHARS;
-  _imp='mid';
-  _impRsn='モック分析（APIキー未設定）';
+async function startAiChat(data) {
+  const apiKey = data.geminiKey;
+  _chatHistory = [{ role: "user", parts: [{ text: buildAiPrompt(data, true) }] }];
 
-  setTimeout(()=>{
-    document.getElementById('chat_loading').style.display='none';
-    document.getElementById('chat_action_area').style.display='block';
-    appendChatBubble(chars[msgs[0].ci],msgs[0].msg);
-    setTimeout(()=>{
-      appendChatBubble(chars[msgs[1].ci],msgs[1].msg);
-      setTimeout(()=>appendChatBubble(chars[msgs[2].ci],msgs[2].msg),2000);
-    },2000);
-  },1200);
-}
-
-// ============================================================
-// AI チャット（Gemini API）
-// ============================================================
-/** Gemini APIを使った本物のAIチャットを開始する */
-async function startAiChat(data){
-  _chatHistory=[{role:'user',parts:[{text:buildAiPrompt(data,true)}]}];
-  try{
-    const json=await callGemini(data.geminiKey,_chatHistory);
-    const raw=json?.candidates?.[0]?.content?.parts?.[0]?.text||'';
-    const parsed=safeJsonParse(raw);
-    _imp=parsed?.impulse||'mid';
-    _chatHistory.push({role:'model',parts:[{text:raw}]});
-    document.getElementById('chat_loading').style.display='none';
-    document.getElementById('chat_action_area').style.display='block';
-    appendChatBubble((data.chars||DEF_CHARS)[0],parsed?.message||'分析エラーが発生しました。');
-  }catch(e){
-    console.error('AIチャットエラー:',e);
-    _imp='mid';
-    goSummary();
+  try {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ contents: _chatHistory, generationConfig:{temperature:0.7} }) });
+    if (!res.ok) throw new Error('API Error');
+    const json = await res.json(); 
+    const raw = json?.candidates?.[0]?.content?.parts?.[0]?.text || ''; 
+    const parsed = JSON.parse(raw.replace(/```[a-z]*/gi, '').replace(/```/g, '').trim());
+    
+    _imp = parsed.impulse || 'mid'; 
+    _impRsn = parsed.impulse_reason || ''; 
+    _chatHistory.push({ role: "model", parts: [{ text: raw }] });
+    document.getElementById('chat_loading').style.display = 'none'; 
+    document.getElementById('chat_action_area').style.display = 'block';
+    appendChatBubble(data.chars[0], parsed.message);
+  } catch (e) {
+    console.error('AIチャットエラー:', e);
+    // 【バグ修正】エラー時に勝手に飛ばさず、エラーメッセージを出して止める
+    _imp = 'mid';
+    _impRsn = '通信エラーにより自動判定';
+    document.getElementById('chat_loading').style.display = 'none'; 
+    document.getElementById('chat_action_area').style.display = 'block';
+    appendChatBubble((data.chars||DEF_CHARS)[0], 'APIとの通信に失敗しました。設定画面でGemini API Keyをご確認ください。下部の「Proceed to Summary」から先へ進むことは可能です。');
   }
 }
 
-/** ユーザーの反論を送信して次のエージェントの返答を取得する */
-async function sendChat(){
-  const inputEl=document.getElementById('chat_input');
-  const msg=inputEl.value.trim();
-  if(!msg) return;
+// レビュー用にAPI通信をスキップし、ダミーで動作するモック関数
+async function startAiChatMock(data) {
+  const chars = data.chars || DEF_CHARS;
+  
+  // 1.5秒後にダミー応答
+  setTimeout(() => {
+    _imp = 'mid'; 
+    _impRsn = 'モックによる静的判定';
+    document.getElementById('chat_loading').style.display = 'none'; 
+    document.getElementById('chat_action_area').style.display = 'block';
+    
+    let sitCtx = '';
+    if(_jgItem.cat==='conv') sitCtx = '本当に今行く必要がありますか？家のコーヒーで一息つきませんか。数百円の積み重ねが月末の予算を圧迫していますよ。';
+    else if(_jgItem.cat==='amazon') sitCtx = 'スペックが高すぎませんか？あなたの本来の目的なら、もっと安価な選択肢もありますよ。';
+    else if(_jgItem.cat==='uber') sitCtx = '店舗より30%割高です。少し歩いて買いに行けば健康にも良く、数百円浮きます。一緒にもう少し考えませんか？';
+    else if(_jgItem.cat==='drink') sitCtx = 'すでに十分楽しんだのではないでしょうか。これ以上の出費は明日のパフォーマンスを落とします。今日はゆっくり休みましょう。';
+    else sitCtx = 'このままいくと月末に赤字になるかもしれません。数時間分の労働が消えるのが心配です。';
 
-  appendChatBubble(null,msg);
-  inputEl.value='';
-  const sendBtn=document.getElementById('chat_send_btn');
-  sendBtn.disabled=true;
-  sendBtn.innerHTML='<i class="fas fa-circle-notch fa-spin text-xs"></i>';
+    const failMsg = (data.failures || []).length > 0 ? '\n※過去の失敗パターンに似ているようです。注意してくださいね。' : '';
 
+    appendChatBubble(chars[0], `【※レビュー用AIモック】\n${sitCtx}${failMsg}`);
+  }, 1500);
+}
+
+async function sendChat() {
+  const inputEl=document.getElementById('chat_input'); const msg=inputEl.value.trim(); if(!msg) return;
+  appendChatBubble(null,msg); inputEl.value='';
+  document.getElementById('chat_send_btn').disabled=true;
+  document.getElementById('chat_send_btn').innerHTML='<i class="fas fa-circle-notch fa-spin text-xs"></i>';
+  
   const data=load();
+  const chars = data.chars || DEF_CHARS;
 
-  // APIなしのモック返答
-  if(!data?.geminiKey){
-    setTimeout(()=>{
-      const chars=data?.chars||DEF_CHARS;
-      const reply=MOCK_REPLIES[Math.floor(Math.random()*MOCK_REPLIES.length)];
-      appendChatBubble(chars[1],reply);
-      sendBtn.disabled=false;
-      sendBtn.innerHTML='<i class="fas fa-paper-plane text-sm"></i>';
-    },1000);
+  if (!data.geminiKey) {
+    // モック返答
+    setTimeout(() => {
+      appendChatBubble(chars[1], `【※レビュー用AIモック】\n「${msg}」というお気持ちはわかります。ですが、別の経験に使うか、家のもので代用する選択肢も考えてみましょう。`);
+      document.getElementById('chat_send_btn').disabled=false;
+      document.getElementById('chat_send_btn').innerHTML='<i class="fas fa-paper-plane text-sm"></i>';
+    }, 1500);
     return;
   }
 
-  _chatHistory.push({role:'user',parts:[{text:`ユーザーの反論:「${msg}」。②または③の人格で諭すように反論してください。JSONのみ {"speaker":"キャラ名","message":"反論(60字)"}`}]});
-  try{
-    const json=await callGemini(data.geminiKey,_chatHistory);
-    const raw=json?.candidates?.[0]?.content?.parts?.[0]?.text||'';
-    const parsed=safeJsonParse(raw);
-    _chatHistory.push({role:'model',parts:[{text:raw}]});
-    const chars=data.chars||DEF_CHARS;
-    const matchedChar=chars.find(c=>parsed?.speaker?.includes(c.name))||chars[1];
-    appendChatBubble(matchedChar,parsed?.message||'...');
-  }catch(e){
-    appendChatBubble((data?.chars||DEF_CHARS)[2],'通信エラーが発生しました。冷静に考え直してください。');
+  _chatHistory.push({ role: "user", parts: [{ text: `ユーザーの反論:「${msg}」。これに対し、②または③の人格でさらに厳しく、しかし諭すように反論してください。JSONのみ {"speaker":"キャラ名","message":"反論(60字)"}` }] });
+  try {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${data.geminiKey}`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ contents: _chatHistory, generationConfig:{temperature:0.7} }) });
+    if(!res.ok) throw new Error('API Error');
+    const json = await res.json(); 
+    const raw = json?.candidates?.[0]?.content?.parts?.[0]?.text || ''; 
+    const parsed = JSON.parse(raw.replace(/```[a-z]*/gi, '').replace(/```/g, '').trim());
+    _chatHistory.push({ role: "model", parts: [{ text: raw }] });
+    const matchedChar = chars.find(c => parsed.speaker.includes(c.name)) || chars[1];
+    appendChatBubble(matchedChar, parsed.message);
+  } catch(e) { 
+    // エラー時も手動で進めるように
+    appendChatBubble(chars[2], "通信エラーが発生しました。深呼吸して、右下の「Proceed to Summary」から次へ進んでください。"); 
   }
-
-  sendBtn.disabled=false;
-  sendBtn.innerHTML='<i class="fas fa-paper-plane text-sm"></i>';
+  document.getElementById('chat_send_btn').disabled=false;
+  document.getElementById('chat_send_btn').innerHTML='<i class="fas fa-paper-plane text-sm"></i>';
 }
 
-/**
- * Gemini API呼び出しのラッパー（タイムアウト10秒）
- * @param {string} apiKey - Gemini APIキー
- * @param {Array} contents - 会話履歴
- * @returns {Promise<Object>} - APIレスポンス
- */
-async function callGemini(apiKey,contents){
-  const controller=new AbortController();
-  const timeout=setTimeout(()=>controller.abort(),10000);
-  try{
-    const res=await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-      {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({contents,generationConfig:{temperature:0.7}}),
-        signal:controller.signal
-      }
-    );
-    if(!res.ok) throw new Error(`API Error: ${res.status}`);
-    return await res.json();
-  }finally{
-    clearTimeout(timeout);
-  }
-}
-
-/**
- * JSONを安全にパースする（コードブロック除去付き）
- * パース失敗時はnullを返す
- */
-function safeJsonParse(raw){
-  try{
-    const cleaned=raw.replace(/```[a-z]*/gi,'').replace(/```/g,'').trim();
-    return JSON.parse(cleaned);
-  }catch(e){
-    console.warn('JSONパースエラー:',e);
-    return null;
-  }
-}
-
-/** チャットバブルをDOMに追加する */
-function appendChatBubble(char,text){
-  const area=document.getElementById('ai_chat_area');
-  const el=document.createElement('div');
-  el.className='a-fade';
+function appendChatBubble(char,text) {
+  const chatArea=document.getElementById('ai_chat_area'); const el=document.createElement('div'); el.className="a-fade";
   if(char){
-    const isRight=char.side==='right';
-    const ico=char.img?`<img src="${char.img}" style="width:100%;height:100%;object-fit:cover">`:`<span class="text-sm">${char.icon||'👤'}</span>`;
-    el.innerHTML=`<div class="bw ${isRight?'r':'l'}"><div class="bi">${ico}</div><div class="bc"><div class="bn">${char.name}</div><div class="${isRight?'br':'bl'}">${text}</div></div></div>`;
-  }else{
-    el.innerHTML=`<div class="bw r"><div class="bc"><div class="bn text-slate-500">You</div><div style="padding:10px 14px;border-radius:12px 2px 12px 12px;font-size:13px;line-height:1.5;background:rgba(255,255,255,.05);color:var(--tx);border:1px solid var(--bd)">${text}</div></div></div>`;
+    const isRight=char.side==='right'; const iconHtml=char.img?`<img src="${char.img}" style="width:100%;height:100%;object-fit:cover">`:`<span class="text-sm">${char.icon||'👤'}</span>`;
+    el.innerHTML=`<div class="bw ${isRight?'r':'l'}"><div class="bi">${iconHtml}</div><div class="bc"><div class="bn">${char.name}</div><div class="${isRight?'br':'bl'}">${text}</div></div></div>`;
+  } else {
+    el.innerHTML=`<div class="bw r"><div class="bc"><div class="bn text-slate-500">You</div><div style="padding:10px 14px;border-radius:12px 2px 12px 12px;font-size:13px;line-height:1.5;background:rgba(255,255,255,0.05);color:var(--tx);border:1px solid var(--bd)">${text}</div></div></div>`;
   }
-  area.appendChild(el);
-  el.scrollIntoView({behavior:'smooth',block:'end'});
+  chatArea.appendChild(el); el.scrollIntoView({behavior:'smooth',block:'end'});
 }
 
-/** チャット画面からAVOIDボタン押下時 */
-function doAvoidFromChat(){ _imp='low'; doAvoid(); }
+function doAvoidFromChat() { _imp='low'; doAvoid(); }
 
-// ============================================================
-// Step 3: サマリー
-// ============================================================
-/** サマリー画面を描画する */
-function goSummary(){
-  showScreen('scSummary');
-  const data=load();
-  if(!data||!_jgItem) return;
+// ======================================================
+// Step 3: Summary Phase
+// ======================================================
+function goSummary() {
+  showScreen('scSummary'); const data=load();
+  const hr=hourly(data); const hrs=hr>0?(_jgItem.amount/hr).toFixed(1):'---';
+  const free=freeAmt(data); const used=usedAmt(data); const remAfter=free-used-_jgItem.amount;
 
-  const hourlyWage=calcHourlyWage(data);
-  const laborHours=hourlyWage>0?(_jgItem.amount/hourlyWage).toFixed(1):'---';
-  const freeBudget=calcFreeBudget(data);
-  const monthlyUsed=calcMonthlyUsed(data);
-  const afterMonth=freeBudget-monthlyUsed-_jgItem.amount;
-
-  // 衝動度スコア表示
   const elScore=document.getElementById('sum_impulse');
   const elRsn=document.getElementById('sum_impulse_reason');
-  if(_imp==='high'){
-    elScore.innerHTML='HIGH 🔴';
-    elScore.className='num text-2xl text-red-500 mb-1';
-    elRsn.textContent=_impRsn||'感情的な判断の可能性が極めて高いです。';
-  }else if(_imp==='mid'){
-    elScore.innerHTML='MID 🟡';
-    elScore.className='num text-2xl text-amber-500 mb-1';
-    elRsn.textContent=_impRsn||'一部不合理な点が見受けられます。';
-  }else{
-    elScore.innerHTML='LOW 🟢';
-    elScore.className='num text-2xl text-green-500 mb-1';
-    elRsn.textContent=_impRsn||'比較的計画的な支出です。';
-  }
+  if(_imp==='high'){elScore.innerHTML='HIGH 🔴';elScore.className='num text-2xl text-red-500 mb-1';elRsn.textContent=_impRsn||'感情的な判断の可能性が極めて高いです。';}
+  else if(_imp==='mid'){elScore.innerHTML='MID 🟡';elScore.className='num text-2xl text-amber-500 mb-1';elRsn.textContent=_impRsn||'一部不合理な点が見受けられます。';}
+  else {elScore.innerHTML='LOW 🟢';elScore.className='num text-2xl text-green-500 mb-1';elRsn.textContent=_impRsn||'比較的計画的な支出です。';}
 
   document.getElementById('sum_amt').innerHTML=yenHtml(_jgItem.amount);
-  document.getElementById('sum_hrs').innerHTML=`<span class="text-lg">${laborHours}</span><span class="text-[9px] ml-0.5">時間分</span>`;
-  document.getElementById('sum_end').innerHTML=yenHtml(afterMonth);
-  document.getElementById('sum_end').style.color=afterMonth<0?'var(--red)':'var(--tx)';
+  document.getElementById('sum_hrs').innerHTML=`<span class="text-lg">${hrs}</span><span class="text-[9px] font-sans ml-0.5">h</span>`;
+  document.getElementById('sum_end').innerHTML=yenHtml(remAfter);
+  document.getElementById('sum_end').style.color=remAfter<0?'var(--red)':'var(--tx)';
 
-  // 過去の同カテゴリ支出（最新3件）を表示
   const allMonths=Object.values(data.months||{});
   const pastSameCat=allMonths
     .flatMap(m=>(m.records||[]))
-    .filter(r=>r.cat===_jgItem.cat&&(r.result==='buy'||r.result==='late_buy'))
-    .slice(-3);
+    .filter(r=>r.cat===_jgItem.cat && (r.result==='buy'||r.result==='late_buy'))
+    .slice(-3); 
 
-  const pastArea=document.getElementById('sum_past_area');
   if(pastSameCat.length>0){
-    pastArea.style.display='block';
+    document.getElementById('sum_past_area').style.display='block';
     document.getElementById('sum_past_list').innerHTML=pastSameCat.map(r=>
       `<div class="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
         <div>
@@ -1585,743 +1118,224 @@ function goSummary(){
         <span class="mono text-sm text-orange-400">-${yenHtml(r.amount)}</span>
       </div>`
     ).join('');
-  }else{
-    pastArea.style.display='none';
+  } else {
+    document.getElementById('sum_past_area').style.display='none';
   }
 }
 
-// ============================================================
-// Step 4 & 5: マインドフルネス → 最終決断
-// ============================================================
+// ======================================================
+// Step 4 & 5: Mindfulness & Decision
+// ======================================================
 let _mfTimer=null;
-
-/** マインドフルネス画面（60秒カウントダウン）を開始する */
-function goMindful(){
+function goMindful() {
   showScreen('scMindful');
-  const timerEl=document.getElementById('mf_timer');
-  const msgEl=document.getElementById('mf_msg');
-  const dec=document.getElementById('mf_decision');
-
-  timerEl.style.opacity='1';
-  msgEl.style.opacity='0';
-  dec.style.opacity='0';
-  dec.style.display='none';
-  dec.style.pointerEvents='none';
+  const timerEl=document.getElementById('mf_timer'); const msgEl=document.getElementById('mf_msg');
+  const decisionArea=document.getElementById('mf_decision');
+  timerEl.style.opacity='1'; msgEl.style.opacity='0';
+  decisionArea.style.opacity='0'; decisionArea.style.display='none'; decisionArea.style.pointerEvents='none';
 
   let sec=60;
   function tick(){
     timerEl.textContent=sec;
-    // 定刻のメッセージを表示
     const targetMsg=MINDFUL_MSGS.find(m=>m.t===sec);
-    if(targetMsg){
-      msgEl.style.opacity='0';
-      setTimeout(()=>{ msgEl.textContent=targetMsg.msg; msgEl.style.opacity='1'; },1000);
-    }
+    if(targetMsg){msgEl.style.opacity='0';setTimeout(()=>{msgEl.textContent=targetMsg.msg;msgEl.style.opacity='1';},1000);}
     if(sec<=0){
-      clearInterval(_mfTimer);
-      timerEl.style.opacity='0';
-      msgEl.style.opacity='0';
-      // 1秒後に決断ボタンを表示
-      setTimeout(()=>{
-        dec.style.display='block';
-        requestAnimationFrame(()=>{ dec.style.opacity='1'; dec.style.pointerEvents='all'; });
-      },1000);
+      clearInterval(_mfTimer); timerEl.style.opacity='0'; msgEl.style.opacity='0';
+      setTimeout(()=>{setupDecisionButtons();decisionArea.style.display='block';requestAnimationFrame(()=>{decisionArea.style.opacity='1';decisionArea.style.pointerEvents='all';});},1000);
       return;
     }
     sec--;
   }
-  tick();
-  _mfTimer=setInterval(tick,1000);
+  tick(); _mfTimer=setInterval(tick,1000);
 }
 
-function clearTimers(){
-  if(_mfTimer){ clearInterval(_mfTimer); _mfTimer=null; }
+function setupDecisionButtons() {
+  const data=load();
+  const btn=document.getElementById('btn_buy_locked'); const txtEl=document.getElementById('txt_buy_locked');
+  const dNum=new Date().getDate();
+  const thr = data.wishThreshold || HIGH_PRICE_THRESHOLD;
+  const isPaydayEffect = dNum <= 10 && _jgItem.amount >= thr;
+  
+  btn.disabled=false;
+  if(isPaydayEffect) {
+     btn.className="w-full py-2 rounded-lg bg-transparent border border-red-500/20 text-red-500/50 font-bold text-[9px] tracking-widest uppercase transition-all opacity-80";
+     txtEl.innerHTML='GO (強行する)';
+  } else {
+     btn.className="w-full py-4 rounded-lg bg-transparent border border-white/10 text-slate-400 font-bold text-[11px] tracking-widest uppercase transition-all";
+     txtEl.innerHTML='PROCEED TO BUY / GO';
+  }
 }
 
-// ============================================================
-// 決断処理
-// ============================================================
+function clearTimers(){ if(_mfTimer){clearInterval(_mfTimer);_mfTimer=null;} }
+
 let _lastAvoidId=null;
-
-/** AVOID: 購入をやめる → 「やめた理由」選択へ */
 function doAvoid(){
-  if(!_jgItem) return;
-  clearTimers();
-  const data=load();
-  if(!data) return;
-  const key=mKey();
-  const month=getMonth(data,key);
-
-  const rec={
-    id:uid(), date:today(), month:key,
-    name:_jgItem.name, amount:_jgItem.amount,
-    cat:_jgItem.cat, catIcon:_jgItem.catIcon,
-    result:'avoid', impulse:_imp, desire:_jgItem.desire||5, stopReason:null
-  };
-  month.records.push(rec);
-  data.pendingBuys=(data.pendingBuys||[]).filter(p=>p.id!==_jgItem.id);
-  save(data);
-  _lastAvoidId=rec.id;
-  _jgItem=null;
-  openWhyOv();
+  if(!_jgItem) return; clearTimers(); const data=load(); const key=mKey(); const month=getMonth(data,key);
+  const rec={id:uid(),date:today(),month:key,name:_jgItem.name,amount:_jgItem.amount,cat:_jgItem.cat,catIcon:_jgItem.catIcon,result:'avoid',impulse:_imp,stopReason:null};
+  month.records.push(rec); data.pendingBuys=(data.pendingBuys||[]).filter(p=>p.id!==_jgItem.id); save(data); 
+  _lastAvoidId=rec.id; _jgItem=null; openWhyOv();
 }
-
-/** BUY: 購入を記録してホームへ戻る */
 function doBuy(){
-  if(!_jgItem) return;
-  clearTimers();
-  const data=load();
-  if(!data) return;
-  const key=mKey();
-  const month=getMonth(data,key);
-
-  const rec={
-    id:uid(), date:today(), month:key,
-    name:_jgItem.name, amount:_jgItem.amount,
-    cat:_jgItem.cat, catIcon:_jgItem.catIcon,
-    result:'buy', impulse:_imp, desire:_jgItem.desire||5
-  };
-  month.records.push(rec);
-  data.pendingBuys=(data.pendingBuys||[]).filter(p=>p.id!==_jgItem.id);
-  save(data);
-  _jgItem=null;
-  navTo('scHome','nb_h');
-  showToast('購入を記録しました');
+  if(!_jgItem) return; clearTimers(); const data=load(); const key=mKey(); const month=getMonth(data,key);
+  const rec={id:uid(),date:today(),month:key,name:_jgItem.name,amount:_jgItem.amount,cat:_jgItem.cat,catIcon:_jgItem.catIcon,result:'buy',impulse:_imp};
+  month.records.push(rec); data.pendingBuys=(data.pendingBuys||[]).filter(p=>p.id!==_jgItem.id); save(data); _jgItem=null; navTo('scHome','nb_h'); showToast('PURCHASE VERIFIED');
 }
 
-// ============================================================
-// 「やめた理由」選択オーバーレイ
-// ============================================================
+// ======================================================
+// Why Overlay
+// ======================================================
 let _whyTimer=null;
-
-/** AVOIDの理由選択オーバーレイを表示する（15秒自動クローズ） */
 function openWhyOv(){
-  const ov=document.getElementById('whyOv');
-  const sh=document.getElementById('whySh');
-
-  document.getElementById('why_opts').innerHTML=WHY_OPTS.map(o=>
-    `<button onclick="selectWhy('${o.id}')" class="tap w-full flex items-center gap-3 px-4 py-3 rounded gc" style="border-color:var(--bd)">
-      <div class="w-6 h-6 rounded flex items-center justify-center gc2 shrink-0">
-        <i class="fa-solid ${o.icon} text-[10px]" style="color:${o.color}"></i>
-      </div>
-      <span class="text-xs font-bold text-slate-300">${o.label}</span>
-      <i class="fa-solid fa-chevron-right text-[8px] ml-auto" style="color:var(--tx3)"></i>
-    </button>`
-  ).join('');
-
-  ov.style.opacity='0';
-  ov.style.pointerEvents='all';
-  sh.style.transform='translateY(100%)';
-  ov.style.display='flex';
-  requestAnimationFrame(()=>{
-    ov.style.transition='opacity .25s';
-    ov.style.opacity='1';
-    sh.style.transition='transform .36s cubic-bezier(.16,1,.3,1)';
-    sh.style.transform='translateY(0)';
-  });
-
-  // 15秒カウントダウンバー
-  const bar=document.getElementById('why_bar');
-  bar.style.transition='none';
-  bar.style.width='100%';
-  requestAnimationFrame(()=>{ bar.style.transition='width 15s linear'; bar.style.width='0%'; });
-
-  if(_whyTimer) clearTimeout(_whyTimer);
-  _whyTimer=setTimeout(()=>selectWhy(null),15000);
+  const ov=document.getElementById('whyOv'); const sh=document.getElementById('whySh');
+  document.getElementById('why_opts').innerHTML=WHY_OPTS.map(o=>`<button onclick="selectWhy('${o.id}')" class="tap w-full flex items-center gap-3 px-4 py-3 rounded gc" style="border-color:var(--bd)"><div class="w-6 h-6 rounded flex items-center justify-center gc2 flex-shrink-0"><i class="fa-solid ${o.icon} text-[10px]" style="color:${o.color}"></i></div><span class="text-xs font-bold text-slate-300">${o.label}</span><i class="fa-solid fa-chevron-right text-[8px] ml-auto" style="color:var(--tx3)"></i></button>`).join('');
+  ov.style.opacity='0'; ov.style.pointerEvents='all'; sh.style.transform='translateY(100%)'; ov.style.display='flex';
+  requestAnimationFrame(()=>{ov.style.transition='opacity .25s';ov.style.opacity='1';sh.style.transition='transform .36s cubic-bezier(.16,1,.3,1)';sh.style.transform='translateY(0)';});
+  const bar=document.getElementById('why_bar'); bar.style.transition='none'; bar.style.width='100%'; requestAnimationFrame(()=>{bar.style.transition='width 3s linear';bar.style.width='0%';});
+  if(_whyTimer) clearTimeout(_whyTimer); _whyTimer=setTimeout(()=>selectWhy(null),3000);
 }
-
-/** やめた理由を選択・記録してホームへ */
 function selectWhy(reasonId){
-  if(_whyTimer){ clearTimeout(_whyTimer); _whyTimer=null; }
-
-  // 理由をrecordに追記
-  if(_lastAvoidId){
-    const data=load();
-    const month=data?.months?.[mKey()];
-    if(month){
-      const rec=month.records.find(r=>r.id===_lastAvoidId);
-      if(rec){ rec.stopReason=reasonId; save(data); }
-    }
-  }
-
-  const ov=document.getElementById('whyOv');
-  const sh=document.getElementById('whySh');
-  sh.style.transform='translateY(100%)';
-  setTimeout(()=>{ ov.style.opacity='0'; ov.style.pointerEvents='none'; },360);
-
-  navTo('scHome','nb_h');
-  showToast('記録しました');
-  _lastAvoidId=null;
+  if(_whyTimer) clearTimeout(_whyTimer); _whyTimer=null;
+  if(_lastAvoidId){const data=load();const key=mKey();const month=data.months?.[key];if(month){const rec=month.records.find(r=>r.id===_lastAvoidId);if(rec){rec.stopReason=reasonId;save(data);}}}
+  const ov=document.getElementById('whyOv'); const sh=document.getElementById('whySh'); sh.style.transform='translateY(100%)'; setTimeout(()=>{ov.style.opacity='0';ov.style.pointerEvents='none';},360);
+  navTo('scHome','nb_h'); showToast('DATA LOGGED'); _lastAvoidId=null;
 }
 
-// ============================================================
-// 月次レポート
-// ============================================================
+// ======================================================
+// Report
+// ======================================================
 let _rpKey=mKey();
-
-/** レポート画面を描画する */
 function renderReport(){
-  document.getElementById('rp_b').textContent=fmtM(_rpKey);
-  document.getElementById('rp_ml').textContent=fmtM(_rpKey);
-
-  const data=load();
-  const month=data?.months?.[_rpKey];
-
-  if(!month||!month.records?.length){
-    document.getElementById('rp_score').style.display='none';
-    document.getElementById('rp_emp').style.display='block';
-    document.getElementById('rp_zi').value='';
-    return;
-  }
-
+  document.getElementById('rp_b').textContent=fmtM(_rpKey); document.getElementById('rp_ml').textContent=fmtM(_rpKey); const data=load(); const month=data?.months?.[_rpKey];
+  if(!month||!month.records.length){document.getElementById('rp_score').style.display='none';document.getElementById('rp_emp').style.display='block';document.getElementById('rp_zi').value='';return;}
   document.getElementById('rp_emp').style.display='none';
-
-  // ZAIMデータが入力済みの場合は自動でスコア表示
-  if(month.zaimTotal!=null){
-    document.getElementById('rp_zi').value=month.zaimTotal;
-    renderReportScore(data,month);
-  }else{
-    document.getElementById('rp_score').style.display='none';
-  }
+  if(month.zaimTotal!==null&&month.zaimTotal!==undefined){document.getElementById('rp_zi').value=month.zaimTotal;renderReportScore(data,month);} else {document.getElementById('rp_score').style.display='none';}
 }
-
-/** ZAIMデータを保存してスコアを再描画する */
 function saveReport(){
-  const zaim=parseInt(document.getElementById('rp_zi').value)||0;
-  const data=load();
-  if(!data) return;
-  const month=getMonth(data,_rpKey);
-  month.zaimTotal=zaim;
-  save(data);
-  renderReportScore(data,month);
-  showToast('レポートを生成しました');
+  const zaim=parseInt(document.getElementById('rp_zi').value)||0; const data=load(); const month=getMonth(data,_rpKey);
+  month.zaimTotal=zaim; save(data); renderReportScore(data,month); showToast('REPORT GENERATED');
 }
-
-/** レポートスコアを計算・描画する（AI分析付き） */
-async function renderReportScore(data,month){
+function renderReportScore(data,month){
   document.getElementById('rp_score').style.display='block';
-
-  // 各カテゴリの集計
-  const appBought=month.records.filter(r=>r.result==='buy').reduce((s,r)=>s+(r.amount||0),0);
-  const late=month.records.filter(r=>r.result==='late_buy').reduce((s,r)=>s+(r.amount||0),0);
-  const avoidedTot=month.records.filter(r=>r.result==='avoid').reduce((s,r)=>s+(r.amount||0),0);
-  const zaim=month.zaimTotal||0;
-  const totalDisc=appBought+late+zaim;
-
-  // 内訳行を描画
+  const appBought=month.records.filter(r=>r.result==='buy').reduce((s,r)=>s+r.amount,0); const late=month.records.filter(r=>r.result==='late_buy').reduce((s,r)=>s+r.amount,0); const avoided=month.records.filter(r=>r.result==='avoid'); const avoidedTot=avoided.reduce((s,r)=>s+r.amount,0); const zaim=month.zaimTotal||0; const totalDisc=appBought+late+zaim;
   const rows=[
-    {icon:'fa-shield-check',      col:'var(--green)',  sign:'+', val:avoidedTot, label:'Avoided（回避）'},
-    {icon:'fa-bag-shopping',      col:'var(--tx)',     sign:'-', val:appBought,  label:'Verified（計画購入）'},
-    {icon:'fa-clock-rotate-left', col:'var(--orange)', sign:'-', val:late,       label:'Unverified（事後記録）'},
-    {icon:'fa-database',          col:'var(--red)',    sign:'-', val:zaim,       label:'External（ZAIM）'}
+    {icon:'fa-shield-check',col:'var(--green)', sign:'+',val:avoidedTot,label:'Avoided (回避)'},
+    {icon:'fa-bag-shopping', col:'var(--tx)',   sign:'-',val:appBought, label:'Verified (計画購入)'},
+    {icon:'fa-clock-rotate-left',col:'var(--orange)',sign:'-',val:late,label:'Unverified (事後記録)'},
+    {icon:'fa-database',     col:'var(--red)',  sign:'-',val:zaim,      label:'External (ZAIM)'}
   ];
-  document.getElementById('rp_bd').innerHTML=rows.map(r=>
-    `<div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
-      <div class="flex items-center gap-2">
-        <div class="w-5 flex items-center justify-center"><i class="fa-solid ${r.icon} text-[10px]" style="color:${r.col}"></i></div>
-        <div class="text-[11px] font-bold" style="color:${r.col}">${r.label}</div>
-      </div>
-      <div class="mono text-sm" style="color:${r.col}">${r.sign}${yenHtml(r.val)}</div>
-    </div>`
-  ).join('');
-
-  document.getElementById('rp_tot').innerHTML=yenHtml(totalDisc);
-  document.getElementById('rp_sh').innerHTML='+'+yenHtml(avoidedTot);
-
-  // 節約率（total=0のゼロ除算を防止）
-  const total=totalDisc+avoidedTot;
-  const saveRate=total>0?avoidedTot/total:0;
-
-  // 評価バッジの設定
-  const card=document.getElementById('rp_mc');
-  const icon=document.getElementById('rp_mi');
-  const ttl=document.getElementById('rp_mt');
-  const txt=document.getElementById('rp_mx');
-  const aiLoading=document.getElementById('rp_ai_loading');
-
-  if(saveRate>=0.4){
-    card.style.cssText='border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.05)';
-    icon.innerHTML='<i class="fa-solid fa-trophy" style="color:var(--green)"></i>';
-    ttl.textContent='EXCELLENT'; ttl.style.color='var(--green)';
-  }else if(saveRate>=0.2){
-    card.style.cssText='border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.05)';
-    icon.innerHTML='<i class="fa-solid fa-chart-line" style="color:var(--amber)"></i>';
-    ttl.textContent='NEEDS IMPROVEMENT'; ttl.style.color='var(--amber)';
-  }else{
-    card.style.cssText='border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.05)';
-    icon.innerHTML='<i class="fa-solid fa-triangle-exclamation" style="color:var(--red)"></i>';
-    ttl.textContent='CRITICAL ALERT'; ttl.style.color='var(--red)';
-  }
-
-  // AI分析テキスト（APIあり: AI生成 / なし: 静的フォールバック）
-  if(data.geminiKey){
-    aiLoading.style.display='inline';
-    txt.innerHTML='';
-    const analysis=await analyzeReportWithAI(data,saveRate,appBought,late,avoidedTot,zaim);
-    aiLoading.style.display='none';
-    if(analysis){
-      txt.innerHTML=`<div>${analysis.advice}</div><div class="mt-2 text-[10px] font-bold tracking-widest uppercase" style="color:var(--cyan)">来月のフォーカス: ${analysis.focus}</div>`;
-    }else{
-      txt.textContent=buildFallbackReportText(saveRate,late);
-    }
-  }else{
-    txt.textContent=buildFallbackReportText(saveRate,late);
-  }
+  document.getElementById('rp_bd').innerHTML=rows.map(r=>`<div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0"><div class="flex items-center gap-2"><div class="w-5 flex items-center justify-center"><i class="fa-solid ${r.icon} text-[10px]" style="color:${r.col}"></i></div><div class="text-[11px] font-bold" style="color:${r.col}">${r.label}</div></div><div class="mono text-sm" style="color:${r.col}">${r.sign}${yenHtml(r.val)}</div></div>`).join('');
+  document.getElementById('rp_tot').innerHTML=yenHtml(totalDisc); document.getElementById('rp_sh').innerHTML='+'+yenHtml(avoidedTot);
+  const total=totalDisc+avoidedTot; const saveRate=total>0?avoidedTot/total:0;
+  const card=document.getElementById('rp_mc'); const icon=document.getElementById('rp_mi'); const ttl=document.getElementById('rp_mt'); const txt=document.getElementById('rp_mx');
+  if(saveRate>=0.4){card.style.cssText='border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.05);';icon.innerHTML='<i class="fa-solid fa-trophy" style="color:var(--green)"></i>';ttl.textContent='EXCELLENT';ttl.style.color='var(--green)';txt.textContent=`節約率 ${Math.round(saveRate*100)}% は極めて優秀な水準です。`;}
+  else if(saveRate>=0.2){card.style.cssText='border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.05);';icon.innerHTML='<i class="fa-solid fa-chart-line" style="color:var(--amber)"></i>';ttl.textContent='NEEDS IMPROVEMENT';ttl.style.color='var(--amber)';txt.textContent=`事後記録 ${yenHtml(late).replace(/<[^>]+>/g,'')} の削減を次月のKPIとします。`;}
+  else{card.style.cssText='border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.05);';icon.innerHTML='<i class="fa-solid fa-triangle-exclamation" style="color:var(--red)"></i>';ttl.textContent='CRITICAL ALERT';ttl.style.color='var(--red)';txt.textContent=`裁量支出が基準値を超過。アプリを経由しない支出の削減が急務です。`;}
 }
-
-/** APIなし時のフォールバックテキストを生成する */
-function buildFallbackReportText(saveRate,late){
-  if(saveRate>=0.4) return `節約率 ${Math.round(saveRate*100)}% は極めて優秀な水準です。この調子を維持しましょう。`;
-  if(saveRate>=0.2) return `事後記録 ¥${(late||0).toLocaleString()} の削減が次月の最優先課題です。`;
-  return '裁量支出が基準値を大幅に超過しています。アプリを経由しない支出の根本的な削減が急務です。';
-}
-
-/** Gemini APIで月次データを分析してアドバイスを生成する */
-async function analyzeReportWithAI(data,saveRate,appBought,late,avoidedTot,zaim){
-  const prompt=`家計アドバイザーとして、以下の月次データを分析して具体的なアドバイスを日本語で返してください。
-節約率: ${Math.round(saveRate*100)}% / 計画購入: ¥${appBought.toLocaleString()} / 事後記録: ¥${late.toLocaleString()} / 回避額: ¥${avoidedTot.toLocaleString()} / ZAIM外部: ¥${zaim.toLocaleString()}
-【出力ルール】JSONのみ（余計な文字なし）: {"advice":"総評2文以内(50字)","focus":"来月の改善フォーカス(20字)"}`;
-  try{
-    const json=await callGemini(data.geminiKey,[{role:'user',parts:[{text:prompt}]}]);
-    const raw=json?.candidates?.[0]?.content?.parts?.[0]?.text||'';
-    return safeJsonParse(raw);
-  }catch(e){
-    console.error('レポートAI分析エラー:',e);
-    return null;
-  }
-}
-
 function rpPrev(){ const [y,m]=_rpKey.split('-').map(Number); _rpKey=mKey(new Date(y,m-2,1)); renderReport(); }
 function rpNext(){ const [y,m]=_rpKey.split('-').map(Number); _rpKey=mKey(new Date(y,m,1)); renderReport(); }
 
-// ============================================================
-// 設定画面
-// ============================================================
+// ======================================================
+// Settings
+// ======================================================
 let _curTab='base';
-
 function switchTab(name){
   _curTab=name;
-  ['base','char','fail'].forEach(t=>{
-    document.getElementById(`tb_${t}`).classList.toggle('on',t===name);
-    document.getElementById(`tb_${t}_b`).style.display=t===name?'block':'none';
-  });
-  if(name==='char') renderCharTab();
-  if(name==='fail') renderFailTab();
+  ['base','char','fail'].forEach(t=>{ document.getElementById(`tb_${t}`).classList.toggle('on',t===name); document.getElementById(`tb_${t}_b`).style.display=t===name?'block':'none'; });
+  if(name==='char') renderCharTab(); if(name==='fail') renderFailTab();
 }
-
 function renderSettings(){
-  const data=load();
-  if(!data) return;
-  document.getElementById('st_i').value=data.income||'';
-  document.getElementById('st_g').value=data.savingsGoal||'';
-  document.getElementById('st_f').value=data.fixedCost||'';
-  document.getElementById('st_k').value=data.geminiKey||'';
-  document.getElementById('st_gas').value=data.gasUrl||'';
-  updateStFree();
-  ['st_i','st_g','st_f'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(!el._bound){ el.addEventListener('input',updateStFree); el._bound=true; }
-  });
-  switchTab(_curTab);
+  const data=load(); if(!data) return;
+  document.getElementById('st_i').value=data.income||''; document.getElementById('st_g').value=data.savingsGoal||''; document.getElementById('st_f').value=data.fixedCost||''; document.getElementById('st_k').value=data.geminiKey||''; document.getElementById('st_wt').value=data.wishThreshold||HIGH_PRICE_THRESHOLD;
+  updateStFree(); ['st_i','st_g','st_f'].forEach(id=>{const el=document.getElementById(id);if(!el._b){el.addEventListener('input',updateStFree);el._b=true;}}); switchTab(_curTab);
 }
-
-function updateStFree(){
-  const income=parseInt(document.getElementById('st_i').value)||0;
-  const goal=parseInt(document.getElementById('st_g').value)||0;
-  const fixed=parseInt(document.getElementById('st_f').value)||0;
-  document.getElementById('st_fp').innerHTML=yenHtml(income-goal-fixed);
-}
-
+function updateStFree(){ const i=parseInt(document.getElementById('st_i').value)||0; const g=parseInt(document.getElementById('st_g').value)||0; const f=parseInt(document.getElementById('st_f').value)||0; document.getElementById('st_fp').innerHTML=yenHtml(i-g-f); }
 function saveBase(){
-  const income=parseInt(document.getElementById('st_i').value)||0;
-  const goal=parseInt(document.getElementById('st_g').value)||0;
-  const fixed=parseInt(document.getElementById('st_f').value)||0;
-  const geminiKey=document.getElementById('st_k').value.trim();
-  const gasUrl=document.getElementById('st_gas').value.trim();
-
-  if(!income||income<1000){showToast('月収を入力してください');return;}
-  if(!goal||goal<100){showToast('貯金目標を入力してください');return;}
-  if(goal>=income){showToast('貯金目標が月収を超えています');return;}
-
-  const data=load();
-  if(!data) return;
-  Object.assign(data,{income,savingsGoal:goal,fixedCost:fixed,geminiKey,gasUrl});
-  save(data);
-  showToast('設定を保存しました');
+  const inc=parseInt(document.getElementById('st_i').value); const goal=parseInt(document.getElementById('st_g').value); const fix=parseInt(document.getElementById('st_f').value)||0; const key=document.getElementById('st_k').value.trim(); const thr=parseInt(document.getElementById('st_wt').value)||HIGH_PRICE_THRESHOLD;
+  if(!inc||inc<1000){showToast('月収を入力してください');return;} if(!goal||goal<100){showToast('貯金目標を入力してください');return;} if(goal>=inc){showToast('目標が月収を超えています');return;}
+  const data=load(); data.income=inc; data.savingsGoal=goal; data.fixedCost=fix; data.geminiKey=key; data.wishThreshold=thr; save(data); showToast('SAVED');
 }
-
 function renderCharTab(){ const data=load(); buildCharForm('st_chars',data?.chars||DEF_CHARS); }
-
 function saveChars(){
-  const data=load();
-  if(!data) return;
-  const chars=data.chars||DEF_CHARS;
-  data.chars=chars.map(c=>({
-    ...c,
-    icon:(document.getElementById(`ck_${c.id}`)?.value||c.icon).trim(),
-    name:(document.getElementById(`cn_${c.id}`)?.value||c.name).trim(),
-    persona:(document.getElementById(`cp2_${c.id}`)?.value||c.persona).trim(),
-    img:document.getElementById(`cp_${c.id}`)?.dataset.b64||c.img||''
-  }));
-  save(data);
-  showToast('エージェントを保存しました');
+  const data=load(); const chars=data.chars||DEF_CHARS;
+  data.chars=chars.map(c=>({...c,icon:(document.getElementById(`ck_${c.id}`)?.value||c.icon).trim(),name:(document.getElementById(`cn_${c.id}`)?.value||c.name).trim(),persona:(document.getElementById(`cp2_${c.id}`)?.value||c.persona).trim(),img:document.getElementById(`cp_${c.id}`)?.dataset.b64||c.img||''})); save(data); showToast('SAVED');
 }
-
 function renderFailTab(){
-  const data=load();
-  const fails=data?.failures||DEF_FAILS;
-  document.getElementById('st_fails').innerHTML=fails.map(f=>
-    `<div class="gc p-3 space-y-2">
-      <div class="flex gap-2 items-center">
-        <input type="text" id="fc_${f.id}" value="${f.cat}" class="inp w-24 text-xs" style="padding:6px 10px" placeholder="カテゴリ">
-        <input type="text" id="fn_${f.id}" value="${f.name}" class="inp flex-1 text-xs" style="padding:6px 10px" placeholder="失敗名">
-        <button onclick="delFail('${f.id}')" class="tap w-8 h-8 rounded flex items-center justify-center shrink-0 bg-red-500/10 text-red-500">
-          <i class="fa-solid fa-xmark text-xs"></i>
-        </button>
-      </div>
-      <input type="text" id="fcond_${f.id}" value="${f.cond}" class="inp text-[10px]" placeholder="状況・心理状態（AI参照用）">
-    </div>`
-  ).join('');
+  const data=load(); const fails=data?.failures||DEF_FAILS;
+  document.getElementById('st_fails').innerHTML=fails.map(f=>`<div class="gc p-3 space-y-2"><div class="flex gap-2 items-center"><input type="text" id="fc_${f.id}" value="${f.cat}" class="inp w-24 text-xs" style="padding:6px 10px" placeholder="カテゴリ"><input type="text" id="fn_${f.id}" value="${f.name}" class="inp flex-1 text-xs" style="padding:6px 10px" placeholder="失敗名"><button onclick="delFail('${f.id}')" class="tap w-8 h-8 rounded flex items-center justify-center flex-shrink-0 bg-red-500/10 text-red-500"><i class="fa-solid fa-xmark text-xs"></i></button></div><input type="text" id="fcond_${f.id}" value="${f.cond}" class="inp text-[10px]" placeholder="条件・心理状態 (AI参照用)"></div>`).join('');
 }
-
 function saveFails(){
-  const data=load();
-  if(!data) return;
-  const fails=data.failures||DEF_FAILS;
-  data.failures=fails.map(f=>({
-    ...f,
-    cat:(document.getElementById(`fc_${f.id}`)?.value||f.cat).trim(),
-    name:(document.getElementById(`fn_${f.id}`)?.value||f.name).trim(),
-    cond:(document.getElementById(`fcond_${f.id}`)?.value||f.cond).trim()
-  }));
-  save(data);
-  showToast('失敗DBを保存しました');
+  const data=load(); const fails=data.failures||DEF_FAILS;
+  data.failures=fails.map(f=>({...f,cat:(document.getElementById(`fc_${f.id}`)?.value||f.cat).trim(),name:(document.getElementById(`fn_${f.id}`)?.value||f.name).trim(),cond:(document.getElementById(`fcond_${f.id}`)?.value||f.cond).trim()})); save(data); showToast('SAVED');
 }
+function addFail(){ const data=load(); if(!data.failures) data.failures=[...DEF_FAILS]; data.failures.push({id:Date.now(),cat:'新規',name:'新しい失敗',cond:''}); save(data); renderFailTab(); }
+function delFail(id){ const data=load(); data.failures=(data.failures||DEF_FAILS).filter(f=>String(f.id)!==String(id)); save(data); renderFailTab(); }
 
-function addFail(){
-  const data=load();
-  if(!data) return;
-  if(!data.failures) data.failures=[...DEF_FAILS];
-  data.failures.push({id:Date.now(),cat:'新規',name:'新しい失敗',cond:''});
-  save(data);
-  renderFailTab();
-}
-
-function delFail(id){
-  const data=load();
-  if(!data) return;
-  data.failures=(data.failures||DEF_FAILS).filter(f=>String(f.id)!==String(id));
-  save(data);
-  renderFailTab();
-}
-
-// ============================================================
-// GAS連携（Googleスプレッドシートとのデータ同期）
-// ============================================================
-
-/**
- * 全データをGASにバックアップする
- * GASスクリプト側: doPost(e) で payload.type === 'backup' を処理
- */
-/**
- * バックアップをGASに送信する
- *
- * ⚠ GASはCORSのプリフライト(OPTIONS)を処理できないため
- *   Content-Typeヘッダーを省略し、no-corsで送信する。
- *   レスポンスは読めないが、データはGAS側で受信される。
- */
-async function backupToGAS(){
-  const data=load();
-  if(!data?.gasUrl){showToast('GAS URLが設定されていません');return;}
-  showToast('バックアップ中...');
-  try{
-    // GASスクリプトの期待するパラメータ: action='backup', payload=データ
-    const body=JSON.stringify({
-      action:'backup',
-      timestamp:new Date().toISOString(),
-      payload:data
-    });
-    // mode:'no-cors' でプリフライトを回避（レスポンスは読めないが送信は成功する）
-    await fetch(data.gasUrl,{
-      method:'POST',
-      mode:'no-cors',
-      body
-    });
-    showToast('バックアップ完了');
-  }catch(e){
-    console.error('GASバックアップエラー:',e);
-    showToast('GAS接続エラー');
-  }
-}
-
-/**
- * GASから失敗DBを取得して上書きする
- * GETリクエストはCORSの制限がないため通常のfetchで取得可能
- * GASスクリプトの期待するパラメータ: action=get_failures
- */
-async function fetchFailuresFromGAS(){
-  const data=load();
-  if(!data?.gasUrl){showToast('GAS URLが設定されていません');return;}
-  showToast('失敗DB同期中...');
-  try{
-    // GASスクリプトに合わせて action=get_failures を使用
-    const res=await fetch(`${data.gasUrl}?action=get_failures`);
-    const failures=await res.json();
-    if(Array.isArray(failures)&&failures.length>0){
-      data.failures=failures;
-      save(data);
-      renderFailTab();
-      showToast(`${failures.length}件の失敗DBを同期しました`);
-    }else{
-      showToast('スプレッドシートにデータがありません');
-    }
-  }catch(e){
-    console.error('GAS失敗DB同期エラー:',e);
-    showToast('GAS接続エラー');
-  }
-}
-
-// ============================================================
-// 履歴画面
-// ============================================================
-let _hf='all'; // 現在のフィルター
-
-/** フィルターを切り替えて履歴を再描画する */
+// ======================================================
+// History
+// ======================================================
+let _hf='all';
 function setHF(f){
   _hf=f;
-  // フィルターボタンのスタイル更新
-  const filterMap={all:'all',avoid:'av',buy:'bu',late:'la'};
-  Object.entries(filterMap).forEach(([key,btnId])=>{
-    const btn=document.getElementById(`hf_${btnId}`);
-    if(!btn) return;
-    const isActive=f===key;
-    btn.style.background=isActive?'var(--gold-d)':'transparent';
-    btn.style.color=isActive?'var(--gold)':'var(--tx3)';
-    btn.style.borderColor=isActive?'rgba(212,175,55,.3)':'var(--bd)';
+  ['all','av','bu','la'].forEach(t=>{
+    const btn=document.getElementById(`hf_${t}`); if(!btn) return;
+    const isActive=(f==='all'&&t==='all')||(f==='avoid'&&t==='av')||(f==='buy'&&t==='bu')||(f==='late'&&t==='la');
+    btn.style.background=isActive?'var(--gold-d)':'transparent'; btn.style.color=isActive?'var(--gold)':'var(--tx3)'; btn.style.borderColor=isActive?'rgba(212,175,55,0.3)':'var(--bd)';
   });
   renderHistory();
 }
-
-/** 履歴画面を描画する */
 function renderHistory(){
-  const data=load();
-  if(!data) return;
-  const key=mKey();
-  const month=data?.months?.[key];
-  document.getElementById('hi_b').textContent=fmtM(key);
-
-  const allRecs=month?.records||[];
-  const filterFn={
-    all:    ()=>true,
-    avoid:  r=>r.result==='avoid',
-    buy:    r=>r.result==='buy',
-    late:   r=>r.result==='late_buy'
-  };
-  const sorted=[...allRecs].filter(filterFn[_hf]||filterFn.all).reverse();
-
-  const listEl=document.getElementById('hi_list');
-  const emEl=document.getElementById('hi_emp');
-  if(!sorted.length){
-    listEl.innerHTML='';
-    emEl.style.display='block';
-    return;
-  }
-  emEl.style.display='none';
-  listEl.innerHTML=sorted.map((r,i)=>recRow(r,i,true)).join('');
+  const data=load(); if(!data) return; const key=mKey(); const month=data?.months?.[key]; document.getElementById('hi_b').textContent=fmtM(key);
+  const allRecs=month?.records||[]; const filtered=_hf==='all'?allRecs:_hf==='avoid'?allRecs.filter(r=>r.result==='avoid'):_hf==='buy'?allRecs.filter(r=>r.result==='buy'):_hf==='late'?allRecs.filter(r=>r.result==='late_buy'):[];
+  const sorted=[...filtered].reverse(); const listEl=document.getElementById('hi_list'); const emEl=document.getElementById('hi_emp');
+  if(!sorted.length){listEl.innerHTML='';emEl.style.display='block';return;} emEl.style.display='none'; listEl.innerHTML=sorted.map((r,i)=>recRow(r,i,true)).join('');
 }
-
-/** 履歴行のHTMLを生成する */
 function recRow(r,idx,canDel){
-  const isAvoid=r.result==='avoid';
-  const isLate=r.result==='late_buy';
-  const color=isAvoid?'var(--green)':isLate?'var(--orange)':'var(--tx)';
-  const sign=isAvoid?'+':'-';
-  const impIcon=r.impulse?{high:'🔴',mid:'🟡',low:'🟢'}[r.impulse]||'':'';
-  const stopLabel=r.stopReason?WHY_OPTS.find(o=>o.id===r.stopReason)?.label||'':'';
-  const tagLabel=isAvoid?'AVOID':isLate?'LATE':'BUY';
-  const tagColor=isAvoid?'var(--green)':isLate?'var(--orange)':'var(--tx2)';
-  const delBtn=canDel
-    ?`<button onclick="delRec('${r.id||''}')" class="tap w-6 h-6 rounded flex items-center justify-center ml-2 border border-white/10 hover:bg-red-500/10 hover:text-red-500"><i class="fa-solid fa-xmark text-[10px]"></i></button>`
-    :'';
-  const amt=Math.abs(Number(r.amount||0)).toLocaleString();
-
-  return `<div class="gc flex items-center justify-between p-3 mb-2" style="animation:fadeUp .3s ${idx*.04}s ease both;border-left:2px solid ${tagColor}">
+  const isAvoid=r.result==='avoid'; const isLate=r.result==='late_buy';
+  const col=isAvoid?'var(--green)':isLate?'var(--orange)':'var(--tx)'; const sign=isAvoid?'+':'-';
+  const impIcon=r.impulse?{high:'🔴',mid:'🟡',low:'🟢'}[r.impulse]||'':''; const stopLabel=r.stopReason?WHY_OPTS.find(o=>o.id===r.stopReason)?.label||'':'';
+  const tagLabel=isAvoid?'AVOID':isLate?'LATE':'BUY'; const tagCol=isAvoid?'var(--green)':isLate?'var(--orange)':'var(--tx2)';
+  const del=canDel?`<button onclick="delRec('${r.id||''}')" class="tap w-6 h-6 rounded flex items-center justify-center ml-2 border border-white/10 hover:bg-red-500/10 hover:text-red-500"><i class="fa-solid fa-xmark text-[10px]"></i></button>`:'';
+  const numStr=Math.abs(Number(r.amount||0)).toLocaleString(); const formattedYen=`${sign}<span class="text-[10px] text-slate-500 mr-0.5">¥</span>${numStr}`;
+  return `<div class="gc flex items-center justify-between p-3 mb-2" style="animation:fadeUp .3s ${idx*0.04}s ease both; border-left: 2px solid ${tagCol}">
     <div class="flex flex-col gap-1 min-w-0 flex-1 pl-1">
-      <div class="flex items-center gap-2">
-        <span class="text-[9px] font-bold tracking-widest uppercase" style="color:${tagColor}">${tagLabel}</span>
-        ${impIcon?`<span class="text-[8px]">${impIcon}</span>`:''}
-        ${r.desire?`<span class="text-[9px] text-slate-500">Lv.${r.desire}</span>`:''}
-        ${stopLabel?`<span class="text-[9px] text-slate-400 border-l border-white/20 pl-2">${stopLabel}</span>`:''}
-      </div>
+      <div class="flex items-center gap-2"><span class="text-[9px] font-bold tracking-widest uppercase" style="color:${tagCol}">${tagLabel}</span>${impIcon?`<span class="text-[8px]">${impIcon}</span>`:''}${stopLabel?`<span class="text-[9px] text-slate-400 border-l border-white/20 pl-2">${stopLabel}</span>`:''}</div>
       <div class="text-xs font-bold truncate text-white">${r.name}</div>
       <div class="text-[9px] font-bold tracking-widest uppercase text-slate-500">${(r.date||'').replace(/-/g,'.')} · ${r.cat||''}</div>
     </div>
-    <div class="flex items-center shrink-0">
-      <span class="mono text-sm" style="color:${color}">${sign}<span class="text-[10px] text-slate-500 mr-0.5">¥</span>${amt}</span>
-      ${delBtn}
-    </div>
+    <div class="flex items-center flex-shrink-0"><span class="mono text-sm" style="color:${col}">${formattedYen}</span>${del}</div>
   </div>`;
 }
+function delRec(id){ const data=load(); const key=mKey(); const month=getMonth(data,key); month.records=month.records.filter(r=>r.id!==id); save(data); renderHistory(); renderHome(); showToast('DELETED'); }
 
-/** 履歴レコードを削除する */
-function delRec(id){
-  const data=load();
-  if(!data) return;
-  const month=getMonth(data,mKey());
-  month.records=month.records.filter(r=>r.id!==id);
-  save(data);
-  renderHistory();
-  renderHome();
-  showToast('削除しました');
-}
-
-// ============================================================
-// 事後記録
-// ============================================================
-
-/** 事後記録モーダルを開く */
+// ======================================================
+// Late Record
+// ======================================================
+let _ltCat={name:'その他',icon:'🏷️'};
 function openLate(){
-  ['lt_n','lt_a','lt_y','lt_w'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el) el.value='';
-  });
-  document.getElementById('lt_rep').style.display='none';
+  ['lt_n','lt_a','lt_y','lt_w'].forEach(id=>{const el=document.getElementById(id);if(el) el.value='';});
+  document.getElementById('lt_rep').style.display='none'; _ltCat={name:'その他',icon:'🏷️'};
+  const data = load(); const fails = data?.failures || DEF_FAILS; const uniqueCats = [...new Set(fails.map(f => f.cat))];
+  const catsArea = document.getElementById('lt_cats_area');
+  if(catsArea) {
+    catsArea.innerHTML = uniqueCats.map(cat => `<button onclick="setLtW('${cat}')" class="tap px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400">${cat}</button>`).join('') + `<button onclick="setLtW('その他')" class="tap px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400">その他</button>`;
+  }
   document.getElementById('lateOv').classList.add('open');
 }
-
-/** カテゴリボタンで入力欄を自動入力する */
 function setLtW(v){ document.getElementById('lt_w').value=v; }
-
-/** 事後記録を保存する */
 function submitLate(){
-  const name=document.getElementById('lt_n').value.trim();
-  const amt=parseInt(document.getElementById('lt_a').value)||0;
-  const why=document.getElementById('lt_y').value.trim();
-  const where=document.getElementById('lt_w').value.trim();
-
-  if(!name){showToast('品名を入力してください');return;}
-  if(!amt||amt<=0){showToast('金額を入力してください');return;}
-  if(!why){showToast('理由を入力してください');return;}
-
-  const data=load();
-  if(!data) return;
-  const key=mKey();
-  const month=getMonth(data,key);
-
-  const rec={
-    id:uid(), date:today(), month:key,
-    name, amount:amt,
-    cat:where||'その他', catIcon:'🏷️',
-    result:'late_buy', where:where||'不明', why
-  };
-  month.records.push(rec);
-  save(data);
-
-  // キーワードマッチでフィードバックを選択
-  const lowerWhy=why.toLowerCase();
-  let feedback=LATE_FEEDBACK[LATE_FEEDBACK.length-1].txt;
-  for(const item of LATE_FEEDBACK){
-    if(item.kw.length&&item.kw.some(k=>lowerWhy.includes(k.toLowerCase()))){
-      feedback=item.txt;
-      break;
-    }
-  }
-
-  document.getElementById('lt_rt').textContent=feedback;
-  document.getElementById('lt_rep').style.display='block';
-
-  // 2.5秒後にモーダルを閉じて画面を更新
-  setTimeout(()=>{
-    document.getElementById('lateOv').classList.remove('open');
-    renderHistory();
-    renderHome();
-    showToast('事後記録を保存しました');
-  },2500);
+  const name=document.getElementById('lt_n').value.trim(); const amt=parseInt(document.getElementById('lt_a').value); const why=document.getElementById('lt_y').value.trim(); const where=document.getElementById('lt_w').value.trim();
+  if(!name||!amt||amt<=0||!why){showToast('DATA MISSING');return;}
+  const data=load(); const key=mKey(); const month=getMonth(data,key);
+  const rec={id:uid(),date:today(),month:key,name,amount:amt,cat:where||'その他',catIcon:'🏷️',result:'late_buy',where:where||'不明',why};
+  month.records.push(rec); save(data);
+  const lower=why.toLowerCase(); let reply=LATE_TX[LATE_TX.length-1].txt;
+  for(const item of LATE_TX){ if(item.kw.length&&item.kw.some(k=>lower.includes(k.toLowerCase()))){reply=item.txt;break;} }
+  document.getElementById('lt_rt').textContent=reply; document.getElementById('lt_rep').style.display='block';
+  setTimeout(()=>{document.getElementById('lateOv').classList.remove('open');renderHistory();renderHome();showToast('RECORD SAVED');},2500);
 }
+function closeOv(e,id){ if(e.target===document.getElementById(id)) document.getElementById(id).classList.remove('open'); }
 
-/** オーバーレイの背景クリックで閉じる */
-function closeOv(e,id){
-  if(e.target===document.getElementById(id)) document.getElementById(id).classList.remove('open');
-}
-
-// ============================================================
-// 初期化
-// ============================================================
-(function init(){
-  const data=load();
-  if(!data||!data.setup){
-    document.getElementById('scSetup').style.display='block';
-    initSetup();
-  }else{
-    // タスキル・リロード時は必ずホームに戻す
-    // scMindful（黒画面）が残ったままになるバグを防ぐ
-    clearTimers();
-    _jgItem=null;
-    navTo('scHome','nb_h');
-  }
-
-  // バックグラウンド復帰時の処理
-  // タスキルせずに戻ってきた場合、タイマーが切れていれば決断ボタンを表示する
-  document.addEventListener('visibilitychange',()=>{
-    if(document.visibilityState==='visible' && _mfTimer===null){
-      const dec=document.getElementById('mf_decision');
-      // マインドフルネス画面が表示中でボタンがまだ隠れている場合は表示する
-      if(dec && dec.style.display==='none' &&
-         document.getElementById('scMindful').style.display==='block'){
-        dec.style.display='block';
-        requestAnimationFrame(()=>{ dec.style.opacity='1'; dec.style.pointerEvents='all'; });
-        document.getElementById('mf_timer').style.opacity='0';
-        document.getElementById('mf_msg').style.opacity='0';
-      }
-    }
-  });
-})();
-
-/*
-============================================================
-GAS スクリプト（Google Apps Script に貼り付けて使用）
-============================================================
-
-function doPost(e) {
-  const payload = JSON.parse(e.postData.contents);
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-
-  if (payload.type === 'backup') {
-    // 「Backup」シートに日時とJSONデータを追記
-    const sheet = ss.getSheetByName('Backup') || ss.insertSheet('Backup');
-    sheet.appendRow([new Date(), JSON.stringify(payload.data)]);
-  }
-
-  return ContentService
-    .createTextOutput(JSON.stringify({ status: 'ok' }))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-
-function doGet(e) {
-  const type = e.parameter.type;
-
-  if (type === 'failures') {
-    // 「Failures」シートから失敗DBを返す
-    // 列構成: A=id, B=cat(カテゴリ), C=name(失敗名), D=cond(状況)
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
-    const sheet = ss.getSheetByName('Failures');
-    if (!sheet) return ContentService
-      .createTextOutput('[]').setMimeType(ContentService.MimeType.JSON);
-
-    const rows = sheet.getDataRange().getValues();
-    const failures = rows.slice(1) // ヘッダー行をスキップ
-      .map(r => ({ id: r[0], cat: r[1], name: r[2], cond: r[3] }))
-      .filter(f => f.cat); // 空行を除外
-
-    return ContentService
-      .createTextOutput(JSON.stringify(failures))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-
-  return ContentService.createTextOutput('{}').setMimeType(ContentService.MimeType.JSON);
-}
-============================================================
-*/
+(function init(){ const data=load(); if(!data||!data.setup){ document.getElementById('scSetup').style.display='block'; initSetup(); } else { navTo('scHome','nb_h'); } })();
 </script>
 </body>
 </html>
