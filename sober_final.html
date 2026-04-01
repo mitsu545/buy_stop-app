@@ -112,13 +112,13 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
     <div class="sec">Financial Baseline</div>
     <div class="gc p-5 space-y-4">
       <div><div class="lbl">月収（手取り）</div>
-        <div class="relative"><input id="su_i" type="number" inputmode="numeric" placeholder="280000" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
+        <div class="relative"><input id="su_i" type="number" inputmode="numeric" value="280000" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
       </div>
       <div><div class="lbl">月の貯金目標</div>
-        <div class="relative"><input id="su_g" type="number" inputmode="numeric" placeholder="30000" class="inp num text-lg text-emerald-400 pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
+        <div class="relative"><input id="su_g" type="number" inputmode="numeric" value="30000" class="inp num text-lg text-emerald-400 pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
       </div>
       <div><div class="lbl">固定費合計</div>
-        <div class="relative"><input id="su_f" type="number" inputmode="numeric" placeholder="98000" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
+        <div class="relative"><input id="su_f" type="number" inputmode="numeric" value="98000" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
       </div>
       <div id="su_prev" class="gc2 px-4 py-3 mt-4" style="display:none; border-color:rgba(16,185,129,0.3)">
         <div class="text-[10px] text-slate-400">自由に使えるお金 (Free Budget)</div>
@@ -128,11 +128,19 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   </div>
 
   <div class="mb-8 a2">
-    <div class="sec">AI Integration</div>
-    <div class="gc p-5">
-      <div class="lbl">Gemini API Key（任意）</div>
-      <input id="su_k" type="password" placeholder="AIzaSy..." class="inp text-xs">
-      <div class="hint mt-2">APIキー未設定の場合でも、レビュー用のAIモック機能で全画面動作確認が可能です。</div>
+    <div class="sec">AI & Integration</div>
+    <div class="gc p-5 space-y-4">
+      <div>
+        <div class="lbl">Gemini API Key（任意）</div>
+        <input id="su_k" type="password" placeholder="AIzaSy..." class="inp text-xs">
+        <div class="hint mt-2">APIキー未設定の場合でも、レビュー用のAIモック機能で動作確認が可能です。</div>
+      </div>
+      <!-- GAS URLを追加 -->
+      <div>
+        <div class="lbl">GAS Webhook URL（任意）</div>
+        <input id="su_gas" type="url" placeholder="https://script.google.com/macros/s/..." class="inp text-xs">
+        <div class="hint mt-2">スプレッドシートへのバックアップ・失敗DBの同期に使用します。</div>
+      </div>
     </div>
   </div>
 
@@ -188,44 +196,47 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
 
     <div class="grid grid-cols-3 gap-2 a1">
       <div class="gc p-3 border-t-2 border-t-emerald-500/50 text-center">
-        <div class="text-[9px] tracking-widest font-bold uppercase mb-1 text-slate-500">Avoided</div>
+        <div class="text-[10px] tracking-widest font-bold uppercase text-slate-500">AVOIDED</div>
+        <div class="text-[8px] text-slate-600 mb-1">回避した支出</div>
         <div id="hm_ac" class="mono text-lg text-white">0</div>
         <div id="hm_ay" class="mono text-[10px] mt-1 text-emerald-400">¥0</div>
       </div>
       <div class="gc p-3 border-t-2 border-t-slate-500/50 text-center">
-        <div class="text-[9px] tracking-widest font-bold uppercase mb-1 text-slate-500">Bought</div>
+        <div class="text-[10px] tracking-widest font-bold uppercase text-slate-500">VERIFIED</div>
+        <div class="text-[8px] text-slate-600 mb-1">計画購入</div>
         <div id="hm_bc" class="mono text-lg text-white">0</div>
         <div id="hm_by" class="mono text-[10px] mt-1 text-slate-400">¥0</div>
       </div>
       <div class="gc p-3 border-t-2 border-t-orange-500/50 text-center">
-        <div class="text-[9px] tracking-widest font-bold uppercase mb-1 text-slate-500">Late Rec</div>
+        <div class="text-[10px] tracking-widest font-bold uppercase text-slate-500">UNVERIFIED</div>
+        <div class="text-[8px] text-slate-600 mb-1">事後記録</div>
         <div id="hm_gc" class="mono text-lg text-white">0</div>
         <div id="hm_gy" class="mono text-[10px] mt-1 text-orange-400">¥0</div>
       </div>
     </div>
 
     <div class="a2 mt-6">
-      <div class="sec mb-2">Situational Analysis</div>
+      <div class="sec mb-2">Situational Analysis <span class="text-[8px] ml-1 text-slate-500 font-normal">状況別アナリティクス</span></div>
       <div class="grid grid-cols-2 gap-3">
         <button onclick="startAnalysis('conv')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
           <span class="text-2xl mb-1">🏪</span>
           <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">対 コンビニ</span>
           <span class="text-[9px] text-slate-500 tracking-widest">¥2,000 固定</span>
         </button>
-        <button onclick="startAnalysis('amazon')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
-          <span class="text-2xl mb-1">📦</span>
-          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">対 Amazon</span>
-          <span class="text-[9px] text-slate-500 tracking-widest">URL + 動機入力</span>
-        </button>
         <button onclick="startAnalysis('uber')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
           <span class="text-2xl mb-1">🍔</span>
-          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">対 Uber</span>
+          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">対 Uber Eats</span>
           <span class="text-[9px] text-slate-500 tracking-widest">¥3,000 固定</span>
         </button>
         <button onclick="startAnalysis('drink')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
           <span class="text-2xl mb-1">🍻</span>
           <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">対 飲み・タクシー</span>
           <span class="text-[9px] text-slate-500 tracking-widest">¥6,000 固定</span>
+        </button>
+        <button onclick="startAnalysis('amazon')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
+          <span class="text-2xl mb-1">📦</span>
+          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">対 Amazon</span>
+          <span class="text-[9px] text-slate-500 tracking-widest">URL + 動機入力</span>
         </button>
       </div>
       <button onclick="startAnalysis('other')" class="tap w-full mt-3 p-4 rounded-lg bg-[#131B2B] border border-white/10 flex items-center justify-center gap-3">
@@ -282,10 +293,10 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
       <div class="sec mt-2">Financial Impact</div>
       <div class="gc p-4"><div class="flex justify-between items-center"><div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Labor Cost</div><div class="text-[10px] text-slate-500">労働時間損失</div></div><div id="ck_h" class="text-right"></div></div></div>
       <div class="gc p-4" id="ck_tc">
-        <div class="flex justify-between items-center mb-2"><div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Daily Limit</div><div class="text-[10px] text-slate-500">今日の予算への影響</div></div><div id="ck_t" class="text-xs text-right whitespace-nowrap shrink-0"></div></div>
+        <div class="flex justify-between items-center mb-2"><div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Daily Limit</div><div class="text-[10px] text-slate-500">今日の予算への影響</div></div><div id="ck_t" class="flex items-center justify-end gap-2 text-xs"></div></div>
         <div class="w-full h-1 rounded-full bg-white/5 border border-white/5"><div id="ck_tb" class="prog h-1 rounded-full bg-emerald-500" style="width:100%;"></div></div>
       </div>
-      <div class="gc p-4" id="ck_mc"><div class="flex justify-between items-center"><div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Month Forecast</div><div class="text-[10px] text-slate-500">月末残高予測</div></div><div id="ck_m" class="text-xs text-right whitespace-nowrap shrink-0"></div></div></div>
+      <div class="gc p-4" id="ck_mc"><div class="flex justify-between items-center"><div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Month Forecast</div><div class="text-[10px] text-slate-500">月末残高予測</div></div><div id="ck_m" class="flex items-center justify-end gap-2 text-xs"></div></div></div>
     </div>
 
     <!-- URL、金額、なぜ欲しいか（自由記述）の3つに絞った詳細入力 -->
@@ -387,6 +398,7 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
       <button onclick="doAvoid()" class="w-full py-5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 font-bold text-[13px] tracking-widest uppercase transition-transform active:scale-95">
         AVOID (やめる)
       </button>
+      <!-- 仕様書通り WAIT 48H を削除 -->
       <button id="btn_buy_locked" onclick="doBuy()" class="w-full py-4 rounded-lg bg-transparent border border-white/10 text-slate-600 font-bold text-[11px] tracking-widest uppercase transition-all">
         <span id="txt_buy_locked">PROCEED TO BUY / GO</span>
       </button>
@@ -467,14 +479,30 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
       <div class="text-[10px] text-slate-400 mt-2">自由資金: <span id="st_fp" class="mono text-emerald-400 ml-1 text-sm"></span></div>
     </div>
     <div class="gc p-5 space-y-4">
-      <div class="sec">API Keys & Threshold</div>
+      <div class="sec">API Keys & Integration</div>
       <div><div class="lbl">Gemini API Key</div><input id="st_k" type="password" class="inp text-xs"></div>
+      <div>
+        <div class="lbl">GAS Webhook URL</div>
+        <input id="st_gas" type="url" placeholder="https://script.google.com/macros/s/..." class="inp text-xs">
+        <div class="flex gap-2 mt-2">
+          <button onclick="backupToGAS()" class="tap flex-1 py-3 rounded font-bold text-[10px] tracking-widest uppercase bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+            <i class="fas fa-cloud-upload-alt mr-1"></i>バックアップ
+          </button>
+          <button onclick="fetchFailuresFromGAS()" class="tap flex-1 py-3 rounded font-bold text-[10px] tracking-widest uppercase bg-amber-500/10 border border-amber-500/30 text-amber-400">
+            <i class="fas fa-sync mr-1"></i>失敗DB同期
+          </button>
+        </div>
+      </div>
       <div>
         <div class="lbl">月初ロック対象の高額設定（¥ 以上）</div>
         <input id="st_wt" type="number" class="inp" placeholder="3000">
       </div>
     </div>
     <button onclick="saveBase()" class="tap w-full py-4 rounded font-bold text-[10px] tracking-widest uppercase bg-transparent border border-white/20 text-white">Save Config</button>
+    
+    <button onclick="location.reload(true)" class="tap w-full py-4 mt-2 rounded font-bold text-[10px] tracking-widest uppercase bg-white/5 border border-white/10 text-slate-300">
+      <i class="fas fa-sync-alt mr-2"></i>アプリを最新に更新 (Reload)
+    </button>
   </div>
 
   <div id="tb_fail_b" class="px-5 overflow-y-auto" style="display:none">
@@ -576,7 +604,7 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
 
 <script>
 'use strict';
-const STORE = 'sober_v11';
+const STORE = 'sober_v13';
 
 const HIGH_PRICE_THRESHOLD = 3000;
 
@@ -628,7 +656,11 @@ function fmtM(k) { const [y,m] = k.split('-'); return `${y}.${parseInt(m)}`; }
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,5); }
 function hourly(data) { return Math.round((data.income||0)/160); }
 function freeAmt(data) { return (data.income||0) - (data.savingsGoal||0) - (data.fixedCost||0); }
-function usedAmt(data, key=mKey()) { const m = data.months?.[key]; if(!m) return 0; return m.records.filter(r=>r.result==='buy'||r.result==='late_buy').reduce((s,r)=>s+r.amount,0); }
+function usedAmt(data, key=mKey()) { 
+  const m = data.months?.[key]; 
+  if(!m || !Array.isArray(m.records)) return 0; 
+  return m.records.filter(r=>r.result==='buy'||r.result==='late_buy').reduce((s,r)=>s+(Number(r.amount)||0),0); 
+}
 function load() { try { const r = localStorage.getItem(STORE); return r ? JSON.parse(r) : null; } catch { return null; } }
 function save(d) { try { localStorage.setItem(STORE, JSON.stringify(d)); } catch(e) { console.error(e); } }
 function getMonth(data, key=mKey()) { if(!data.months) data.months={}; if(!data.months[key]) data.months[key]={records:[],zaimTotal:null}; return data.months[key]; }
@@ -656,14 +688,10 @@ function navTo(scr, nid) {
   if(nid) document.getElementById(nid).classList.add('on');
 }
 
-// ======================================================
-// Cancel Process
-// ======================================================
 // 中断してホームへ戻る（左上の×ボタン用）
 function cancelProcess() {
   const data = load();
   if (data && _jgItem) {
-    // pendingBuysに一時的に保存されたデータを破棄
     data.pendingBuys = (data.pendingBuys || []).filter(p => p.id !== _jgItem.id);
     save(data);
   }
@@ -673,8 +701,18 @@ function cancelProcess() {
   showToast('分析を中断しました');
 }
 
+function initChecker() {
+  const amtInput = document.getElementById('ck_a');
+  amtInput.readOnly = false;
+  amtInput.style.opacity = '1';
+  document.getElementById('ck_cmp').style.display = 'none';
+  document.getElementById('ck_btn_next').style.display = 'none';
+  document.getElementById('ck_fixed_badge').style.display = 'none';
+  document.getElementById('ck_amt_label').textContent = 'Target Price';
+}
+
 // ======================================================
-// Setup
+// Setup & Settings
 // ======================================================
 function buildCharForm(containerId, chars) {
   const el = document.getElementById(containerId); if(!el) return;
@@ -686,15 +724,16 @@ function buildCharForm(containerId, chars) {
           <div id="cp_${c.id}" class="w-10 h-10 rounded flex items-center justify-center text-lg overflow-hidden bg-black/50 border border-white/10" data-b64="${c.img||''}">
             ${c.img ? `<img src="${c.img}" style="width:100%;height:100%;object-fit:cover">` : (c.icon||'👤')}
           </div>
-          <!-- 画像アップロード用のカメラアイコン復活 -->
+          <!-- 画像アップロード用のカメラアイコン -->
           <label for="ci_${c.id}" class="tap absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center bg-gold cursor-pointer border border-black shadow">
             <i class="fa-solid fa-camera text-[10px] text-black"></i>
           </label>
           <input type="file" id="ci_${c.id}" accept="image/*" style="display:none" onchange="onCharImg(event,${c.id})">
         </div>
-        <div class="flex-1 space-y-2 flex gap-2">
-          <input type="text" id="ck_${c.id}" value="${c.icon}" placeholder="絵文字" class="inp text-center w-12" style="padding:6px">
-          <input type="text" id="cn_${c.id}" value="${c.name}" placeholder="Name" class="inp flex-1 text-xs">
+        <div class="flex-1 flex flex-col justify-center">
+          <input type="text" id="cn_${c.id}" value="${c.name}" placeholder="エージェント名" class="inp text-xs">
+          <!-- 絵文字入力欄を削除し、内部的にiconを維持するための隠しフィールド -->
+          <input type="hidden" id="ck_${c.id}" value="${c.icon}">
         </div>
       </div>
       <textarea id="cp2_${c.id}" rows="2" placeholder="Persona" class="inp text-[10px] text-slate-400" style="resize:none">${c.persona}</textarea>
@@ -727,13 +766,13 @@ async function onCharImg(event, charId) {
   } catch { showToast('IMAGE ERROR'); }
 }
 
-
 function initSetup() {
   const data = load()||{}; buildCharForm('su_chars', data.chars || DEF_CHARS);
   document.getElementById('su_i').value = data.income || 280000;
   document.getElementById('su_g').value = data.savingsGoal || 30000;
   document.getElementById('su_f').value = data.fixedCost !== undefined ? data.fixedCost : 98000;
   if(data.geminiKey) document.getElementById('su_k').value=data.geminiKey;
+  if(data.gasUrl) document.getElementById('su_gas').value=data.gasUrl;
   
   const updatePrev = () => {
     const i=parseInt(document.getElementById('su_i').value)||0;
@@ -755,11 +794,12 @@ function doSetup() {
   const goal=parseInt(document.getElementById('su_g').value);
   const fix=parseInt(document.getElementById('su_f').value)||0;
   const key=document.getElementById('su_k').value.trim();
+  const gas=document.getElementById('su_gas').value.trim();
   if(!inc||inc<1000){showToast('月収を入力してください');return;}
   if(!goal||goal<100){showToast('貯金目標を入力してください');return;}
   if(goal>=inc){showToast('目標が月収を超えています');return;}
   const data=load()||{months:{},pendingBuys:[]};
-  data.income=inc; data.savingsGoal=goal; data.fixedCost=fix; data.geminiKey=key; data.setup=true;
+  data.income=inc; data.savingsGoal=goal; data.fixedCost=fix; data.geminiKey=key; data.gasUrl=gas; data.setup=true;
   if(!data.chars) data.chars=DEF_CHARS;
   if(!data.failures) data.failures=DEF_FAILS;
   if(!data.months) data.months={};
@@ -838,10 +878,7 @@ let _currentSituation = 'other';
 function startAnalysis(type) {
   _currentSituation = type;
 
-  // 1. まず画面を表示し、要素を展開できるようにする
-  showScreen('scChecker');
-
-  // 2. フォームリセット
+  // 1. フォームリセット
   const amtInput = document.getElementById('ck_a');
   amtInput.readOnly = false;
   amtInput.style.opacity = '1';
@@ -856,16 +893,19 @@ function startAnalysis(type) {
   
   ['ck_a','ck_n','ck_r','ck_u'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
 
-  // 3. タイトル設定
+  // 2. タイトル設定
   const titles = { conv:'対コンビニ', amazon:'対Amazon', uber:'対Uber Eats', drink:'対飲み会', other:'詳細分析' };
   document.getElementById('ck_title').textContent = titles[type] || 'Analyzer';
 
-  // 4. 表示制御
+  // 3. 表示制御
   document.getElementById('f_url').style.display = type==='amazon' ? 'block' : 'none';
   document.getElementById('f_detail').style.display = (type==='other'||type==='amazon') ? 'block' : 'none';
 
   const defaultNames = { drink:'飲み代 / タクシー代', uber:'デリバリー食費', conv:'コンビニ購入' };
   document.getElementById('ck_n').value = defaultNames[type] || '';
+
+  // 4. まず画面を表示（裏側で非表示だった要素を展開するため）
+  showScreen('scChecker');
 
   // 5. 固定金額の自動セットとAIレビューへの展開
   const fixedAmt = FIXED_AMOUNTS[type];
@@ -885,36 +925,43 @@ function startAnalysis(type) {
 }
 
 function onAmt() {
-  const data=load(); const amt=parseInt(document.getElementById('ck_a').value)||0;
-  const cmp=document.getElementById('ck_cmp'); const btnNext=document.getElementById('ck_btn_next');
-  
-  if(amt<=0||!data){
-    cmp.style.display='none';
-    btnNext.style.display='none';
-    return;
+  try {
+    const data=load(); 
+    const amt=parseInt(document.getElementById('ck_a').value)||0;
+    const cmp=document.getElementById('ck_cmp'); 
+    const btnNext=document.getElementById('ck_btn_next');
+    
+    if(amt<=0||!data){
+      cmp.style.display='none';
+      btnNext.style.display='none';
+      return;
+    }
+    
+    cmp.style.display='block';
+    
+    // ボタンを明示的に表示し、クリック可能にする
+    btnNext.style.display='block';
+    btnNext.disabled=false;
+    btnNext.className='tap w-full py-4 rounded font-bold text-[11px] tracking-widest uppercase mt-6 mb-4 transition-all bg-white/5 border border-white/10 text-white';
+    btnNext.innerHTML='Proceed to AI Review <i class="fa-solid fa-robot ml-1 text-cyan-400"></i>';
+
+    const hr=hourly(data); const free=freeAmt(data); const used=usedAmt(data);
+    const remM=free-used; const dRem=remDays(); const dailyLimit=remM>0?Math.round(remM/dRem):0;
+    const remAfterT=dailyLimit-amt; const remAfterM=remM-amt;
+    const hrs=hr>0?(amt/hr).toFixed(1):'---';
+
+    document.getElementById('ck_h').innerHTML=`<span class="mono text-xl text-white">${hrs}</span><span class="text-[10px] text-slate-500 ml-1 font-sans">h</span>`;
+    const tpct=dailyLimit>0?Math.max(0,Math.round((remAfterT/dailyLimit)*100)):0;
+    const tc=tpct>40?'var(--gold)':tpct>10?'var(--amber)':'var(--red)';
+    // 【バグ修正】flexにしてgapを設けることで文字の重なりを解消
+    document.getElementById('ck_t').innerHTML=`<span class="mono text-slate-500 line-through">${yenHtml(dailyLimit)}</span><span class="mono" style="color:${tc}">${yenHtml(remAfterT)}</span>`;
+    const tb=document.getElementById('ck_tb'); tb.style.width=tpct+'%'; tb.style.background=tc;
+    
+    const mc=remAfterM<0?'var(--red)':'var(--green)';
+    document.getElementById('ck_m').innerHTML=`<span class="mono" style="color:${mc}">${yenHtml(remAfterM)}</span>`+(remAfterM<0?` <span class="text-[8px] tracking-widest text-red-500 uppercase ml-1 block">Deficit</span>`:'');
+  } catch(e) {
+    console.error('Impact Calculation Error:', e);
   }
-  
-  cmp.style.display='block';
-  
-  // ボタンを明示的に表示し、クリック可能にする
-  btnNext.style.display='block';
-  btnNext.disabled=false;
-  btnNext.className='tap w-full py-4 rounded font-bold text-[11px] tracking-widest uppercase mt-6 mb-4 transition-all bg-white/5 border border-white/10 text-white';
-  btnNext.innerHTML='Proceed to AI Review <i class="fa-solid fa-robot ml-1 text-cyan-400"></i>';
-
-  const hr=hourly(data); const free=freeAmt(data); const used=usedAmt(data);
-  const remM=free-used; const dRem=remDays(); const dailyLimit=remM>0?Math.round(remM/dRem):0;
-  const remAfterT=dailyLimit-amt; const remAfterM=remM-amt;
-  const hrs=hr>0?(amt/hr).toFixed(1):'---';
-
-  document.getElementById('ck_h').innerHTML=`<span class="mono text-xl text-white">${hrs}</span><span class="text-[10px] text-slate-500 ml-1 font-sans">h</span>`;
-  const tpct=dailyLimit>0?Math.max(0,Math.round((remAfterT/dailyLimit)*100)):0;
-  const tc=tpct>40?'var(--gold)':tpct>10?'var(--amber)':'var(--red)';
-  document.getElementById('ck_t').innerHTML=`<span class="mono text-slate-500 line-through mr-2">${yenHtml(dailyLimit)}</span> <span class="mono" style="color:${tc}">${yenHtml(remAfterT)}</span>`;
-  const tb=document.getElementById('ck_tb'); tb.style.width=tpct+'%'; tb.style.background=tc;
-  
-  const mc=remAfterM<0?'var(--red)':'var(--green)';
-  document.getElementById('ck_m').innerHTML=`<span class="mono" style="color:${mc}">${yenHtml(remAfterM)}</span>`+(remAfterM<0?` <span class="text-[8px] tracking-widest text-red-500 uppercase ml-1 block">Deficit</span>`:'');
 }
 
 let _jgItem=null; let _imp='mid'; let _impRsn=''; let _chatHistory=[];
@@ -999,7 +1046,7 @@ async function startAiChat(data) {
     appendChatBubble(data.chars[0], parsed.message);
   } catch (e) {
     console.error('AIチャットエラー:', e);
-    // 【バグ修正】エラー時に勝手に飛ばさず、エラーメッセージを出して止める
+    // 【バグ修正】エラー時に勝手に飛ばさず、エラーメッセージを出して進行を止めない
     _imp = 'mid';
     _impRsn = '通信エラーにより自動判定';
     document.getElementById('chat_loading').style.display = 'none'; 
@@ -1023,7 +1070,7 @@ async function startAiChatMock(data) {
     if(_jgItem.cat==='conv') sitCtx = '本当に今行く必要がありますか？家のコーヒーで一息つきませんか。数百円の積み重ねが月末の予算を圧迫していますよ。';
     else if(_jgItem.cat==='amazon') sitCtx = 'スペックが高すぎませんか？あなたの本来の目的なら、もっと安価な選択肢もありますよ。';
     else if(_jgItem.cat==='uber') sitCtx = '店舗より30%割高です。少し歩いて買いに行けば健康にも良く、数百円浮きます。一緒にもう少し考えませんか？';
-    else if(_jgItem.cat==='drink') sitCtx = 'すでに十分楽しんだのではないでしょうか。これ以上の出費は明日のパフォーマンスを落とします。今日はゆっくり休みましょう。';
+    else if(_jgItem.cat==='drink') sitCtx = 'すでに十分楽しんだのではないでしょうか。これ以上の出費は明日のパフォーマンスを落 Millします。今日はゆっくり休みましょう。';
     else sitCtx = 'このままいくと月末に赤字になるかもしれません。数時間分の労働が消えるのが心配です。';
 
     const failMsg = (data.failures || []).length > 0 ? '\n※過去の失敗パターンに似ているようです。注意してくださいね。' : '';
@@ -1216,7 +1263,7 @@ function saveReport(){
 }
 function renderReportScore(data,month){
   document.getElementById('rp_score').style.display='block';
-  const appBought=month.records.filter(r=>r.result==='buy').reduce((s,r)=>s+r.amount,0); const late=month.records.filter(r=>r.result==='late_buy').reduce((s,r)=>s+r.amount,0); const avoided=month.records.filter(r=>r.result==='avoid'); const avoidedTot=avoided.reduce((s,r)=>s+r.amount,0); const zaim=month.zaimTotal||0; const totalDisc=appBought+late+zaim;
+  const appBought=month.records.filter(r=>r.result==='buy').reduce((s,r)=>s+(Number(r.amount)||0),0); const late=month.records.filter(r=>r.result==='late_buy').reduce((s,r)=>s+(Number(r.amount)||0),0); const avoided=month.records.filter(r=>r.result==='avoid'); const avoidedTot=avoided.reduce((s,r)=>s+(Number(r.amount)||0),0); const zaim=month.zaimTotal||0; const totalDisc=appBought+late+zaim;
   const rows=[
     {icon:'fa-shield-check',col:'var(--green)', sign:'+',val:avoidedTot,label:'Avoided (回避)'},
     {icon:'fa-bag-shopping', col:'var(--tx)',   sign:'-',val:appBought, label:'Verified (計画購入)'},
@@ -1235,7 +1282,7 @@ function rpPrev(){ const [y,m]=_rpKey.split('-').map(Number); _rpKey=mKey(new Da
 function rpNext(){ const [y,m]=_rpKey.split('-').map(Number); _rpKey=mKey(new Date(y,m,1)); renderReport(); }
 
 // ======================================================
-// Settings
+// Settings & GAS Integration
 // ======================================================
 let _curTab='base';
 function switchTab(name){
@@ -1245,15 +1292,56 @@ function switchTab(name){
 }
 function renderSettings(){
   const data=load(); if(!data) return;
-  document.getElementById('st_i').value=data.income||''; document.getElementById('st_g').value=data.savingsGoal||''; document.getElementById('st_f').value=data.fixedCost||''; document.getElementById('st_k').value=data.geminiKey||''; document.getElementById('st_wt').value=data.wishThreshold||HIGH_PRICE_THRESHOLD;
+  document.getElementById('st_i').value=data.income||''; document.getElementById('st_g').value=data.savingsGoal||''; document.getElementById('st_f').value=data.fixedCost||''; document.getElementById('st_k').value=data.geminiKey||''; document.getElementById('st_gas').value=data.gasUrl||''; document.getElementById('st_wt').value=data.wishThreshold||HIGH_PRICE_THRESHOLD;
   updateStFree(); ['st_i','st_g','st_f'].forEach(id=>{const el=document.getElementById(id);if(!el._b){el.addEventListener('input',updateStFree);el._b=true;}}); switchTab(_curTab);
 }
 function updateStFree(){ const i=parseInt(document.getElementById('st_i').value)||0; const g=parseInt(document.getElementById('st_g').value)||0; const f=parseInt(document.getElementById('st_f').value)||0; document.getElementById('st_fp').innerHTML=yenHtml(i-g-f); }
 function saveBase(){
-  const inc=parseInt(document.getElementById('st_i').value); const goal=parseInt(document.getElementById('st_g').value); const fix=parseInt(document.getElementById('st_f').value)||0; const key=document.getElementById('st_k').value.trim(); const thr=parseInt(document.getElementById('st_wt').value)||HIGH_PRICE_THRESHOLD;
+  const inc=parseInt(document.getElementById('st_i').value); const goal=parseInt(document.getElementById('st_g').value); const fix=parseInt(document.getElementById('st_f').value)||0; const key=document.getElementById('st_k').value.trim(); const gas=document.getElementById('st_gas').value.trim(); const thr=parseInt(document.getElementById('st_wt').value)||HIGH_PRICE_THRESHOLD;
   if(!inc||inc<1000){showToast('月収を入力してください');return;} if(!goal||goal<100){showToast('貯金目標を入力してください');return;} if(goal>=inc){showToast('目標が月収を超えています');return;}
-  const data=load(); data.income=inc; data.savingsGoal=goal; data.fixedCost=fix; data.geminiKey=key; data.wishThreshold=thr; save(data); showToast('SAVED');
+  const data=load(); data.income=inc; data.savingsGoal=goal; data.fixedCost=fix; data.geminiKey=key; data.gasUrl=gas; data.wishThreshold=thr; save(data); showToast('SAVED');
 }
+
+// バックアップをGASに送信（no-corsで非同期実行）
+async function backupToGAS(){
+  const data=load();
+  if(!data?.gasUrl){showToast('GAS URL未設定です');return;}
+  showToast('バックアップ中...');
+  try{
+    await fetch(data.gasUrl,{
+      method:'POST',
+      mode:'no-cors',
+      body:JSON.stringify({ action:'backup', timestamp:new Date().toISOString(), payload:data })
+    });
+    showToast('バックアップ完了');
+  }catch(e){
+    console.error('GASバックアップエラー:',e);
+    showToast('GAS接続エラー');
+  }
+}
+
+// GASから失敗DBを同期（CORS制限なし）
+async function fetchFailuresFromGAS(){
+  const data=load();
+  if(!data?.gasUrl){showToast('GAS URL未設定です');return;}
+  showToast('失敗DB同期中...');
+  try{
+    const res=await fetch(`${data.gasUrl}?action=get_failures`);
+    const failures=await res.json();
+    if(Array.isArray(failures)&&failures.length>0){
+      data.failures=failures;
+      save(data);
+      renderFailTab();
+      showToast(`${failures.length}件を同期しました`);
+    }else{
+      showToast('スプシにデータがありません');
+    }
+  }catch(e){
+    console.error('GAS失敗DB同期エラー:',e);
+    showToast('GAS接続エラー');
+  }
+}
+
 function renderCharTab(){ const data=load(); buildCharForm('st_chars',data?.chars||DEF_CHARS); }
 function saveChars(){
   const data=load(); const chars=data.chars||DEF_CHARS;
