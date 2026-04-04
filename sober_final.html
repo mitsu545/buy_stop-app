@@ -1014,33 +1014,59 @@ async function startAiChat(data) {
   _chatHistory = [{ role: "user", parts: [{ text: buildAiPrompt(data, true) }] }];
 
   try {
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, { 
-      method:'POST', 
-      headers:{'Content-Type':'application/json'}, 
-      body: JSON.stringify({ 
-        contents: _chatHistory, 
-        generationConfig:{temperature:0.7, responseMimeType: "application/json"} 
-      }) 
-    });
-    if (!res.ok) throw new Error('API Error');
-    const json = await res.json(); 
-    const raw = json?.candidates?.[0]?.content?.parts?.[0]?.text || '{}'; 
-    const parsed = JSON.parse(raw.replace(/```[a-z]*/gi, '').replace(/```/g, '').trim());
-    
-    _imp = parsed.impulse || 'mid'; 
-    _impRsn = parsed.impulse_reason || ''; 
+    const res = await fetch(
+      // ① gemini-2.0-flash → gemini-2.5-flash に変更
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: _chatHistory,
+          generationConfig: { temperature: 0.7, responseMimeType: "application/json" }
+        })
+      }
+    );
+
+    // ② HTTPエラーを詳細取得（何が起きたか画面に表示するため）
+    if (!res.ok) {
+      const errBody = await res.text();
+      let errMsg = `HTTP ${res.status}`;
+      try {
+        const errJson = JSON.parse(errBody);
+        errMsg += ': ' + (errJson?.error?.message || errBody.slice(0, 150));
+      } catch { errMsg += ': ' + errBody.slice(0, 150); }
+      throw new Error(errMsg);
+    }
+
+    const json = await res.json();
+    const raw = json?.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+
+    // ③ JSONパース失敗でもクラッシュしないよう保護
+    let parsed;
+    try {
+      parsed = JSON.parse(raw.replace(/```[a-z]*/gi, '').replace(/```/g, '').trim());
+    } catch {
+      parsed = { impulse: 'mid', message: raw.slice(0, 100), impulse_reason: 'JSON解析エラー' };
+    }
+
+    _imp = parsed.impulse || 'mid';
+    _impRsn = parsed.impulse_reason || '';
     _chatHistory.push({ role: "model", parts: [{ text: raw }] });
-    document.getElementById('chat_loading').style.display = 'none'; 
+    document.getElementById('chat_loading').style.display = 'none';
     document.getElementById('chat_action_area').style.display = 'block';
-    appendChatBubble(data.chars[0], parsed.message);
+    appendChatBubble((data.chars || DEF_CHARS)[0], parsed.message);
+
   } catch (e) {
-    console.error('AIチャットエラー:', e);
-    // 【バグ修正】エラー時に勝手に飛ばさず、エラーメッセージを出して進行を止めない
+    console.error('AI Chat Error:', e);
     _imp = 'mid';
     _impRsn = '通信エラーにより自動判定';
-    document.getElementById('chat_loading').style.display = 'none'; 
+    document.getElementById('chat_loading').style.display = 'none';
     document.getElementById('chat_action_area').style.display = 'block';
-    appendChatBubble((data.chars||DEF_CHARS)[0], 'APIとの通信に失敗しました。設定画面でGemini API Keyをご確認ください。下部の「Proceed to Summary」から先へ進むことは可能です。');
+    // ④ エラー詳細をチャット画面に表示
+    appendChatBubble(
+      (data.chars || DEF_CHARS)[0],
+      `⚠️ API接続エラー\n\n${e.message}\n\nAPIキーをSettings画面でご確認ください。「Proceed to Summary」から先へ進むことも可能です。`
+    );
   }
 }
 
