@@ -1302,23 +1302,27 @@ function saveBase(){
   const data=load(); data.income=inc; data.savingsGoal=goal; data.fixedCost=fix; data.geminiKey=key; data.gasUrl=gas; data.wishThreshold=thr; save(data); showToast('SAVED');
 }
 
-// バックアップをGASに送信（no-corsで非同期実行）
+// バックアップをGASに送信
 async function backupToGAS(){
   const data=load();
   if(!data?.gasUrl){showToast('GAS URL未設定です');return;}
   showToast('バックアップ中...');
   try{
-    await fetch(data.gasUrl,{
+    const res=await fetch(data.gasUrl,{
       method:'POST',
-      mode:'no-cors',
-      body:JSON.stringify({ action:'backup', timestamp:new Date().toISOString(), payload:data })
+      headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify({ action:'backup', timestamp:new Date().toISOString(), payload:data }),
+      redirect:'follow'
     });
-    showToast('バックアップ完了');
+    const t=await res.text();
+    try{ const j=JSON.parse(t); showToast(j.success?'バックアップ完了':'バックアップ失敗'); }
+    catch(e2){ showToast('バックアップ完了'); }
   }catch(e){
     console.error('GASバックアップエラー:',e);
     showToast('GAS接続エラー');
   }
 }
+
 
 // GASから失敗DBを同期（CORS制限なし）
 async function fetchFailuresFromGAS(){
@@ -1326,7 +1330,7 @@ async function fetchFailuresFromGAS(){
   if(!data?.gasUrl){showToast('GAS URL未設定です');return;}
   showToast('失敗DB同期中...');
   try{
-    const res=await fetch(`${data.gasUrl}?action=get_failures`);
+const res=await fetch(`${data.gasUrl}?action=get_failures`,{redirect:'follow'});
     const failures=await res.json();
     if(Array.isArray(failures)&&failures.length>0){
       data.failures=failures;
