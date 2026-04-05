@@ -5,15 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>Sober</title>
 
-<!-- ==========================================
-     ▼ アプリアイコンの設定 ▼
-     GitHub等にアップロードした画像のURL(Raw URL)を href の中に入れてください。
-=========================================== -->
-<link rel="icon" href="https://raw.githubusercontent.com/ユーザー名/リポジトリ名/main/Gemini_Generated_Image_4npeef4npeef4npe%20(1).png">
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/ユーザー名/リポジトリ名/main/Gemini_Generated_Image_4npeef4npeef4npe%20(1).png">
-<!-- ========================================== -->
-
-<!-- iOS/Androidでホーム画面に追加した際、アプリのように表示するための設定 -->
+<link rel="icon" href="Gemini_Generated_Image_4npeef4npeef4npe%20(1).png">
+<link rel="apple-touch-icon" href="Gemini_Generated_Image_4npeef4npeef4npe%20(1).png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -625,7 +618,7 @@ const MINDFUL_MSGS = [
   { t: 60, msg: "目を閉じて、深く息を吸い込んでください..." },
   { t: 45, msg: "息をゆっくりと吐き出します..." },
   { t: 30, msg: "それは、本当にあなたの人生の価値を高めるものですか？" },
-  { t: 15, msg: "衝波のようなものです。波が過ぎ去るのを静かに待ちましょう..." },
+  { t: 15, msg: "衝動は波のようなものです。波が過ぎ去るのを静かに待ちましょう..." },
   { t: 0, msg: "決断の時です。" }
 ];
 
@@ -634,7 +627,7 @@ const WHY_OPTS = [
   { id:'ai', icon:'fa-robot', label:'AIの諭し・客観的指摘', color:'var(--cyan)' },
   { id:'deficit', icon:'fa-chart-line', label:'赤字リスクへの危機感', color:'var(--red)' },
   { id:'cooled', icon:'fa-snowflake', label:'冷却期間による冷静化', color:'var(--tx2)' },
-  { id:'price', icon:'fa-tag', label:'価格の妥当性欠如', color:'var(--green)' },
+  { id:'price', icon:'fa-tag', label:'価格の妥当性欠弱', color:'var(--green)' },
 ];
 
 const LATE_TX = [
@@ -1433,7 +1426,7 @@ function recRow(r,idx,canDel){
   const numStr=Math.abs(Number(r.amount||0)).toLocaleString(); const formattedYen=`${sign}<span class="text-[10px] text-slate-500 mr-0.5">¥</span>${numStr}`;
   return `<div class="gc flex items-center justify-between p-3 mb-2" style="animation:fadeUp .3s ${idx*0.04}s ease both; border-left: 2px solid ${tagCol}">
     <div class="flex flex-col gap-1 min-w-0 flex-1 pl-1">
-      <div class="flex items-center gap-2"><span class="text-[9px] font-bold tracking-widest uppercase" style="color:${tagCol}">${tagLabel}</span>${impIcon?`<span class="text-[8px]">${impIcon}</span>`:''}${stopLabel?`<span class="text-[9px] text-slate-400 border-l border-white/20 pl-2">${stopLabel}</span>`:''}</div>
+      <div class="flex items-center gap-2"><span class="text-[9px] font-bold tracking-widest uppercase" style="color:${tagCol}">${tagLabel}</span>${impIcon?`<span class="text-[8px]">${impIcon}</span>`:''}${stopReason?`<span class="text-[9px] text-slate-400 border-l border-white/20 pl-2">${stopReason}</span>`:''}</div>
       <div class="text-xs font-bold truncate text-white">${r.name}</div>
       <div class="text-[9px] font-bold tracking-widest uppercase text-slate-500">${(r.date||'').replace(/-/g,'.')} · ${r.cat||''}</div>
     </div>
