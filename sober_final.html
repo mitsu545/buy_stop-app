@@ -18,92 +18,67 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ============================================================
-   Sober — Design System (Executive Analytics)
-============================================================ */
 :root{
-  --bg:        #0A0F1A;
-  --gl:        #131B2B;
-  --gl2:       #1A2438;
-  --bd:        rgba(255,255,255,0.06);
-  --bd2:       rgba(255,255,255,0.1);
-  --gold:      #D4AF37;
-  --gold-d:    rgba(212,175,55,0.12);
-  --cyan:      #3B82F6; 
-  --green:     #10B981;
-  --amber:     #F59E0B;
-  --red:       #EF4444;
-  --orange:    #F97316;
-  --tx:        #F8FAFC;
-  --tx2:       #94A3B8;
-  --tx3:       #475569;
+  --bg:#0A0F1A;--gl:#131B2B;--gl2:#1A2438;--bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.1);
+  --gold:#D4AF37;--gold-d:rgba(212,175,55,0.12);--cyan:#3B82F6;--green:#10B981;--amber:#F59E0B;
+  --red:#EF4444;--orange:#F97316;--tx:#F8FAFC;--tx2:#94A3B8;--tx3:#475569;
 }
-
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
-body{ font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--tx); min-height:100vh; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
-.mono{font-family:'Playfair Display',serif; letter-spacing: 0.02em;}
-.serif{font-family:'Noto Serif JP',serif;}
-
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.mono{font-family:'Playfair Display',serif;letter-spacing:0.02em}
+.serif{font-family:'Noto Serif JP',serif}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 input[type=number]{-moz-appearance:textfield}
-select.inp { appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 12px; padding-right: 32px; }
-
+select.inp{appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:12px;padding-right:32px}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes scaleIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
-@keyframes breathe{ 0%, 100%{ transform: scale(0.8); opacity: 0.1; } 50%{ transform: scale(1.5); opacity: 0.3; } }
-@keyframes pulseDot{ 0%, 100%{ opacity:0.3; transform:scale(0.8); } 50%{ opacity:1; transform:scale(1.2); } }
-
-.a0{animation:fadeUp .4s cubic-bezier(0.16, 1, 0.3, 1) both}
-.a1{animation:fadeUp .4s .05s cubic-bezier(0.16, 1, 0.3, 1) both}
-.a2{animation:fadeUp .4s .10s cubic-bezier(0.16, 1, 0.3, 1) both}
-.a3{animation:fadeUp .4s .15s cubic-bezier(0.16, 1, 0.3, 1) both}
-.a4{animation:fadeUp .4s .20s cubic-bezier(0.16, 1, 0.3, 1) both}
-.a-fade{animation:fadeIn 1s ease both}
-
-.tap{transition:transform .15s ease,opacity .15s ease;cursor:pointer;-webkit-user-select:none;user-select:none;}
+@keyframes breathe{0%,100%{transform:scale(0.8);opacity:0.1}50%{transform:scale(1.5);opacity:0.3}}
+@keyframes pulseDot{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1.2)}}
+.a0{animation:fadeUp .4s cubic-bezier(0.16,1,0.3,1) both}
+.a1{animation:fadeUp .4s .05s cubic-bezier(0.16,1,0.3,1) both}
+.a2{animation:fadeUp .4s .10s cubic-bezier(0.16,1,0.3,1) both}
+.a3{animation:fadeUp .4s .15s cubic-bezier(0.16,1,0.3,1) both}
+.a4{animation:fadeUp .4s .20s cubic-bezier(0.16,1,0.3,1) both}
+.a-fade{animation:fadeIn .4s ease both}
+.tap{transition:transform .15s ease,opacity .15s ease;cursor:pointer;-webkit-user-select:none;user-select:none}
 .tap:active{transform:scale(0.96);opacity:0.8}
-
-.gc{ background:var(--gl); border:1px solid var(--bd); border-radius:8px; }
-.gc2{ background:var(--gl2); border:1px solid var(--bd2); border-radius:6px; }
-.gc-cyan{ background:var(--gl); border:1px solid var(--bd); border-left: 3px solid var(--gold); border-radius:8px; }
-
-.inp{ width:100%; background:rgba(0,0,0,0.2); border:1px solid var(--bd2); border-radius:6px; color:var(--tx); outline:none; padding:12px 14px; font-size:13px; font-family:'Noto Sans JP',sans-serif; transition:all .2s; }
-.inp:focus{ border-color:var(--gold); background:rgba(0,0,0,0.4); }
-.inp[readonly]{ opacity:0.55; cursor:not-allowed; }
-.inp-xl{ width:100%; background:transparent; border:none; border-bottom: 1px solid var(--bd2); border-radius:0; color:var(--tx); outline:none; padding:12px 40px 12px 12px; font-size:42px; font-family:'Playfair Display',serif; text-align:center; transition:all .2s; }
-.inp-xl:focus{ border-color:var(--gold); }
-.inp-xl[readonly]{ opacity:0.55; cursor:not-allowed; border-bottom-color: rgba(212,175,55,0.3); }
+.gc{background:var(--gl);border:1px solid var(--bd);border-radius:8px}
+.gc2{background:var(--gl2);border:1px solid var(--bd2);border-radius:6px}
+.gc-cyan{background:var(--gl);border:1px solid var(--bd);border-left:3px solid var(--gold);border-radius:8px}
+.inp{width:100%;background:rgba(0,0,0,0.2);border:1px solid var(--bd2);border-radius:6px;color:var(--tx);outline:none;padding:12px 14px;font-size:13px;font-family:'Noto Sans JP',sans-serif;transition:all .2s}
+.inp:focus{border-color:var(--gold);background:rgba(0,0,0,0.4)}
+.inp[readonly]{opacity:0.55;cursor:not-allowed}
+.inp-xl{width:100%;background:transparent;border:none;border-bottom:1px solid var(--bd2);border-radius:0;color:var(--tx);outline:none;padding:12px 40px 12px 12px;font-size:42px;font-family:'Playfair Display',serif;text-align:center;transition:all .2s}
+.inp-xl:focus{border-color:var(--gold)}
+.inp-xl[readonly]{opacity:0.55;cursor:not-allowed;border-bottom-color:rgba(212,175,55,0.3)}
 textarea.inp{resize:none;line-height:1.6;font-size:12px}
-
-.bot-nav{ position:fixed;bottom:0;left:0;right:0;height:64px; background:rgba(10,15,26,0.95); backdrop-filter:blur(10px); border-top:1px solid var(--bd); display:flex;z-index:40; padding-bottom:env(safe-area-inset-bottom); }
-.nb{ flex:1;display:flex;flex-direction:column;align-items:center; justify-content:center;gap:4px; font-size:9px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase; color:var(--tx3);transition:color .2s;cursor:pointer; }
+.bot-nav{position:fixed;bottom:0;left:0;right:0;height:64px;background:rgba(10,15,26,0.95);backdrop-filter:blur(10px);border-top:1px solid var(--bd);display:flex;z-index:40;padding-bottom:env(safe-area-inset-bottom)}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:9px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--tx3);transition:color .2s;cursor:pointer}
 .nb.on{color:var(--gold)} .nb i{font-size:16px} .pb-nav{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
 .prog{transition:width .7s cubic-bezier(.4,0,.2,1),background .4s}
-
-.bw{display:flex;align-items:flex-start;gap:12px; margin-bottom:12px;} .bw.r{flex-direction:row-reverse} .bw.l{animation:fadeIn .4s ease both} .bw.r{animation:fadeIn .4s ease both}
-.bi{ width:32px;height:32px;border-radius:4px; display:flex;align-items:center;justify-content:center; font-size:14px;flex-shrink:0;overflow:hidden; background:rgba(0,0,0,0.3);border:1px solid var(--bd2); } .bi img{width:100%;height:100%;object-fit:cover}
+.bw{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px} .bw.r{flex-direction:row-reverse} .bw.l{animation:fadeIn .4s ease both} .bw.r{animation:fadeIn .4s ease both}
+.bi{width:32px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;overflow:hidden;background:rgba(0,0,0,0.3);border:1px solid var(--bd2)}
 .bc{max-width:82%} .bn{font-size:10px;font-weight:700;color:var(--tx2);margin-bottom:4px;letter-spacing:0.02em} .bw.r .bn{text-align:right}
 .bl{padding:12px 14px;border-radius:2px 8px 8px 8px;font-size:13px;font-family:'Noto Serif JP',serif;line-height:1.6;background:var(--gl);border:1px solid var(--bd);color:var(--tx)}
 .br{padding:12px 14px;border-radius:8px 2px 8px 8px;font-size:13px;line-height:1.6;background:var(--gold-d);border:1px solid rgba(212,175,55,0.2);color:var(--gold)}
-
-.s-ov{ position:fixed;inset:0;z-index:60; background:rgba(0,0,0,0.8);backdrop-filter:blur(4px); display:flex;align-items:flex-end; opacity:0;pointer-events:none;transition:opacity .3s; } .s-ov.open{opacity:1;pointer-events:all}
-.s-body{ width:100%; background:var(--bg); border-radius:12px 12px 0 0; border-top:1px solid var(--bd); transform:translateY(100%); transition:transform .4s cubic-bezier(.16,1,.3,1); max-height:88vh;overflow-y:auto; padding-bottom:calc(24px + env(safe-area-inset-bottom)); } .s-ov.open .s-body{transform:translateY(0)} .drag-h{width:36px;height:4px;border-radius:2px;background:var(--bd2);margin:12px auto 0}
-
-.tab-btn{flex:1;padding:12px 4px;font-size:10px;font-weight:700;letter-spacing:0.05em;border-bottom:1px solid transparent;color:var(--tx3);transition:all .2s;cursor:pointer;text-align:center;text-transform:uppercase;} .tab-btn.on{color:var(--gold);border-bottom-color:var(--gold)}
-.lbl{font-size:10px;font-weight:700;color:var(--tx2);letter-spacing:.05em;margin-bottom:4px} .hint{font-size:10px;color:var(--tx3);line-height:1.5;margin-top:4px;font-family:'Noto Serif JP',serif;} .sec{font-size:10px;font-weight:700;color:var(--tx2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
-.toast{ position:fixed;bottom:80px;left:50%; transform:translateX(-50%) translateY(10px); opacity:0;transition:all .3s ease;z-index:200; pointer-events:none;max-width:calc(100% - 40px);text-align:center; } .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.late-btn{ width:100%;padding:14px; background:transparent;border:1px dashed var(--bd2); border-radius:6px;color:var(--tx2);font-size:11px;font-weight:700;letter-spacing:0.05em; cursor:pointer;transition:background .2s;text-align:center;text-transform:uppercase; } .late-btn:active{background:rgba(255,255,255,0.02)}
+.s-ov{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px);display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .3s} .s-ov.open{opacity:1;pointer-events:all}
+.s-body{width:100%;background:var(--bg);border-radius:12px 12px 0 0;border-top:1px solid var(--bd);transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);max-height:88vh;overflow-y:auto;padding-bottom:calc(24px + env(safe-area-inset-bottom))} .s-ov.open .s-body{transform:translateY(0)} .drag-h{width:36px;height:4px;border-radius:2px;background:var(--bd2);margin:12px auto 0}
+.tab-btn{flex:1;padding:12px 4px;font-size:10px;font-weight:700;letter-spacing:0.05em;border-bottom:1px solid transparent;color:var(--tx3);transition:all .2s;cursor:pointer;text-align:center;text-transform:uppercase} .tab-btn.on{color:var(--gold);border-bottom-color:var(--gold)}
+.lbl{font-size:10px;font-weight:700;color:var(--tx2);letter-spacing:.05em;margin-bottom:4px} .hint{font-size:10px;color:var(--tx3);line-height:1.5;margin-top:4px;font-family:'Noto Serif JP',serif} .sec{font-size:10px;font-weight:700;color:var(--tx2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(10px);opacity:0;transition:all .3s ease;z-index:200;pointer-events:none;max-width:calc(100% - 40px);text-align:center} .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.late-btn{width:100%;padding:14px;background:transparent;border:1px dashed var(--bd2);border-radius:6px;color:var(--tx2);font-size:11px;font-weight:700;letter-spacing:0.05em;cursor:pointer;transition:background .2s;text-align:center;text-transform:uppercase} .late-btn:active{background:rgba(255,255,255,0.02)}
 ::-webkit-scrollbar{display:none}
-
-.mindful-ring { width: 240px; height: 240px; border-radius: 50%; background: var(--gold); filter: blur(30px); animation: breathe 10s infinite ease-in-out; position: absolute; top: 50%; left: 50%; margin-top: -120px; margin-left: -120px; pointer-events: none;}
+.mindful-ring{width:240px;height:240px;border-radius:50%;background:var(--gold);filter:blur(30px);animation:breathe 10s infinite ease-in-out;position:absolute;top:50%;left:50%;margin-top:-120px;margin-left:-120px;pointer-events:none}
 .ai-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--cyan);margin:0 2px;animation:pulseDot .6s ease infinite alternate}
-.ai-dot:nth-child(2){animation-delay:.2s}
-.ai-dot:nth-child(3){animation-delay:.4s}
+.ai-dot:nth-child(2){animation-delay:.2s} .ai-dot:nth-child(3){animation-delay:.4s}
+.report-card{background:var(--gl);border:1px solid var(--bd);border-left:3px solid var(--cyan);border-radius:8px;padding:16px;margin-bottom:12px}
+.report-card .rc-title{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+.report-card .rc-body{font-size:12px;font-family:'Noto Serif JP',serif;line-height:1.7;color:var(--tx2)}
 </style>
 </head>
 <body>
 
+<!-- ============ SETUP ============ -->
 <div id="scSetup" style="display:none">
 <div class="min-h-screen px-6 py-14 overflow-y-auto" style="padding-bottom:40px">
 <div class="max-w-sm mx-auto">
@@ -114,303 +89,192 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
     <h1 class="text-3xl font-normal mono tracking-tight text-white">Sober</h1>
     <p class="text-[9px] mt-2 font-bold tracking-widest uppercase text-slate-500">Executive Analytics</p>
   </div>
-
   <div class="mb-6 a1">
     <div class="sec">Financial Baseline</div>
     <div class="gc p-5 space-y-4">
-      <div><div class="lbl">月収（手取り）</div>
-        <div class="relative"><input id="su_i" type="number" inputmode="numeric" value="280000" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
-      </div>
-      <div><div class="lbl">月の貯金目標</div>
-        <div class="relative"><input id="su_g" type="number" inputmode="numeric" value="30000" class="inp num text-lg text-emerald-400 pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
-      </div>
-      <div><div class="lbl">固定費合計</div>
-        <div class="relative"><input id="su_f" type="number" inputmode="numeric" value="98000" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
-      </div>
-      <div id="su_prev" class="gc2 px-4 py-3 mt-4" style="display:none; border-color:rgba(16,185,129,0.3)">
+      <div><div class="lbl">月収（手取り）</div><div class="relative"><input id="su_i" type="number" inputmode="numeric" value="280000" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div></div>
+      <div><div class="lbl">月の貯金目標</div><div class="relative"><input id="su_g" type="number" inputmode="numeric" value="30000" class="inp num text-lg text-emerald-400 pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div></div>
+      <div><div class="lbl">固定費合計</div><div class="relative"><input id="su_f" type="number" inputmode="numeric" value="98000" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div></div>
+      <div id="su_prev" class="gc2 px-4 py-3 mt-4" style="display:none;border-color:rgba(16,185,129,0.3)">
         <div class="text-[10px] text-slate-400">自由に使えるお金 (Free Budget)</div>
         <div id="su_free" class="mono text-2xl mt-1 text-emerald-400"></div>
       </div>
     </div>
   </div>
-
   <div class="mb-8 a2">
     <div class="sec">AI & Integration</div>
     <div class="gc p-5 space-y-4">
-      <div>
-        <div class="lbl">Gemini API Key（任意）</div>
-        <input id="su_k" type="password" placeholder="AIzaSy..." class="inp text-xs">
-        <div class="hint mt-2">APIキー未設定の場合でも、レビュー用のAIモック機能で動作確認が可能です。</div>
-      </div>
-      <div>
-        <div class="lbl">GAS Webhook URL（任意）</div>
-        <input id="su_gas" type="url" placeholder="https://script.google.com/macros/s/..." class="inp text-xs">
-        <div class="hint mt-2">スプレッドシートへのバックアップ・失敗DBの同期に使用します。</div>
-      </div>
+      <div><div class="lbl">Gemini API Key（任意）</div><input id="su_k" type="password" placeholder="AIzaSy..." class="inp text-xs"><div class="hint mt-2">APIキー未設定でもモック機能で動作確認可能です。</div></div>
+      <div><div class="lbl">GAS Webhook URL（任意）</div><input id="su_gas" type="url" placeholder="https://script.google.com/macros/s/..." class="inp text-xs"><div class="hint mt-2">スプレッドシートへのバックアップに使用します。</div></div>
     </div>
   </div>
-
-  <button onclick="doSetup()" class="tap w-full py-4 rounded font-bold text-xs a3 tracking-widest uppercase bg-gold/10 border border-gold/40 text-gold">
-    Initialize Dashboard
-  </button>
+  <button onclick="doSetup()" class="tap w-full py-4 rounded font-bold text-xs a3 tracking-widest uppercase bg-gold/10 border border-gold/40 text-gold">Initialize Dashboard</button>
 </div></div>
 </div>
 
+<!-- ============ HOME ============ -->
 <div id="scHome" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 flex justify-between items-end border-b border-white/5 mb-4">
-    <div>
-      <h1 class="text-2xl font-normal mono tracking-tight">Sober</h1>
-      <div id="hm_month" class="text-[9px] font-bold tracking-widest uppercase mt-1 text-slate-500"></div>
-    </div>
-    <button onclick="navTo('scSettings','nb_s')" class="tap w-8 h-8 rounded flex items-center justify-center border border-white/10 hover:bg-white/5 transition">
-      <i class="fa-solid fa-sliders text-xs text-slate-500"></i>
-    </button>
+    <div><h1 class="text-2xl font-normal mono tracking-tight">Sober</h1><div id="hm_month" class="text-[9px] font-bold tracking-widest uppercase mt-1 text-slate-500"></div></div>
+    <button onclick="navTo('scSettings','nb_s')" class="tap w-8 h-8 rounded flex items-center justify-center border border-white/10 hover:bg-white/5 transition"><i class="fa-solid fa-sliders text-xs text-slate-500"></i></button>
   </div>
-
   <div class="px-5 space-y-4 overflow-y-auto">
     <div id="hm_status_panel" class="gc p-4 a0 flex flex-col justify-center">
-      <div class="flex justify-between items-center mb-1">
-        <span class="text-[10px] font-bold tracking-widest uppercase" id="hm_status_title"></span>
-        <i class="fas" id="hm_status_icon"></i>
-      </div>
+      <div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold tracking-widest uppercase" id="hm_status_title"></span><i class="fas" id="hm_status_icon"></i></div>
       <div class="text-[10px] serif opacity-80" id="hm_status_desc"></div>
       <div class="mt-2 text-[10px] font-bold tracking-widest" id="hm_burn_rate"></div>
     </div>
-
     <div class="gc-cyan p-6 a0 relative overflow-hidden">
       <div class="absolute -right-4 -top-6 text-9xl mono opacity-5 select-none pointer-events-none text-white">S</div>
       <div class="flex justify-between items-start mb-2 relative z-10">
-        <div>
-          <div class="text-[10px] tracking-widest font-bold uppercase text-slate-400">Remaining Budget</div>
-          <div class="text-[10px] text-slate-500">今月の残り自由資金</div>
-        </div>
-        <div class="text-right">
-          <div class="text-[9px] tracking-widest font-bold uppercase text-slate-500">Today's Limit</div>
-          <div id="hm_daily" class="mono text-sm text-slate-300">¥0</div>
-        </div>
+        <div><div class="text-[10px] tracking-widest font-bold uppercase text-slate-400">Remaining Budget</div><div class="text-[10px] text-slate-500">今月の残り自由資金</div></div>
+        <div class="text-right"><div class="text-[9px] tracking-widest font-bold uppercase text-slate-500">Today's Limit</div><div id="hm_daily" class="mono text-sm text-slate-300">¥0</div></div>
       </div>
       <div id="hm_remM" class="mono mt-1 relative z-10 text-white" style="font-size:2.5rem;line-height:1">¥0</div>
-      
-      <div class="w-full h-[3px] rounded-full mt-5 mb-2 relative z-10 bg-white/5">
-        <div id="hm_bar" class="prog h-[3px] rounded-full bg-gold" style="width:100%"></div>
-      </div>
-      <div class="flex justify-between mt-1 relative z-10 text-[9px] font-bold tracking-widest text-slate-500">
-        <span id="hm_up">USED 0%</span><span id="hm_rp">LEFT 100%</span>
-      </div>
+      <div class="w-full h-[3px] rounded-full mt-5 mb-2 relative z-10 bg-white/5"><div id="hm_bar" class="prog h-[3px] rounded-full bg-gold" style="width:100%"></div></div>
+      <div class="flex justify-between mt-1 relative z-10 text-[9px] font-bold tracking-widest text-slate-500"><span id="hm_up">USED 0%</span><span id="hm_rp">LEFT 100%</span></div>
     </div>
-
     <div class="grid grid-cols-3 gap-2 a1">
-      <div class="gc p-3 border-t-2 border-t-emerald-500/50 text-center">
-        <div class="text-[10px] tracking-widest font-bold uppercase text-slate-500">AVOIDED</div>
-        <div class="text-[8px] text-slate-600 mb-1">回避した支出</div>
-        <div id="hm_ac" class="mono text-lg text-white">0</div>
-        <div id="hm_ay" class="mono text-[10px] mt-1 text-emerald-400">¥0</div>
-      </div>
-      <div class="gc p-3 border-t-2 border-t-slate-500/50 text-center">
-        <div class="text-[10px] tracking-widest font-bold uppercase text-slate-500">VERIFIED</div>
-        <div class="text-[8px] text-slate-600 mb-1">計画購入</div>
-        <div id="hm_bc" class="mono text-lg text-white">0</div>
-        <div id="hm_by" class="mono text-[10px] mt-1 text-slate-400">¥0</div>
-      </div>
-      <div class="gc p-3 border-t-2 border-t-orange-500/50 text-center">
-        <div class="text-[10px] tracking-widest font-bold uppercase text-slate-500">UNVERIFIED</div>
-        <div class="text-[8px] text-slate-600 mb-1">事後記録</div>
-        <div id="hm_gc" class="mono text-lg text-white">0</div>
-        <div id="hm_gy" class="mono text-[10px] mt-1 text-orange-400">¥0</div>
-      </div>
+      <div class="gc p-3 border-t-2 border-t-emerald-500/50 text-center"><div class="text-[10px] tracking-widest font-bold uppercase text-slate-500">AVOIDED</div><div class="text-[8px] text-slate-600 mb-1">回避した支出</div><div id="hm_ac" class="mono text-lg text-white">0</div><div id="hm_ay" class="mono text-[10px] mt-1 text-emerald-400">¥0</div></div>
+      <div class="gc p-3 border-t-2 border-t-slate-500/50 text-center"><div class="text-[10px] tracking-widest font-bold uppercase text-slate-500">VERIFIED</div><div class="text-[8px] text-slate-600 mb-1">計画購入</div><div id="hm_bc" class="mono text-lg text-white">0</div><div id="hm_by" class="mono text-[10px] mt-1 text-slate-400">¥0</div></div>
+      <div class="gc p-3 border-t-2 border-t-orange-500/50 text-center"><div class="text-[10px] tracking-widest font-bold uppercase text-slate-500">UNVERIFIED</div><div class="text-[8px] text-slate-600 mb-1">事後記録</div><div id="hm_gc" class="mono text-lg text-white">0</div><div id="hm_gy" class="mono text-[10px] mt-1 text-orange-400">¥0</div></div>
     </div>
-
     <div class="a2 mt-6">
       <div class="sec mb-2">Situational Analysis <span class="text-[8px] ml-1 text-slate-500 font-normal">状況別アナリティクス</span></div>
       <div class="grid grid-cols-2 gap-3">
-        <button onclick="startAnalysis('conv')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
-          <span class="text-2xl mb-1">🏪</span>
-          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">コンビニ</span>
-          <span class="text-[9px] text-slate-500 tracking-widest">¥2,000 固定</span>
-        </button>
-        <button onclick="startAnalysis('uber')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
-          <span class="text-2xl mb-1">🍔</span>
-          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">Uber Eats</span>
-          <span class="text-[9px] text-slate-500 tracking-widest">¥3,000 固定</span>
-        </button>
-        <button onclick="startAnalysis('drink')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
-          <span class="text-2xl mb-1">🍻</span>
-          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">居酒屋</span>
-          <span class="text-[9px] text-slate-500 tracking-widest">¥6,000 固定</span>
-        </button>
-        <button onclick="startAnalysis('amazon')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2">
-          <span class="text-2xl mb-1">📦</span>
-          <span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">Amazon</span>
-          <span class="text-[9px] text-slate-500 tracking-widest">URL + 動機入力</span>
-        </button>
+        <button onclick="startAnalysis('conv')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2"><span class="text-2xl mb-1">🏪</span><span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">コンビニ</span><span class="text-[9px] text-slate-500 tracking-widest">¥2,000 固定</span></button>
+        <button onclick="startAnalysis('uber')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2"><span class="text-2xl mb-1">🍔</span><span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">Uber Eats</span><span class="text-[9px] text-slate-500 tracking-widest">¥3,000 固定</span></button>
+        <button onclick="startAnalysis('drink')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2"><span class="text-2xl mb-1">🍻</span><span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">居酒屋</span><span class="text-[9px] text-slate-500 tracking-widest">¥6,000 固定</span></button>
+        <button onclick="startAnalysis('amazon')" class="tap p-4 rounded-lg bg-[#131B2B] border border-white/10 flex flex-col items-center justify-center gap-2"><span class="text-2xl mb-1">📦</span><span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">Amazon</span><span class="text-[9px] text-slate-500 tracking-widest">URL + 動機入力</span></button>
       </div>
-      <button onclick="startAnalysis('other')" class="tap w-full mt-3 p-4 rounded-lg bg-[#131B2B] border border-white/10 flex items-center justify-center gap-3">
-        <span class="text-lg">🛍️</span><span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">詳細分析 (その他の出費)</span>
-      </button>
+      <button onclick="startAnalysis('other')" class="tap w-full mt-3 p-4 rounded-lg bg-[#131B2B] border border-white/10 flex items-center justify-center gap-3"><span class="text-lg">🛍️</span><span class="text-[10px] font-bold tracking-widest uppercase text-slate-300">詳細分析 (その他の出費)</span></button>
     </div>
-
     <div class="a4 mt-6">
-      <div class="flex justify-between items-center mb-3">
-        <div class="sec" style="margin-bottom:0">Recent Log</div>
-        <button onclick="navTo('scHistory','nb_hi')" class="tap text-[9px] font-bold tracking-widest uppercase text-gold">View All <i class="fa-solid fa-chevron-right text-[8px] ml-0.5"></i></button>
-      </div>
+      <div class="flex justify-between items-center mb-3"><div class="sec" style="margin-bottom:0">Recent Log</div><button onclick="navTo('scHistory','nb_hi')" class="tap text-[9px] font-bold tracking-widest uppercase text-gold">View All <i class="fa-solid fa-chevron-right text-[8px] ml-0.5"></i></button></div>
       <div id="hm_list" class="space-y-2"></div>
     </div>
   </div>
 </div>
 
+<!-- ============ CHECKER (Step 1: Input) ============ -->
 <div id="scChecker" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 flex items-center gap-3 border-b border-white/5 mb-5">
-    <button onclick="cancelProcess()" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 hover:text-white shrink-0">
-      <i class="fa-solid fa-xmark text-xs"></i>
-    </button>
-    <div>
-      <div class="num text-lg" id="ck_title">Analyzer</div>
-      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-0.5">Step 1 : Impact Analysis</div>
-    </div>
+    <button onclick="cancelProcess()" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 shrink-0"><i class="fa-solid fa-xmark text-xs"></i></button>
+    <div><div class="num text-lg" id="ck_title">Analyzer</div><div class="text-[9px] text-slate-500 tracking-widest uppercase mt-0.5">Step 1 : Input</div></div>
   </div>
-
   <div class="px-5 space-y-6 overflow-y-auto">
     <div class="a0 text-center mt-2">
       <div class="text-[10px] tracking-widest text-slate-500 uppercase font-bold mb-1" id="ck_amt_label">Target Price</div>
-      <div class="relative inline-block mt-2">
-        <input id="ck_a" type="number" inputmode="numeric" placeholder="0" class="inp-xl text-5xl" oninput="onAmt()">
-        <span class="absolute left-2 bottom-[14px] text-sm text-slate-500">¥</span>
-      </div>
-      <div id="ck_fixed_badge" style="display:none" class="mt-2 inline-flex items-center gap-1 px-2 py-1 rounded bg-gold/10 border border-gold/30 text-gold text-[9px] font-bold tracking-widest uppercase">
-        <i class="fas fa-lock text-[8px]"></i> 固定金額
-      </div>
+      <div class="relative inline-block mt-2"><input id="ck_a" type="number" inputmode="numeric" placeholder="0" class="inp-xl text-5xl" oninput="onAmt()"><span class="absolute left-2 bottom-[14px] text-sm text-slate-500">¥</span></div>
+      <div id="ck_fixed_badge" style="display:none" class="mt-2 inline-flex items-center gap-1 px-2 py-1 rounded bg-gold/10 border border-gold/30 text-gold text-[9px] font-bold tracking-widest uppercase"><i class="fas fa-lock text-[8px]"></i> 固定金額</div>
     </div>
-
     <div class="a1 space-y-4">
-      <div id="f_url" style="display:none">
-        <div class="lbl flex items-center gap-1">URL (Market Analysis) <i class="fas fa-globe text-cyan-500 text-[10px]"></i></div>
-        <input id="ck_u" type="url" placeholder="https://amazon.co.jp/..." class="inp text-xs">
-      </div>
-      <div>
-        <div class="lbl" id="lbl_name">Item Name</div>
-        <input id="ck_n" type="text" placeholder="品名や用途" maxlength="40" class="inp">
-      </div>
+      <div id="f_url" style="display:none"><div class="lbl flex items-center gap-1">URL (Market Analysis) <i class="fas fa-globe text-cyan-500 text-[10px]"></i></div><input id="ck_u" type="url" placeholder="https://amazon.co.jp/..." class="inp text-xs"></div>
+      <div><div class="lbl" id="lbl_name">Item Name</div><input id="ck_n" type="text" placeholder="品名や用途" maxlength="40" class="inp"></div>
     </div>
-
-    <div id="ck_cmp" style="display:none" class="space-y-2 a3">
-      <div class="sec mt-2">Financial Impact</div>
-      <div class="gc p-4"><div class="flex justify-between items-center"><div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Labor Cost</div><div class="text-[10px] text-slate-500">労働時間損失</div></div><div id="ck_h" class="text-right"></div></div></div>
-      <div class="gc p-4" id="ck_tc">
-        <div class="flex justify-between items-center mb-2"><div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Daily Limit</div><div class="text-[10px] text-slate-500">今日の予算への影響</div></div><div id="ck_t" class="flex items-center justify-end gap-2 text-xs"></div></div>
-        <div class="w-full h-1 rounded-full bg-white/5 border border-white/5"><div id="ck_tb" class="prog h-1 rounded-full bg-emerald-500" style="width:100%;"></div></div>
-      </div>
-      <div class="gc p-4" id="ck_mc"><div class="flex justify-between items-center"><div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Month Forecast</div><div class="text-[10px] text-slate-500">月末残高予測</div></div><div id="ck_m" class="flex items-center justify-end gap-2 text-xs"></div></div></div>
-    </div>
-
-    <div id="f_detail" style="display:none" class="space-y-5 a2 mt-6 border-t border-white/5 pt-6">
-      <div class="sec text-cyan-500"><i class="fas fa-robot mr-1"></i> Data for AI Agent</div>
+    <div id="f_detail" style="display:none" class="space-y-5 a2 mt-4 border-t border-white/5 pt-4">
       <div class="gc p-4 border-l-2 border-l-cyan">
         <div class="flex items-start gap-3 mb-3">
           <div class="w-7 h-7 rounded bg-black/50 flex items-center justify-center border border-white/10 shrink-0"><i class="fas fa-robot text-xs text-cyan-400"></i></div>
-          <div class="text-xs text-slate-300 serif leading-relaxed">なぜ今、それが必要なのですか？<span class="text-[9px] text-slate-500 font-sans mt-1 block">言語化による自己認識が分析精度を高めます。</span></div>
+          <div class="text-xs text-slate-300 serif leading-relaxed">なぜ今それが必要？<span class="text-[9px] text-slate-500 font-sans mt-1 block">言語化で分析精度が向上。</span></div>
         </div>
-        <textarea id="ck_r" rows="3" placeholder="分析用メモ（例：仕事の効率を上げるため、ストレス解消など）" class="inp bg-black/30 border-white/5"></textarea>
+        <textarea id="ck_r" rows="3" placeholder="分析用メモ（例：仕事の効率UP、ストレス解消など）" class="inp bg-black/30 border-white/5"></textarea>
       </div>
     </div>
-
-    <button id="ck_btn_next" onclick="goNextStep()" style="display:none" class="tap w-full py-4 rounded font-bold text-[11px] tracking-widest uppercase mt-6 mb-4 border transition-all bg-white/5 border-white/10 text-white">
-      Proceed to AI Review <i class="fa-solid fa-robot ml-1 text-cyan-400"></i>
+    <button id="ck_btn_next" onclick="goNextStep()" style="display:none" class="tap w-full py-4 rounded font-bold text-[11px] tracking-widest uppercase mt-6 mb-4 border transition-all bg-cyan-500/10 border-cyan-500/30 text-cyan-400">
+      AI分析を開始 <i class="fa-solid fa-robot ml-1"></i>
     </button>
   </div>
 </div>
 
+<!-- ============ AI REPORT + CHAT (Step 2 & 3) ============ -->
 <div id="scAiChat" class="relative bg-[#0A0F1A]" style="display:none">
   <div class="px-6 pt-12 pb-3 flex items-center gap-3 border-b border-white/5 mb-2 bg-[#0A0F1A] sticky top-0 z-20">
-    <button onclick="cancelProcess()" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 shrink-0">
-      <i class="fa-solid fa-xmark text-xs"></i>
-    </button>
-    <div>
-      <div class="num text-lg text-cyan-400">Agent Consultation</div>
-      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-0.5">Step 2 : Interactive Review</div>
-    </div>
+    <button onclick="cancelProcess()" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 shrink-0"><i class="fa-solid fa-xmark text-xs"></i></button>
+    <div><div class="num text-lg text-cyan-400">AI Analysis</div><div class="text-[9px] text-slate-500 tracking-widest uppercase mt-0.5">Step 2 : Report & Chat</div></div>
   </div>
-
   <div class="px-5 pb-[140px] flex flex-col h-[calc(100vh-140px)]">
     <div id="chat_loading" class="text-center py-10 text-slate-500">
       <i class="fas fa-circle-notch fa-spin text-2xl mb-3 text-cyan-500"></i>
-      <div class="text-[9px] tracking-widest uppercase" id="chat_loading_txt">Connecting to Agent...</div>
+      <div class="text-[9px] tracking-widest uppercase" id="chat_loading_txt">過去データを分析中...</div>
     </div>
+    <!-- AI Report Area -->
+    <div id="ai_report_area" style="display:none" class="mb-4 a0"></div>
+    <!-- Chat Area -->
     <div id="ai_chat_area" class="flex-1 overflow-y-auto space-y-4 pb-4 scroll-smooth"></div>
-    <div class="fixed bottom-0 left-0 right-0 bg-[#0A0F1A] border-t border-white/10 px-5 py-4 z-30" id="chat_action_area" style="display:none; padding-bottom:calc(16px + env(safe-area-inset-bottom));">
+    <!-- Action Bar -->
+    <div class="fixed bottom-0 left-0 right-0 bg-[#0A0F1A] border-t border-white/10 px-5 py-4 z-30" id="chat_action_area" style="display:none;padding-bottom:calc(16px + env(safe-area-inset-bottom));">
       <div class="flex gap-2 mb-3">
-        <input type="text" id="chat_input" class="inp flex-1 text-xs" placeholder="反論や理由を入力..." onkeypress="if(event.key==='Enter') sendChat()">
+        <input type="text" id="chat_input" class="inp flex-1 text-xs" placeholder="反論や質問を入力..." onkeypress="if(event.key==='Enter') sendChat()">
         <button onclick="sendChat()" id="chat_send_btn" class="tap w-11 h-11 rounded bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 border border-cyan-500/30"><i class="fas fa-paper-plane text-sm"></i></button>
       </div>
       <div class="flex gap-2">
         <button onclick="doAvoidFromChat()" class="tap flex-1 py-3 rounded bg-emerald-500/10 text-emerald-400 font-bold text-[10px] tracking-widest uppercase border border-emerald-500/30">AVOID (やめる)</button>
-        <button onclick="goSummary()" class="tap flex-1 py-3 rounded bg-white/5 text-slate-400 font-bold text-[10px] tracking-widest uppercase border border-white/10">Proceed to Summary</button>
+        <button onclick="goFinalCheck()" class="tap flex-1 py-3 rounded bg-white/5 text-slate-400 font-bold text-[10px] tracking-widest uppercase border border-white/10">それでも進む →</button>
       </div>
     </div>
   </div>
 </div>
 
-<div id="scSummary" class="relative bg-[#0A0F1A]" style="display:none">
+<!-- ============ FINAL CHECK (Step 4: Financial Impact) ============ -->
+<div id="scFinalCheck" class="relative bg-[#0A0F1A]" style="display:none">
   <div class="px-6 pt-12 pb-3 flex items-center gap-3 border-b border-white/5 mb-5">
-    <button onclick="cancelProcess()" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 shrink-0">
-      <i class="fa-solid fa-xmark text-xs"></i>
-    </button>
-    <div>
-      <div class="num text-lg">Executive Summary</div>
-      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-0.5">Step 3 : Risk Assessment</div>
-    </div>
+    <button onclick="cancelProcess()" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 shrink-0"><i class="fa-solid fa-xmark text-xs"></i></button>
+    <div><div class="num text-lg text-amber-400">Financial Impact</div><div class="text-[9px] text-slate-500 tracking-widest uppercase mt-0.5">Step 3 : Final Check</div></div>
   </div>
-
   <div class="px-5 pb-24 space-y-4">
-    <div class="gc p-5" id="sum_imp_card">
-      <div class="text-[10px] tracking-widest font-bold uppercase text-slate-400 mb-1">AI Impulse Score</div>
-      <div id="sum_impulse" class="num text-2xl text-white mb-1"></div>
-      <div id="sum_impulse_reason" class="text-[11px] serif text-slate-300"></div>
-    </div>
-
-    <div class="gc p-5">
-      <div class="text-[10px] tracking-widest font-bold uppercase text-slate-400 mb-3">Financial Impact</div>
+    <div class="gc p-5 a0 border-l-2 border-l-amber-500">
+      <div class="text-[10px] tracking-widest font-bold uppercase text-amber-500 mb-3">この購入があなたに与える影響</div>
+      <div class="text-center mb-4">
+        <div class="text-[10px] text-slate-500 mb-1">購入予定額</div>
+        <div id="fc_amt" class="mono text-3xl text-white"></div>
+      </div>
       <div class="space-y-3">
-        <div class="flex justify-between border-b border-white/5 pb-2"><span class="text-[11px] text-slate-500">購入予定額</span><span id="sum_amt" class="mono text-sm"></span></div>
-        <div class="flex justify-between border-b border-white/5 pb-2"><span class="text-[11px] text-slate-500">労働時間損失</span><span id="sum_hrs" class="mono text-sm text-amber-400"></span></div>
-        <div class="flex justify-between"><span class="text-[11px] text-slate-500">月末残高への影響</span><span id="sum_end" class="mono text-sm"></span></div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5">
+          <div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Labor Cost</div><div class="text-[9px] text-slate-500">あなたの労働時間に換算</div></div>
+          <div id="fc_hrs" class="mono text-xl text-amber-400 text-right"></div>
+        </div>
+        <div class="flex justify-between items-center py-2 border-b border-white/5">
+          <div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Today's Limit</div><div class="text-[9px] text-slate-500">今日の予算残高</div></div>
+          <div id="fc_daily" class="text-right"></div>
+        </div>
+        <div class="flex justify-between items-center py-2">
+          <div><div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Month Forecast</div><div class="text-[9px] text-slate-500">月末残高予測</div></div>
+          <div id="fc_month" class="text-right"></div>
+        </div>
       </div>
     </div>
 
-    <div id="sum_past_area" class="gc p-5" style="display:none">
-      <div class="text-[10px] tracking-widest font-bold uppercase text-orange-500 mb-3">Past Warnings</div>
-      <div class="text-[11px] serif text-slate-400 mb-3">過去に同カテゴリで以下の支出を行っています。これらは本当に現在活用されていますか？</div>
-      <div id="sum_past_list" class="space-y-2"></div>
+    <div id="fc_past_area" class="gc p-5" style="display:none">
+      <div class="text-[10px] tracking-widest font-bold uppercase text-orange-500 mb-3">Past Purchases (同カテゴリ)</div>
+      <div class="text-[11px] serif text-slate-400 mb-3">これらは現在活用されていますか？</div>
+      <div id="fc_past_list" class="space-y-2"></div>
     </div>
 
-    <button onclick="goMindful()" class="tap w-full py-4 mt-6 rounded font-bold text-xs tracking-widest uppercase bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-      Acknowledge & Meditate
-    </button>
+    <div class="flex gap-3 mt-6">
+      <button onclick="doAvoid()" class="tap flex-1 py-4 rounded bg-emerald-500/10 text-emerald-400 font-bold text-[11px] tracking-widest uppercase border border-emerald-500/30">AVOID (やめる)</button>
+      <button onclick="goMindful()" class="tap flex-1 py-4 rounded bg-white/5 text-slate-400 font-bold text-[11px] tracking-widest uppercase border border-white/10">確認して進む</button>
+    </div>
   </div>
 </div>
 
+<!-- ============ MINDFUL (Step 5: 30s Timer + Decision) ============ -->
 <div id="scMindful" class="relative bg-black min-h-screen flex flex-col items-center justify-center overflow-hidden" style="display:none">
   <div class="mindful-ring"></div>
   <div class="relative z-10 text-center w-full px-8">
-    <div id="mf_timer" class="num text-6xl text-white font-light tracking-widest mb-8 transition-opacity duration-1000">60</div>
+    <div id="mf_timer" class="num text-6xl text-white font-light tracking-widest mb-8 transition-opacity duration-1000">30</div>
     <div id="mf_msg" class="serif text-sm text-slate-300 leading-loose h-20 transition-opacity duration-1000 opacity-0"></div>
-    <div id="mf_decision" class="w-full space-y-3 mt-12 transition-opacity duration-1000" style="opacity:0; pointer-events:none; display:none;">
-      <button onclick="doAvoid()" class="w-full py-5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 font-bold text-[13px] tracking-widest uppercase transition-transform active:scale-95">
-        AVOID (やめる)
-      </button>
-      <button id="btn_buy_locked" onclick="doBuy()" class="w-full py-4 rounded-lg bg-transparent border border-white/10 text-slate-600 font-bold text-[11px] tracking-widest uppercase transition-all">
-        <span id="txt_buy_locked">PROCEED TO BUY / GO</span>
-      </button>
+    <div id="mf_decision" class="w-full space-y-3 mt-12 transition-opacity duration-1000" style="opacity:0;pointer-events:none;display:none;">
+      <button onclick="doAvoid()" class="w-full py-5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 font-bold text-[13px] tracking-widest uppercase transition-transform active:scale-95">AVOID (やめる)</button>
+      <button onclick="doBuy()" class="w-full py-4 rounded-lg bg-transparent border border-white/10 text-slate-600 font-bold text-[11px] tracking-widest uppercase transition-all">PROCEED TO BUY / GO</button>
     </div>
   </div>
 </div>
 
+<!-- ============ REPORT ============ -->
 <div id="scReport" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 flex justify-between items-end border-b border-white/5 mb-4">
-    <div>
-      <div class="num text-2xl tracking-tight">Report</div>
-      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">Monthly Analytics</div>
-    </div>
+    <div><div class="num text-2xl tracking-tight">Report</div><div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">Monthly Analytics</div></div>
     <span id="rp_b" class="text-[10px] font-bold tracking-widest uppercase text-slate-400"></span>
   </div>
   <div class="px-5 space-y-4 overflow-y-auto">
@@ -421,126 +285,55 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
     </div>
     <div class="gc p-5 a1 border-l-2 border-l-cyan">
       <div class="lbl text-cyan-500">Data Integration</div>
-      <div class="hint mt-1 mb-3">ZAIM等から今月の裁量支出合計を入力し、精度を高めます。</div>
-      <div class="flex gap-2">
-        <div class="relative flex-1">
-          <input id="rp_zi" type="number" inputmode="numeric" placeholder="0" class="inp num text-lg pl-8">
-          <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span>
-        </div>
-        <button onclick="saveReport()" class="tap px-4 rounded font-bold text-[10px] tracking-widest uppercase bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">SYNC</button>
-      </div>
+      <div class="hint mt-1 mb-3">ZAIM等から今月の裁量支出合計を入力し精度を高めます。</div>
+      <div class="flex gap-2"><div class="relative flex-1"><input id="rp_zi" type="number" inputmode="numeric" placeholder="0" class="inp num text-lg pl-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div><button onclick="saveReport()" class="tap px-4 rounded font-bold text-[10px] tracking-widest uppercase bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">SYNC</button></div>
     </div>
     <div id="rp_score" style="display:none">
-      <div class="gc p-5 a2">
-        <div class="sec text-center mb-4">Discretionary Spending</div>
-        <div id="rp_bd" class="space-y-3"></div>
-        <div class="flex justify-between items-center mt-3 pt-3 border-t border-white/5">
-          <div class="text-[10px] font-bold tracking-widest uppercase text-slate-400">Total</div>
-          <div id="rp_tot" class="mono text-xl text-white"></div>
-        </div>
-        <div class="mt-5 p-4 rounded bg-emerald-500/10 border border-emerald-500/20 text-center">
-          <div class="text-[9px] font-bold tracking-widest uppercase text-emerald-500 mb-1">Saved by Sober</div>
-          <div id="rp_sh" class="mono text-2xl text-emerald-400"></div>
-        </div>
-      </div>
-      <div id="rp_mc" class="gc p-5 a3 mt-4 text-center">
-        <div id="rp_mi" class="text-2xl mb-2"></div>
-        <div id="rp_mt" class="text-xs font-bold mb-2 tracking-widest uppercase"></div>
-        <div id="rp_mx" class="text-[11px] font-serif leading-relaxed text-slate-400"></div>
-      </div>
+      <div class="gc p-5 a2"><div class="sec text-center mb-4">Discretionary Spending</div><div id="rp_bd" class="space-y-3"></div><div class="flex justify-between items-center mt-3 pt-3 border-t border-white/5"><div class="text-[10px] font-bold tracking-widest uppercase text-slate-400">Total</div><div id="rp_tot" class="mono text-xl text-white"></div></div><div class="mt-5 p-4 rounded bg-emerald-500/10 border border-emerald-500/20 text-center"><div class="text-[9px] font-bold tracking-widest uppercase text-emerald-500 mb-1">Saved by Sober</div><div id="rp_sh" class="mono text-2xl text-emerald-400"></div></div></div>
+      <div id="rp_mc" class="gc p-5 a3 mt-4 text-center"><div id="rp_mi" class="text-2xl mb-2"></div><div id="rp_mt" class="text-xs font-bold mb-2 tracking-widest uppercase"></div><div id="rp_mx" class="text-[11px] font-serif leading-relaxed text-slate-400"></div></div>
     </div>
-    <div id="rp_emp" class="text-center py-12 a1" style="display:none">
-      <i class="fa-solid fa-chart-bar text-2xl mb-3 block text-slate-600"></i>
-      <div class="text-[10px] tracking-widest uppercase text-slate-500">NO DATA</div>
-    </div>
+    <div id="rp_emp" class="text-center py-12 a1" style="display:none"><i class="fa-solid fa-chart-bar text-2xl mb-3 block text-slate-600"></i><div class="text-[10px] tracking-widest uppercase text-slate-500">NO DATA</div></div>
   </div>
 </div>
 
+<!-- ============ SETTINGS ============ -->
 <div id="scSettings" class="pb-nav" style="display:none">
-  <div class="px-6 pt-12 pb-3 border-b border-white/5 mb-4">
-    <div class="num text-2xl tracking-tight">Settings</div>
-    <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">System Config</div>
-  </div>
+  <div class="px-6 pt-12 pb-3 border-b border-white/5 mb-4"><div class="num text-2xl tracking-tight">Settings</div><div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">System Config</div></div>
   <div class="flex border-b border-white/5 px-5 mb-4 overflow-x-auto" style="scrollbar-width:none">
     <button class="tab-btn on shrink-0" id="tb_base" onclick="switchTab('base')">BASE</button>
-    <button class="tab-btn shrink-0"   id="tb_fail" onclick="switchTab('fail')">FAILURE DB</button>
-    <button class="tab-btn shrink-0"   id="tb_char" onclick="switchTab('char')">AGENT</button>
+    <button class="tab-btn shrink-0" id="tb_fail" onclick="switchTab('fail')">FAILURE DB</button>
   </div>
-
   <div id="tb_base_b" class="px-5 space-y-5 overflow-y-auto">
-    <div class="gc p-5 space-y-4">
-      <div class="sec">Financial Settings</div>
-      <div><div class="lbl">月収</div><input id="st_i" type="number" class="inp"></div>
-      <div><div class="lbl">貯金目標</div><input id="st_g" type="number" class="inp text-emerald-400"></div>
-      <div><div class="lbl">固定費</div><input id="st_f" type="number" class="inp"></div>
-      <div class="text-[10px] text-slate-400 mt-2">自由資金: <span id="st_fp" class="mono text-emerald-400 ml-1 text-sm"></span></div>
-    </div>
-    <div class="gc p-5 space-y-4">
-      <div class="sec">API Keys & Integration</div>
-      <div><div class="lbl">Gemini API Key</div><input id="st_k" type="password" class="inp text-xs"></div>
-      <div>
-        <div class="lbl">GAS Webhook URL</div>
-        <input id="st_gas" type="url" placeholder="https://script.google.com/macros/s/..." class="inp text-xs">
-        <div class="flex gap-2 mt-2">
-          <button onclick="backupToGAS()" class="tap flex-1 py-3 rounded font-bold text-[10px] tracking-widest uppercase bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
-            <i class="fas fa-cloud-upload-alt mr-1"></i>バックアップ
-          </button>
-          <button onclick="fetchFailuresFromGAS()" class="tap flex-1 py-3 rounded font-bold text-[10px] tracking-widest uppercase bg-amber-500/10 border border-amber-500/30 text-amber-400">
-            <i class="fas fa-sync mr-1"></i>失敗DB同期
-          </button>
-        </div>
-      </div>
-      <div>
-        <div class="lbl">月初ロック対象の高額設定（¥ 以上）</div>
-        <input id="st_wt" type="number" class="inp" placeholder="3000">
-      </div>
-    </div>
+    <div class="gc p-5 space-y-4"><div class="sec">Financial Settings</div><div><div class="lbl">月収</div><input id="st_i" type="number" class="inp"></div><div><div class="lbl">貯金目標</div><input id="st_g" type="number" class="inp text-emerald-400"></div><div><div class="lbl">固定費</div><input id="st_f" type="number" class="inp"></div><div class="text-[10px] text-slate-400 mt-2">自由資金: <span id="st_fp" class="mono text-emerald-400 ml-1 text-sm"></span></div></div>
+    <div class="gc p-5 space-y-4"><div class="sec">API Keys & Integration</div><div><div class="lbl">Gemini API Key</div><input id="st_k" type="password" class="inp text-xs"></div><div><div class="lbl">GAS Webhook URL</div><input id="st_gas" type="url" placeholder="https://script.google.com/macros/s/..." class="inp text-xs"><div class="flex gap-2 mt-2"><button onclick="backupToGAS()" class="tap flex-1 py-3 rounded font-bold text-[10px] tracking-widest uppercase bg-cyan-500/10 border border-cyan-500/30 text-cyan-400"><i class="fas fa-cloud-upload-alt mr-1"></i>バックアップ</button><button onclick="fetchFailuresFromGAS()" class="tap flex-1 py-3 rounded font-bold text-[10px] tracking-widest uppercase bg-amber-500/10 border border-amber-500/30 text-amber-400"><i class="fas fa-sync mr-1"></i>失敗DB同期</button></div></div><div><div class="lbl">月初ロック対象の高額設定（¥以上）</div><input id="st_wt" type="number" class="inp" placeholder="3000"></div></div>
     <button onclick="saveBase()" class="tap w-full py-4 rounded font-bold text-[10px] tracking-widest uppercase bg-transparent border border-white/20 text-white">Save Config</button>
-    
-    <button onclick="location.reload(true)" class="tap w-full py-4 mt-2 rounded font-bold text-[10px] tracking-widest uppercase bg-white/5 border border-white/10 text-slate-300">
-      <i class="fas fa-sync-alt mr-2"></i>アプリを最新に更新 (Reload)
-    </button>
+    <button onclick="location.reload(true)" class="tap w-full py-4 mt-2 rounded font-bold text-[10px] tracking-widest uppercase bg-white/5 border border-white/10 text-slate-300"><i class="fas fa-sync-alt mr-2"></i>アプリを最新に更新 (Reload)</button>
   </div>
-
   <div id="tb_fail_b" class="px-5 overflow-y-auto" style="display:none">
-    <div class="flex justify-between items-center mb-3">
-      <div class="text-[10px] text-slate-400">AIが参照する「過去の失敗パターン」</div>
-      <button onclick="addFail()" class="tap px-3 py-1.5 rounded text-[10px] font-bold tracking-widest uppercase border border-white/10 text-slate-300">+ ADD</button>
-    </div>
+    <div class="flex justify-between items-center mb-3"><div class="text-[10px] text-slate-400">AIが参照する「過去の失敗パターン」</div><button onclick="addFail()" class="tap px-3 py-1.5 rounded text-[10px] font-bold tracking-widest uppercase border border-white/10 text-slate-300">+ ADD</button></div>
     <div id="st_fails" class="space-y-3 mb-4"></div>
     <button onclick="saveFails()" class="tap w-full py-4 rounded font-bold text-[10px] tracking-widest uppercase bg-transparent border border-white/20 text-white">Save Database</button>
   </div>
-
-  <div id="tb_char_b" class="px-5 space-y-4 overflow-y-auto" style="display:none">
-    <div class="text-[9px] text-slate-500 mb-3">エージェントのアイコンを任意の画像に変更できます</div>
-    <div id="st_chars" class="space-y-4"></div>
-    <button onclick="saveChars()" class="tap w-full py-4 rounded font-bold text-[10px] tracking-widest uppercase bg-transparent border border-white/20 text-white">Save Agents</button>
-  </div>
 </div>
 
+<!-- ============ HISTORY ============ -->
 <div id="scHistory" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 flex justify-between items-end border-b border-white/5 mb-4">
-    <div>
-      <div class="num text-2xl tracking-tight">History</div>
-      <div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">Transaction Log</div>
-    </div>
+    <div><div class="num text-2xl tracking-tight">History</div><div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">Transaction Log</div></div>
     <span id="hi_b" class="text-[10px] font-bold tracking-widest uppercase text-slate-400"></span>
   </div>
   <div class="px-5 flex gap-2 mb-4 overflow-x-auto pb-2" style="scrollbar-width:none">
-    <button onclick="setHF('all')"   id="hf_all" class="tap px-3 py-1.5 rounded text-[9px] font-bold tracking-widest uppercase bg-white/10 text-white">ALL</button>
-    <button onclick="setHF('avoid')" id="hf_av"  class="tap px-3 py-1.5 rounded text-[9px] font-bold tracking-widest uppercase border border-white/10 text-slate-400">AVOID</button>
-    <button onclick="setHF('buy')"   id="hf_bu"  class="tap px-3 py-1.5 rounded text-[9px] font-bold tracking-widest uppercase border border-white/10 text-slate-400">BUY</button>
-    <button onclick="setHF('late')"  id="hf_la"  class="tap px-3 py-1.5 rounded text-[9px] font-bold tracking-widest uppercase border border-white/10 text-slate-400">LATE</button>
+    <button onclick="setHF('all')" id="hf_all" class="tap px-3 py-1.5 rounded text-[9px] font-bold tracking-widest uppercase bg-white/10 text-white">ALL</button>
+    <button onclick="setHF('avoid')" id="hf_av" class="tap px-3 py-1.5 rounded text-[9px] font-bold tracking-widest uppercase border border-white/10 text-slate-400">AVOID</button>
+    <button onclick="setHF('buy')" id="hf_bu" class="tap px-3 py-1.5 rounded text-[9px] font-bold tracking-widest uppercase border border-white/10 text-slate-400">BUY</button>
+    <button onclick="setHF('late')" id="hf_la" class="tap px-3 py-1.5 rounded text-[9px] font-bold tracking-widest uppercase border border-white/10 text-slate-400">LATE</button>
   </div>
   <div class="px-5 space-y-2 overflow-y-auto" id="hi_list"></div>
-  <div id="hi_emp" class="text-center py-12" style="display:none">
-    <div class="text-[10px] tracking-widest uppercase text-slate-500">NO RECORDS</div>
-  </div>
-  <div class="px-5 mt-6 mb-2">
-    <button onclick="openLate()" class="late-btn">+ Add Unverified Record (事後記録)</button>
-  </div>
+  <div id="hi_emp" class="text-center py-12" style="display:none"><div class="text-[10px] tracking-widest uppercase text-slate-500">NO RECORDS</div></div>
+  <div class="px-5 mt-6 mb-2"><button onclick="openLate()" class="late-btn">+ Add Unverified Record (事後記録)</button></div>
 </div>
 
+<!-- ============ BOTTOM NAV ============ -->
 <div id="botNav" class="bot-nav" style="display:none">
   <div class="nb on" id="nb_h" onclick="navTo('scHome','nb_h')"><i class="fa-solid fa-layer-group"></i><span>Dash</span></div>
   <div class="nb" id="nb_hi" onclick="navTo('scHistory','nb_hi')"><i class="fa-solid fa-list"></i><span>Log</span></div>
@@ -548,45 +341,27 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   <div class="nb" id="nb_s" onclick="navTo('scSettings','nb_s')"><i class="fa-solid fa-sliders"></i><span>Config</span></div>
 </div>
 
+<!-- ============ WHY OVERLAY ============ -->
 <div id="whyOv" class="s-ov">
   <div id="whySh" class="s-body">
     <div class="drag-h"></div>
-    <div class="px-6 pt-5 pb-3">
-      <div class="font-bold text-sm tracking-widest uppercase mb-1">Reason for Avoidance</div>
-      <div class="text-[10px] text-slate-500 serif">何が決め手でしたか？(分析用データ)</div>
-      <div id="why_prog" class="w-full h-[2px] rounded-full mt-3 bg-white/5"><div id="why_bar" class="h-[2px] rounded-full bg-gold" style="width:100%;"></div></div>
-    </div>
+    <div class="px-6 pt-5 pb-3"><div class="font-bold text-sm tracking-widest uppercase mb-1">Reason for Avoidance</div><div class="text-[10px] text-slate-500 serif">何が決め手でしたか？(分析用データ)</div><div id="why_prog" class="w-full h-[2px] rounded-full mt-3 bg-white/5"><div id="why_bar" class="h-[2px] rounded-full bg-gold" style="width:100%"></div></div></div>
     <div class="px-5 py-2 space-y-2" id="why_opts"></div>
-    <div class="px-5 pt-2 mb-4">
-      <button onclick="selectWhy(null)" class="tap w-full py-3 rounded text-[10px] font-bold tracking-widest uppercase text-slate-500 border border-white/5">SKIP</button>
-    </div>
+    <div class="px-5 pt-2 mb-4"><button onclick="selectWhy(null)" class="tap w-full py-3 rounded text-[10px] font-bold tracking-widest uppercase text-slate-500 border border-white/5">SKIP</button></div>
   </div>
 </div>
 
+<!-- ============ LATE OVERLAY ============ -->
 <div id="lateOv" class="s-ov" onclick="closeOv(event,'lateOv')">
   <div class="s-body px-6 pt-4 pb-6" onclick="event.stopPropagation()">
     <div class="drag-h"></div>
-    <div class="mt-4 mb-5 text-center">
-      <div class="text-[9px] font-bold tracking-widest uppercase text-amber-500 mb-1">Unverified Record</div>
-      <div class="text-lg font-bold text-white">事後記録</div>
-      <div class="text-[10px] text-slate-400 mt-1 serif">正確なデータが自己分析の精度を高めます。</div>
-    </div>
+    <div class="mt-4 mb-5 text-center"><div class="text-[9px] font-bold tracking-widest uppercase text-amber-500 mb-1">Unverified Record</div><div class="text-lg font-bold text-white">事後記録</div><div class="text-[10px] text-slate-400 mt-1 serif">正確なデータが自己分析の精度を高めます。</div></div>
     <div class="space-y-4">
       <div><div class="lbl">Item Name (必須)</div><input id="lt_n" type="text" placeholder="品名" maxlength="40" class="inp"></div>
-      <div><div class="lbl">Price (必須)</div>
-        <div class="relative"><input id="lt_a" type="number" inputmode="numeric" placeholder="0" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div>
-      </div>
-      <div>
-        <div class="lbl">Category</div>
-        <div class="flex flex-wrap gap-1.5 mt-1 mb-2" id="lt_cats_area">
-          </div>
-        <input id="lt_w" type="text" placeholder="自由入力" class="inp text-xs">
-      </div>
-      <div><div class="lbl">Reason (必須)</div><textarea id="lt_y" rows="2" placeholder="分析用メモ (なぜアプリを通さなかったか)" class="inp"></textarea></div>
-      <div id="lt_rep" class="gc p-4 rounded border-amber-500/20" style="display:none;">
-        <div class="text-[9px] font-bold tracking-widest uppercase text-amber-500 mb-2">Agent Feedback</div>
-        <div id="lt_rt" class="text-xs serif leading-relaxed text-slate-300"></div>
-      </div>
+      <div><div class="lbl">Price (必須)</div><div class="relative"><input id="lt_a" type="number" inputmode="numeric" placeholder="0" class="inp num text-lg pr-8"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">¥</span></div></div>
+      <div><div class="lbl">Category</div><div class="flex flex-wrap gap-1.5 mt-1 mb-2" id="lt_cats_area"></div><input id="lt_w" type="text" placeholder="自由入力" class="inp text-xs"></div>
+      <div><div class="lbl">Reason (必須)</div><textarea id="lt_y" rows="2" placeholder="分析用メモ" class="inp"></textarea></div>
+      <div id="lt_rep" class="gc p-4 rounded border-amber-500/20" style="display:none"><div class="text-[9px] font-bold tracking-widest uppercase text-amber-500 mb-2">Agent Feedback</div><div id="lt_rt" class="text-xs serif leading-relaxed text-slate-300"></div></div>
       <button onclick="submitLate()" class="tap w-full py-4 mt-2 rounded font-bold text-[10px] tracking-widest uppercase bg-amber-500/10 text-amber-500 border border-amber-500/30">Save Record</button>
     </div>
   </div>
@@ -596,874 +371,796 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
 
 <script>
 'use strict';
-const STORE = 'sober_v13';
-
-const HIGH_PRICE_THRESHOLD = 3000;
-
-const FIXED_AMOUNTS = { conv: 2000, uber: 3000, drink: 6000 };
-
-const DEF_CHARS = [
-  { id:1, name:'Logic',        icon:'🧠', img:'', side:'left', role:'データメンター', persona:'冷静なアナリスト。「月末に赤字です。数時間分の労働が消えるのが心配です」と事実ベースで優しく諭す。' },
-  { id:2, name:'Alternative', icon:'💡', img:'', side:'right', role:'ライフプランナー', persona:'優しいコンサルタント。「そのお金、別の経験に使いませんか？家にあるもので代用してみましょう」と提案する。' },
-  { id:3, name:'Guardian',    icon:'🛡️', img:'', side:'left', role:'良き理解者',      persona:'愛のある親友。過去のデータから「前も同じもので後悔してたよね？また同じ思いをしてほしくないな」と引き留める。' }
+var STORE = 'sober_v13';
+var HIGH_PRICE_THRESHOLD = 3000;
+var FIXED_AMOUNTS = { conv: 2000, uber: 3000, drink: 6000 };
+var AI_PERSONA = {
+name: 'Sober',
+icon: '🧊',
+persona: '無駄遣いに否定的な友人。データと失敗パターンを根拠に冷静に引き留める。'
+};
+var DEF_FAILS = [
+{ id: 1, cat: 'コンビニ', name: '導線トラップ浪費', cond: '仕事帰りに「ちょっと寄るだけ」と思い、つい新作スイーツやビールを買ってしまう。' },
+{ id: 2, cat: 'Amazon', name: '深夜のドーパミン買い', cond: '23時以降、仕事のストレスから解放された反動で、不要なガジェットをポチる。' },
+{ id: 3, cat: 'Uber', name: '悪天候の妥協', cond: '雨が降っていると「買い物に行く時間と労力がもったいない」と自分に言い訳してしまう。' }
 ];
-
-const DEF_FAILS = [
-  { id:1, cat:'コンビニ', name:'導線トラップ浪費', cond:'仕事帰りに「ちょっと寄るだけ」と思い、つい新作スイーツやビールを買ってしまう。' },
-  { id:2, cat:'Amazon', name:'深夜のドーパミン買い', cond:'23時以降、仕事のストレスから解放された反動で、不要なガジェットをポチる。' },
-  { id:3, cat:'Uber', name:'悪天候の妥協', cond:'雨が降っていると「買い物に行く時間と労力がもったいない」と自分に言い訳してしまう。' }
+var MINDFUL_MSGS = [
+{ t: 30, msg: '目を閉じて、深く息を吸い込んでください...' },
+{ t: 20, msg: '息をゆっくりと吐き出します...' },
+{ t: 10, msg: '衝動は波のようなものです。波が過ぎ去るのを待ちましょう...' },
+{ t: 0, msg: '決断の時です。' }
 ];
-
-const MINDFUL_MSGS = [
-  { t: 60, msg: "目を閉じて、深く息を吸い込んでください..." },
-  { t: 45, msg: "息をゆっくりと吐き出します..." },
-  { t: 30, msg: "それは、本当にあなたの人生の価値を高めるものですか？" },
-  { t: 15, msg: "衝動は波のようなものです。波が過ぎ去るのを静かに待ちましょう..." },
-  { t: 0, msg: "決断の時です。" }
+var WHY_OPTS = [
+{ id: 'hours', icon: 'fa-briefcase', label: '時給換算の非効率性', color: 'var(--amber)' },
+{ id: 'ai', icon: 'fa-robot', label: 'AIの分析・客観的指摘', color: 'var(--cyan)' },
+{ id: 'deficit', icon: 'fa-chart-line', label: '赤字リスクへの危機感', color: 'var(--red)' },
+{ id: 'cooled', icon: 'fa-snowflake', label: '冷却期間による冷静化', color: 'var(--tx2)' },
+{ id: 'price', icon: 'fa-tag', label: '価格の妥当性欠如', color: 'var(--green)' }
 ];
-
-const WHY_OPTS = [
-  { id:'hours', icon:'fa-briefcase', label:'時給換算の非効率性', color:'var(--amber)' },
-  { id:'ai', icon:'fa-robot', label:'AIの諭し・客観的指摘', color:'var(--cyan)' },
-  { id:'deficit', icon:'fa-chart-line', label:'赤字リスクへの危機感', color:'var(--red)' },
-  { id:'cooled', icon:'fa-snowflake', label:'冷却期間による冷静化', color:'var(--tx2)' },
-  { id:'price', icon:'fa-tag', label:'価格の妥当性欠如', color:'var(--green)' },
+var LATE_TX = [
+{ kw: ['セール', '割引', '限定', 'タイムセール'], txt: 'セールはマーケティングの基本です。本来の価値を見失っています。' },
+{ kw: ['気づいたら', '無意識', 'なんとなく'], txt: '認知バイアスに負けましたね。プロセスを経ない支出はリスクです。' },
+{ kw: ['急い', '時間', 'すぐ', '今すぐ'], txt: '決断を遅らせる猶予を持てない状況での支出は、往々にして不合理です。' },
+{ kw: ['ストレス', '疲れ', '嫌', '発散'], txt: '感情的支出ですね。根本的解決にはなりません。' },
+{ kw: ['お酒', '酒', 'ビール', 'コンビニ'], txt: '少額の積み重ねが、マクロな予算を破壊します。' },
+{ kw: [], txt: '記録完了。次回の判断材料になります。' }
 ];
-
-const LATE_TX = [
-  { kw:['セール','割引','限定','タイムセール'], txt:'セールはマーケティングの基本です。本来の価値を見失っています。' },
-  { kw:['気づいたら','無意識','なんとなく'], txt:'認知バイアスに負けましたね。プロセスを経ない支出はリスクです。' },
-  { kw:['急い','時間','すぐ','今すぐ'], txt:'決断を遅らせる猶予を持てない状況での支出は、往々にして不合理です。' },
-  { kw:['ストレス','疲れ','嫌','発散'], txt:'感情的支出ですね。根本的解決にはなりません。' },
-  { kw:['お酒','酒','ビール','コンビニ'], txt:'少額の積み重ねが、マクロな予算を破壊します。' },
-  { kw:[], txt:'記録処理完了。データとしての正確性が次回の判断材料になります。' }
-];
-
-function mKey(d = new Date()) { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; }
-function today() { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
-function daysInM(key = mKey()) { const [y,m] = key.split('-').map(Number); return new Date(y,m,0).getDate(); }
-function remDays(key = mKey()) { const d = new Date(); return daysInM(key) - d.getDate() + 1; }
-function yenHtml(n) { const num = Number(n||0); const sign = num < 0 ? '-' : ''; return `${sign}<span class="text-[0.6em] text-slate-500 mr-0.5 font-sans font-normal">¥</span>${Math.abs(num).toLocaleString()}`; }
-function fmtM(k) { const [y,m] = k.split('-'); return `${y}.${parseInt(m)}`; }
-function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,5); }
-function hourly(data) { return Math.round((data.income||0)/160); }
-function freeAmt(data) { return (data.income||0) - (data.savingsGoal||0) - (data.fixedCost||0); }
-function usedAmt(data, key=mKey()) { 
-  const m = data.months?.[key]; 
-  if(!m || !Array.isArray(m.records)) return 0; 
-  return m.records.filter(r=>r.result==='buy'||r.result==='late_buy').reduce((s,r)=>s+(Number(r.amount)||0),0); 
+function mKey(d) {
+if (!d) d = new Date();
+return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
 }
-function load() { try { const r = localStorage.getItem(STORE); return r ? JSON.parse(r) : null; } catch { return null; } }
-function save(d) { try { localStorage.setItem(STORE, JSON.stringify(d)); } catch(e) { console.error(e); } }
-function getMonth(data, key=mKey()) { if(!data.months) data.months={}; if(!data.months[key]) data.months[key]={records:[],zaimTotal:null}; return data.months[key]; }
-
-let _toastTimer = null;
-function showToast(msg) { const el = document.getElementById('toast'); document.getElementById('toast_t').textContent = msg; el.classList.add('show'); if(_toastTimer) clearTimeout(_toastTimer); _toastTimer = setTimeout(()=>el.classList.remove('show'),3000); }
-
-const ALL_SCR = ['scSetup','scHome','scChecker','scAiChat','scSummary','scMindful','scReport','scSettings','scHistory'];
-const NAV_SCR = ['scHome','scHistory','scReport','scSettings'];
-
+function today() {
+var d = new Date();
+return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function daysInM(key) {
+if (!key) key = mKey();
+var parts = key.split('-');
+return new Date(Number(parts[0]), Number(parts[1]), 0).getDate();
+}
+function remDays(key) {
+if (!key) key = mKey();
+return daysInM(key) - new Date().getDate() + 1;
+}
+function yenHtml(n) {
+var num = Number(n || 0);
+var sign = num < 0 ? '-' : '';
+return sign + '<span class="text-[0.6em] text-slate-500 mr-0.5 font-sans font-normal">¥</span>' + Math.abs(num).toLocaleString();
+}
+function fmtM(k) {
+var parts = k.split('-');
+return parts[0] + '.' + parseInt(parts[1]);
+}
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 5); }
+function safeInt(val, fallback) {
+var n = parseInt(val, 10);
+return isNaN(n) ? (fallback !== undefined ? fallback : 0) : n;
+}
+function hourly(data) { return Math.round((data.income || 0) / 160); }
+function freeAmt(data) { return (data.income || 0) - (data.savingsGoal || 0) - (data.fixedCost || 0); }
+function usedAmt(data, key) {
+if (!key) key = mKey();
+var m = data.months ? data.months[key] : null;
+if (!m || !Array.isArray(m.records)) return 0;
+return m.records.filter(function (r) { return r.result === 'buy' || r.result === 'late_buy'; }).reduce(function (s, r) { return s + (Number(r.amount) || 0); }, 0);
+}
+function load() { try { var r = localStorage.getItem(STORE); return r ? JSON.parse(r) : null; } catch (e) { return null; } }
+function save(d) { try { localStorage.setItem(STORE, JSON.stringify(d)); } catch (e) { console.error(e); } }
+function getMonth(data, key) {
+if (!key) key = mKey();
+if (!data.months) data.months = {};
+if (!data.months[key]) data.months[key] = { records: [], zaimTotal: null };
+return data.months[key];
+}
+var _toastTimer = null;
+function showToast(msg) {
+var el = document.getElementById('toast');
+document.getElementById('toast_t').textContent = msg;
+el.classList.add('show');
+if (_toastTimer) clearTimeout(_toastTimer);
+_toastTimer = setTimeout(function () { el.classList.remove('show'); }, 3000);
+}
+var ALL_SCR = ['scSetup', 'scHome', 'scChecker', 'scAiChat', 'scFinalCheck', 'scMindful', 'scReport', 'scSettings', 'scHistory'];
+var NAV_SCR = ['scHome', 'scHistory', 'scReport', 'scSettings'];
 function showScreen(id) {
-  ALL_SCR.forEach(s => document.getElementById(s).style.display = 'none');
-  document.getElementById(id).style.display = 'block';
-  document.getElementById('botNav').style.display = NAV_SCR.includes(id) ? 'flex' : 'none';
-  if(id==='scHome') renderHome();
-  if(id==='scHistory') renderHistory();
-  if(id==='scReport') renderReport();
-  if(id==='scSettings') renderSettings();
-  window.scrollTo(0,0);
+ALL_SCR.forEach(function (s) { document.getElementById(s).style.display = 'none'; });
+document.getElementById(id).style.display = 'block';
+document.getElementById('botNav').style.display = NAV_SCR.indexOf(id) >= 0 ? 'flex' : 'none';
+if (id === 'scHome') renderHome();
+if (id === 'scHistory') renderHistory();
+if (id === 'scReport') renderReport();
+if (id === 'scSettings') renderSettings();
+window.scrollTo(0, 0);
 }
-
 function navTo(scr, nid) {
-  showScreen(scr);
-  document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
-  if(nid) document.getElementById(nid).classList.add('on');
+showScreen(scr);
+document.querySelectorAll('.nb').forEach(function (b) { b.classList.remove('on'); });
+if (nid) document.getElementById(nid).classList.add('on');
 }
-
-// 中断してホームへ戻る（左上の×ボタン用）
 function cancelProcess() {
-  const data = load();
-  if (data && _jgItem) {
-    data.pendingBuys = (data.pendingBuys || []).filter(p => p.id !== _jgItem.id);
-    save(data);
-  }
-  _jgItem = null;
-  clearTimers();
-  navTo('scHome', 'nb_h');
-  showToast('分析を中断しました');
+var data = load();
+if (data && _jgItem) {
+data.pendingBuys = (data.pendingBuys || []).filter(function (p) { return p.id !== _jgItem.id; });
+save(data);
 }
-
-function initChecker() {
-  const amtInput = document.getElementById('ck_a');
-  amtInput.readOnly = false;
-  amtInput.style.opacity = '1';
-  document.getElementById('ck_cmp').style.display = 'none';
-  document.getElementById('ck_btn_next').style.display = 'none';
-  document.getElementById('ck_fixed_badge').style.display = 'none';
-  document.getElementById('ck_amt_label').textContent = 'Target Price';
+_jgItem = null;
+clearTimers();
+navTo('scHome', 'nb_h');
+showToast('分析を中断しました');
 }
-
-// ======================================================
-// Setup & Settings
-// ======================================================
-function buildCharForm(containerId, chars) {
-  const el = document.getElementById(containerId); if(!el) return;
-  el.innerHTML = chars.map((c,i) => `
-    <div class="gc p-4">
-      <div class="text-[9px] uppercase tracking-widest text-slate-500 font-bold mb-2">${c.role}</div>
-      <div class="flex gap-3 mb-3">
-        <div class="relative flex-shrink-0">
-          <div id="cp_${c.id}" class="w-10 h-10 rounded flex items-center justify-center text-lg overflow-hidden bg-black/50 border border-white/10" data-b64="${c.img||''}">
-            ${c.img ? `<img src="${c.img}" style="width:100%;height:100%;object-fit:cover">` : (c.icon||'👤')}
-          </div>
-          <label for="ci_${c.id}" class="tap absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center bg-gold cursor-pointer border border-black shadow">
-            <i class="fa-solid fa-camera text-[10px] text-black"></i>
-          </label>
-          <input type="file" id="ci_${c.id}" accept="image/*" style="display:none" onchange="onCharImg(event,${c.id})">
-        </div>
-        <div class="flex-1 flex flex-col justify-center">
-          <input type="text" id="cn_${c.id}" value="${c.name}" placeholder="エージェント名" class="inp text-xs">
-          <input type="hidden" id="ck_${c.id}" value="${c.icon}">
-        </div>
-      </div>
-      <textarea id="cp2_${c.id}" rows="2" placeholder="Persona" class="inp text-[10px] text-slate-400" style="resize:none">${c.persona}</textarea>
-    </div>`).join('');
-}
-
-function compressImg(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      const img = new Image();
-      img.onload = () => {
-        const cv = document.createElement('canvas'); cv.width = cv.height = 100;
-        const ctx = cv.getContext('2d'); const side = Math.min(img.width, img.height);
-        ctx.drawImage(img, (img.width - side) / 2, (img.height - side) / 2, side, side, 0, 0, 100, 100);
-        resolve(cv.toDataURL('image/jpeg', 0.75));
-      }; img.onerror = reject; img.src = e.target.result;
-    }; reader.onerror = reject; reader.readAsDataURL(file);
-  });
-}
-
-async function onCharImg(event, charId) {
-  const file = event.target.files[0]; if (!file) return;
-  try {
-    const b64 = await compressImg(file);
-    const prev = document.getElementById(`cp_${charId}`);
-    prev.innerHTML = `<img src="${b64}" style="width:100%;height:100%;object-fit:cover">`;
-    prev.dataset.b64 = b64;
-    showToast('IMAGE UPDATED');
-  } catch { showToast('IMAGE ERROR'); }
-}
-
 function initSetup() {
-  const data = load()||{}; buildCharForm('su_chars', data.chars || DEF_CHARS);
-  document.getElementById('su_i').value = data.income || 280000;
-  document.getElementById('su_g').value = data.savingsGoal || 30000;
-  document.getElementById('su_f').value = data.fixedCost !== undefined ? data.fixedCost : 98000;
-  if(data.geminiKey) document.getElementById('su_k').value=data.geminiKey;
-  if(data.gasUrl) document.getElementById('su_gas').value=data.gasUrl;
-  
-  const updatePrev = () => {
-    const i=parseInt(document.getElementById('su_i').value)||0;
-    const g=parseInt(document.getElementById('su_g').value)||0;
-    const f=parseInt(document.getElementById('su_f').value)||0;
-    const pr=document.getElementById('su_prev');
-    if(i>0){document.getElementById('su_free').innerHTML=yenHtml(i-g-f);pr.style.display='block';}
-    else pr.style.display='none';
-  };
-
-  ['su_i','su_g','su_f'].forEach(id => {
-    document.getElementById(id).addEventListener('input', updatePrev);
-  });
-  updatePrev();
+var data = load() || {};
+document.getElementById('su_i').value = data.income || 280000;
+document.getElementById('su_g').value = data.savingsGoal || 30000;
+document.getElementById('su_f').value = data.fixedCost !== undefined ? data.fixedCost : 98000;
+if (data.geminiKey) document.getElementById('su_k').value = data.geminiKey;
+if (data.gasUrl) document.getElementById('su_gas').value = data.gasUrl;
+var updatePrev = function () {
+var i = parseInt(document.getElementById('su_i').value) || 0;
+var g = parseInt(document.getElementById('su_g').value) || 0;
+var f = parseInt(document.getElementById('su_f').value) || 0;
+var pr = document.getElementById('su_prev');
+if (i > 0) { document.getElementById('su_free').innerHTML = yenHtml(i - g - f); pr.style.display = 'block'; }
+else pr.style.display = 'none';
+};
+['su_i', 'su_g', 'su_f'].forEach(function (id) { document.getElementById(id).addEventListener('input', updatePrev); });
+updatePrev();
 }
-
 function doSetup() {
-  const inc=parseInt(document.getElementById('su_i').value);
-  const goal=parseInt(document.getElementById('su_g').value);
-  const fix=parseInt(document.getElementById('su_f').value)||0;
-  const key=document.getElementById('su_k').value.trim();
-  const gas=document.getElementById('su_gas').value.trim();
-  if(!inc||inc<1000){showToast('月収を入力してください');return;}
-  if(!goal||goal<100){showToast('貯金目標を入力してください');return;}
-  if(goal>=inc){showToast('目標が月収を超えています');return;}
-  const data=load()||{months:{},pendingBuys:[]};
-  data.income=inc; data.savingsGoal=goal; data.fixedCost=fix; data.geminiKey=key; data.gasUrl=gas; data.setup=true;
-  if(!data.chars) data.chars=DEF_CHARS;
-  if(!data.failures) data.failures=DEF_FAILS;
-  if(!data.months) data.months={};
-  if(!data.pendingBuys) data.pendingBuys=[];
-  save(data); navTo('scHome','nb_h'); showToast('SYSTEM READY');
+var inc = safeInt(document.getElementById('su_i').value);
+var goal = safeInt(document.getElementById('su_g').value);
+var fix = safeInt(document.getElementById('su_f').value, 0);
+var key = document.getElementById('su_k').value.trim();
+var gas = document.getElementById('su_gas').value.trim();
+if (!inc || inc < 1000) { showToast('月収を入力してください'); return; }
+if (!goal || goal < 100) { showToast('貯金目標を入力してください'); return; }
+if (goal >= inc) { showToast('目標が月収を超えています'); return; }
+var data = load() || { months: {}, pendingBuys: [] };
+data.income = inc; data.savingsGoal = goal; data.fixedCost = fix; data.geminiKey = key; data.gasUrl = gas; data.setup = true;
+if (!data.failures) data.failures = DEF_FAILS;
+if (!data.months) data.months = {};
+if (!data.pendingBuys) data.pendingBuys = [];
+save(data);
+navTo('scHome', 'nb_h');
+showToast('SYSTEM READY');
 }
-
-// ======================================================
-// Home
-// ======================================================
 function renderHome() {
-  const data=load(); if(!data) return;
-  const key=mKey(); const month=getMonth(data,key); save(data);
-  const free=freeAmt(data); const used=usedAmt(data,key); const remM=free-used;
-  const remPct=free>0 ? Math.max(0,Math.round((remM/free)*100)) : 0;
-  const dNum=new Date().getDate(); const dRem=remDays(key);
-  const dailyLimit=remM>0 ? Math.round(remM/dRem) : 0;
-  const dailyBurn=used/dNum;
-
-  const statusPanel=document.getElementById('hm_status_panel');
-  const sTitle=document.getElementById('hm_status_title');
-  const sIcon=document.getElementById('hm_status_icon');
-  const sDesc=document.getElementById('hm_status_desc');
-  const sBurn=document.getElementById('hm_burn_rate');
-  const thr = data.wishThreshold || HIGH_PRICE_THRESHOLD;
-
-  if(dNum<=10){
-    statusPanel.className='gc p-4 a0 flex flex-col justify-center border-l-2 border-l-amber-500 bg-amber-500/5';
-    sTitle.textContent='STATUS: 月初バイアス警戒期'; sTitle.className='text-[10px] font-bold tracking-widest uppercase text-amber-500';
-    sIcon.className='fas fa-exclamation-triangle text-amber-500';
-    sDesc.textContent=`給料日後のメンタルアカウンティングに注意。${thr.toLocaleString()}円以上の決済は強力に抑制されます。`;
-  } else if(dNum<=20){
-    statusPanel.className='gc p-4 a0 flex flex-col justify-center border-l-2 border-l-cyan-500 bg-cyan-500/5';
-    sTitle.textContent='STATUS: 適正判断フェーズ'; sTitle.className='text-[10px] font-bold tracking-widest uppercase text-cyan-400';
-    sIcon.className='fas fa-scale-balanced text-cyan-400';
-    sDesc.textContent='フラットな判断ができる時期です。予算の消化ペースに注意してください。';
-  } else {
-    statusPanel.className='gc p-4 a0 flex flex-col justify-center border-l-2 border-l-red-500 bg-red-500/5';
-    sTitle.textContent='STATUS: 予算防衛フェーズ'; sTitle.className='text-[10px] font-bold tracking-widest uppercase text-red-500';
-    sIcon.className='fas fa-shield-halved text-red-500';
-    sDesc.textContent='予算が枯渇しはじめる時期です。来月の前借りになるような支出は控えてください。';
-  }
-
-  if(dailyBurn>0){
-    const daysToZero=free/dailyBurn; const shortDate=Math.round(daysToZero); const dInM=daysInM(key);
-    if(shortDate<=dInM){ sBurn.innerHTML=`<span class="text-red-400"><i class="fas fa-fire-flame-curved mr-1"></i>BURN RATE ALERT: このペースだと ${shortDate}日 に資金がショートします</span>`; }
-    else { sBurn.innerHTML=`<span class="text-emerald-400"><i class="fas fa-check mr-1"></i>SAFE BURN RATE: 月末まで資金は維持される予測です</span>`; }
-  } else { sBurn.innerHTML=`<span class="text-emerald-400"><i class="fas fa-check mr-1"></i>NO SPEND: 支出ゼロを維持しています</span>`; }
-
-  document.getElementById('hm_month').textContent=fmtM(key);
-  document.getElementById('hm_daily').innerHTML=yenHtml(dailyLimit);
-  document.getElementById('hm_remM').innerHTML=yenHtml(remM);
-  document.getElementById('hm_remM').style.color=remPct>40?'var(--tx)':remPct>15?'var(--amber)':'var(--red)';
-  const bar=document.getElementById('hm_bar'); bar.style.width=remPct+'%'; bar.style.background=remPct>40?'var(--gold)':remPct>15?'var(--amber)':'var(--red)';
-  document.getElementById('hm_up').textContent=`USED ${100-remPct}%`;
-  document.getElementById('hm_rp').textContent=`LEFT ${remPct}%`;
-
-  const av=month.records.filter(r=>r.result==='avoid');
-  const bu=month.records.filter(r=>r.result==='buy');
-  const la=month.records.filter(r=>r.result==='late_buy');
-  document.getElementById('hm_ac').textContent=av.length; document.getElementById('hm_ay').innerHTML=yenHtml(av.reduce((s,r)=>s+r.amount,0));
-  document.getElementById('hm_bc').textContent=bu.length; document.getElementById('hm_by').innerHTML=yenHtml(bu.reduce((s,r)=>s+r.amount,0));
-  document.getElementById('hm_gc').textContent=la.length; document.getElementById('hm_gy').innerHTML=yenHtml(la.reduce((s,r)=>s+r.amount,0));
-
-  const recent=[...month.records].reverse().slice(0, 5);
-  const listEl=document.getElementById('hm_list');
-  if(!recent.length){ listEl.innerHTML=`<div class="text-center py-6 text-[10px] tracking-widest text-slate-600 uppercase border border-white/5 rounded">No Data Available</div>`; }
-  else { listEl.innerHTML=recent.map((r,i)=>recRow(r,i,false)).join(''); }
+var data = load(); if (!data) return;
+var key = mKey(); var month = getMonth(data, key); save(data);
+var free = freeAmt(data); var used = usedAmt(data, key); var remM = free - used;
+var remPct = free > 0 ? Math.max(0, Math.round((remM / free) * 100)) : 0;
+var dNum = new Date().getDate(); var dRem = remDays(key);
+var dailyLimit = remM > 0 ? Math.round(remM / dRem) : 0;
+var dailyBurn = used / dNum;
+var thr = data.wishThreshold || HIGH_PRICE_THRESHOLD;
+var statusPanel = document.getElementById('hm_status_panel');
+var sTitle = document.getElementById('hm_status_title');
+var sIcon = document.getElementById('hm_status_icon');
+var sDesc = document.getElementById('hm_status_desc');
+var sBurn = document.getElementById('hm_burn_rate');
+if (dNum <= 10) {
+statusPanel.className = 'gc p-4 a0 flex flex-col justify-center border-l-2 border-l-amber-500 bg-amber-500/5';
+sTitle.textContent = 'STATUS: 月初バイアス警戒期'; sTitle.className = 'text-[10px] font-bold tracking-widest uppercase text-amber-500';
+sIcon.className = 'fas fa-exclamation-triangle text-amber-500';
+sDesc.textContent = '給料日後の余裕の錯覚に注意。' + thr.toLocaleString() + '円以上の決済は強力に抑制されます。';
+} else if (dNum <= 20) {
+statusPanel.className = 'gc p-4 a0 flex flex-col justify-center border-l-2 border-l-cyan-500 bg-cyan-500/5';
+sTitle.textContent = 'STATUS: 適正判断フェーズ'; sTitle.className = 'text-[10px] font-bold tracking-widest uppercase text-cyan-400';
+sIcon.className = 'fas fa-scale-balanced text-cyan-400';
+sDesc.textContent = 'フラットな判断ができる時期です。予算消化ペースに注意。';
+} else {
+statusPanel.className = 'gc p-4 a0 flex flex-col justify-center border-l-2 border-l-red-500 bg-red-500/5';
+sTitle.textContent = 'STATUS: 予算防衛フェーズ'; sTitle.className = 'text-[10px] font-bold tracking-widest uppercase text-red-500';
+sIcon.className = 'fas fa-shield-halved text-red-500';
+sDesc.textContent = '予算枯渇の時期です。来月への前借りを防いでください。';
 }
-
-// ======================================================
-// Checker (Situational Input)
-// ======================================================
-let _currentSituation = 'other';
-
+if (dailyBurn > 0) {
+var daysToZero = free / dailyBurn; var shortDate = Math.round(daysToZero); var dInM = daysInM(key);
+if (shortDate <= dInM) { sBurn.innerHTML = '<span class="text-red-400"><i class="fas fa-fire-flame-curved mr-1"></i>BURN RATE ALERT: ' + shortDate + '日目にショート</span>'; }
+else { sBurn.innerHTML = '<span class="text-emerald-400"><i class="fas fa-check mr-1"></i>SAFE: 月末まで維持予測</span>'; }
+} else { sBurn.innerHTML = '<span class="text-emerald-400"><i class="fas fa-check mr-1"></i>NO SPEND</span>'; }
+document.getElementById('hm_month').textContent = fmtM(key);
+document.getElementById('hm_daily').innerHTML = yenHtml(dailyLimit);
+document.getElementById('hm_remM').innerHTML = yenHtml(remM);
+document.getElementById('hm_remM').style.color = remPct > 40 ? 'var(--tx)' : remPct > 15 ? 'var(--amber)' : 'var(--red)';
+var bar = document.getElementById('hm_bar'); bar.style.width = remPct + '%'; bar.style.background = remPct > 40 ? 'var(--gold)' : remPct > 15 ? 'var(--amber)' : 'var(--red)';
+document.getElementById('hm_up').textContent = 'USED ' + (100 - remPct) + '%';
+document.getElementById('hm_rp').textContent = 'LEFT ' + remPct + '%';
+var av = month.records.filter(function (r) { return r.result === 'avoid'; });
+var bu = month.records.filter(function (r) { return r.result === 'buy'; });
+var la = month.records.filter(function (r) { return r.result === 'late_buy'; });
+document.getElementById('hm_ac').textContent = av.length; document.getElementById('hm_ay').innerHTML = yenHtml(av.reduce(function (s, r) { return s + r.amount; }, 0));
+document.getElementById('hm_bc').textContent = bu.length; document.getElementById('hm_by').innerHTML = yenHtml(bu.reduce(function (s, r) { return s + r.amount; }, 0));
+document.getElementById('hm_gc').textContent = la.length; document.getElementById('hm_gy').innerHTML = yenHtml(la.reduce(function (s, r) { return s + r.amount; }, 0));
+var recent = month.records.slice().reverse().slice(0, 5);
+var listEl = document.getElementById('hm_list');
+if (!recent.length) { listEl.innerHTML = '<div class="text-center py-6 text-[10px] tracking-widest text-slate-600 uppercase border border-white/5 rounded">No Data Available</div>'; }
+else { listEl.innerHTML = recent.map(function (r, i) { return recRow(r, i, false); }).join(''); }
+}
+var _currentSituation = 'other';
 function startAnalysis(type) {
-  _currentSituation = type;
-
-  // 1. フォームリセット
-  const amtInput = document.getElementById('ck_a');
-  amtInput.readOnly = false;
-  amtInput.style.opacity = '1';
-  document.getElementById('ck_cmp').style.display = 'none';
-  
-  const btnNext = document.getElementById('ck_btn_next');
-  btnNext.style.display = 'none';
-  btnNext.disabled = true;
-
-  document.getElementById('ck_fixed_badge').style.display = 'none';
-  document.getElementById('ck_amt_label').textContent = 'Target Price';
-  
-  ['ck_a','ck_n','ck_r','ck_u'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
-
-  // 2. タイトル設定
-  const titles = { conv:'コンビニ', amazon:'Amazon', uber:'Uber Eats', drink:'飲み会', other:'詳細分析' };
-  document.getElementById('ck_title').textContent = titles[type] || 'Analyzer';
-
-  // 3. 表示制御
-  document.getElementById('f_url').style.display = type==='amazon' ? 'block' : 'none';
-  document.getElementById('f_detail').style.display = (type==='other'||type==='amazon') ? 'block' : 'none';
-
-  const defaultNames = { drink:'飲み代 / タクシー代', uber:'デリバリー食費', conv:'コンビニ購入' };
-  document.getElementById('ck_n').value = defaultNames[type] || '';
-
-  // 4. まず画面を表示（裏側で非表示だった要素を展開するため）
-  showScreen('scChecker');
-
-  // 5. 固定金額の自動セットとAIレビューへの展開
-  const fixedAmt = FIXED_AMOUNTS[type];
-  const badge = document.getElementById('ck_fixed_badge');
-  const lbl = document.getElementById('ck_amt_label');
-
-  if(fixedAmt){
-    amtInput.value = fixedAmt;
-    amtInput.readOnly = true;
-    amtInput.style.opacity = '0.55';
-    badge.style.display = 'inline-flex';
-    lbl.textContent = `Fixed Amount (¥${fixedAmt.toLocaleString()})`;
-    onAmt(); // 金額セット後にインパクト計算とボタン表示をトリガー
-  } else {
-    setTimeout(()=>{ amtInput.focus(); }, 350);
-  }
+_currentSituation = type;
+var amtInput = document.getElementById('ck_a');
+amtInput.readOnly = false; amtInput.style.opacity = '1';
+var btnNext = document.getElementById('ck_btn_next');
+btnNext.style.display = 'none'; btnNext.disabled = true;
+document.getElementById('ck_fixed_badge').style.display = 'none';
+document.getElementById('ck_amt_label').textContent = 'Target Price';
+['ck_a', 'ck_n', 'ck_r', 'ck_u'].forEach(function (id) { var el = document.getElementById(id); if (el) el.value = ''; });
+var titles = { conv: 'コンビニ', amazon: 'Amazon', uber: 'Uber Eats', drink: '居酒屋', other: '詳細分析' };
+document.getElementById('ck_title').textContent = titles[type] || 'Analyzer';
+document.getElementById('f_url').style.display = type === 'amazon' ? 'block' : 'none';
+document.getElementById('f_detail').style.display = (type === 'other' || type === 'amazon') ? 'block' : 'none';
+var defaultNames = { drink: '居酒屋 / タクシー代', uber: 'デリバリー食費', conv: 'コンビニ購入' };
+document.getElementById('ck_n').value = defaultNames[type] || '';
+showScreen('scChecker');
+var fixedAmt = FIXED_AMOUNTS[type];
+if (fixedAmt) {
+amtInput.value = fixedAmt; amtInput.readOnly = true; amtInput.style.opacity = '0.55';
+document.getElementById('ck_fixed_badge').style.display = 'inline-flex';
+document.getElementById('ck_amt_label').textContent = 'Fixed Amount (\u00A5' + fixedAmt.toLocaleString() + ')';
+onAmt();
+} else {
+setTimeout(function () { amtInput.focus(); }, 350);
 }
-
+}
 function onAmt() {
-  try {
-    const data=load(); 
-    const amt=parseInt(document.getElementById('ck_a').value)||0;
-    const cmp=document.getElementById('ck_cmp'); 
-    const btnNext=document.getElementById('ck_btn_next');
-    
-    if(amt<=0||!data){
-      cmp.style.display='none';
-      btnNext.style.display='none';
-      return;
-    }
-    
-    cmp.style.display='block';
-    
-    // ボタンを明示的に表示し、クリック可能にする
-    btnNext.style.display='block';
-    btnNext.disabled=false;
-    btnNext.className='tap w-full py-4 rounded font-bold text-[11px] tracking-widest uppercase mt-6 mb-4 transition-all bg-white/5 border border-white/10 text-white';
-    btnNext.innerHTML='Proceed to AI Review <i class="fa-solid fa-robot ml-1 text-cyan-400"></i>';
-
-    const hr=hourly(data); const free=freeAmt(data); const used=usedAmt(data);
-    const remM=free-used; const dRem=remDays(); const dailyLimit=remM>0?Math.round(remM/dRem):0;
-    const remAfterT=dailyLimit-amt; const remAfterM=remM-amt;
-    const hrs=hr>0?(amt/hr).toFixed(1):'---';
-
-    document.getElementById('ck_h').innerHTML=`<span class="mono text-xl text-white">${hrs}</span><span class="text-[10px] text-slate-500 ml-1 font-sans">h</span>`;
-    const tpct=dailyLimit>0?Math.max(0,Math.round((remAfterT/dailyLimit)*100)):0;
-    const tc=tpct>40?'var(--gold)':tpct>10?'var(--amber)':'var(--red)';
-    // 【バグ修正】flexにしてgapを設けることで文字の重なりを解消
-    document.getElementById('ck_t').innerHTML=`<span class="mono text-slate-500 line-through">${yenHtml(dailyLimit)}</span><span class="mono" style="color:${tc}">${yenHtml(remAfterT)}</span>`;
-    const tb=document.getElementById('ck_tb'); tb.style.width=tpct+'%'; tb.style.background=tc;
-    
-    const mc=remAfterM<0?'var(--red)':'var(--green)';
-    document.getElementById('ck_m').innerHTML=`<span class="mono" style="color:${mc}">${yenHtml(remAfterM)}</span>`+(remAfterM<0?` <span class="text-[8px] tracking-widest text-red-500 uppercase ml-1 block">Deficit</span>`:'');
-  } catch(e) {
-    console.error('Impact Calculation Error:', e);
-  }
+var amt = parseInt(document.getElementById('ck_a').value) || 0;
+var btnNext = document.getElementById('ck_btn_next');
+if (amt <= 0) { btnNext.style.display = 'none'; return; }
+btnNext.style.display = 'block'; btnNext.disabled = false;
 }
-
-let _jgItem=null; let _imp='mid'; let _impRsn=''; let _chatHistory=[];
-
-async function goNextStep() {
-  const amt=parseInt(document.getElementById('ck_a').value); const name=document.getElementById('ck_n').value.trim()||'ITEM';
-  const url=document.getElementById('ck_u').value.trim();
-  if(!amt||amt<=0){showToast('AMOUNT REQUIRED');return;}
-
-  const data=load();
-  let reason='';
-  if(_currentSituation==='other'||_currentSituation==='amazon'){
-    reason=document.getElementById('ck_r').value.trim();
-  }
-
-  _jgItem={id:uid(),name,amount:amt,cat:_currentSituation,catIcon:'🛒',reason,url,createdAt:Date.now()};
-  if(!data.pendingBuys) data.pendingBuys=[];
-  data.pendingBuys.push(_jgItem); save(data);
-
-  showScreen('scAiChat');
-  document.getElementById('ai_chat_area').innerHTML='';
-  document.getElementById('chat_action_area').style.display='none';
-  document.getElementById('chat_loading').style.display='block';
-  
-  if (data.geminiKey) {
-    startAiChat(data);
-  } else {
-    startAiChatMock(data);
-  }
+var _jgItem = null;
+var _chatHistory = [];
+function goNextStep() {
+var amt = safeInt(document.getElementById('ck_a').value);
+var name = document.getElementById('ck_n').value.trim() || 'ITEM';
+var url = document.getElementById('ck_u').value.trim();
+if (!amt || amt <= 0) { showToast('AMOUNT REQUIRED'); return; }
+var data = load();
+var reason = '';
+if (_currentSituation === 'other' || _currentSituation === 'amazon') {
+reason = document.getElementById('ck_r').value.trim();
 }
-
-// ======================================================
-// AI Prompts & Chat
-// ======================================================
-function buildAiPrompt(data, forChat) {
-  const chars = data.chars || DEF_CHARS; const hrs = hourly(data) > 0 ? (_jgItem.amount / hourly(data)).toFixed(1) : '不明';
-  const dateNum = new Date().getDate();
-  const thr = data.wishThreshold || HIGH_PRICE_THRESHOLD;
-  let timeContext = '';
-  if(dateNum <= 10) timeContext = `月初(${dateNum}日)です。給料日直後の『余裕がある錯覚（Payday Effect）』に陥っています。${_jgItem.amount >= thr ? 'この出費は本当に今必要でしょうか？' : ''}「今は月初特有の錯覚に陥っています」と強く警告し、購入（または外出）をやめるよう説得してください。`;
-  else if(dateNum <= 20) timeContext = `月中(${dateNum}日)です。フラットに判断できる時期ですが、予算の消化ペースに注意喚起してください。`;
-  else timeContext = `月末(${dateNum}日)です。予算が枯渇しはじめる防衛期です。この支出が来月の負担にならないか厳しく追及してください。`;
-
-  let sitCtx = '';
-  if(_jgItem.cat==='conv') sitCtx = '【状況】コンビニへ行く前です。「行く」か「行かない」かの2択で葛藤しています。時給換算や、数百円の積み重ねによる健康・習慣への悪影響を心配して、「家のコーヒーで一息つきませんか？」と引き留めてください。';
-  else if(_jgItem.cat==='amazon') sitCtx = `【状況】AmazonなどのECで決済する前です。URL(${_jgItem.url})が提供されていれば市場価格やブランド代を推測し、「本当にいる？代用できない？使わなくなるでしょ？」という切り口で徹底的に検討させ、スペック過剰でないか諭してください。必要に応じてユーザーの理由（${_jgItem.reason}）も参考にしてください。`;
-  else if(_jgItem.cat==='uber') sitCtx = '【状況】Uber Eatsを頼む前です。店舗価格より割高な手数料・配達料（怠惰への課金）を分解し、歩いて買いに行くメリットや自炊の提案など「怠惰への課金」を諭してください。';
-  else if(_jgItem.cat==='drink') sitCtx = '【状況】飲み会の2次会または深夜タクシーです。限界効用（これ以上の満足度は下がり、明日のパフォーマンスを落とす）の観点から身体を気遣って引き留めてください。';
-  else sitCtx = `【状況】高額決済前・その他の出費です。ユーザーの入力した理由（${_jgItem.reason}）を基にインパクトを可視化し、引き留めを行ってください。`;
-
-  const fails = (data.failures || DEF_FAILS).map(f => `・${f.cat}「${f.name}」: ${f.cond}`).join('\n');
-
-  return `あなたは衝動買い防止のためのエグゼクティブAIコンサルタントです。ユーザーの無駄遣いを論理的かつ厳しく、しかし「心配・諭す」トーンで説得してください。
-【行動/商品】${_jgItem.name} 【金額インパクト】${_jgItem.amount}円 【労働換算】約${hrs}h
-【行動経済学コンテキスト】${timeContext}
-${sitCtx}
-【ユーザーのFailure DB (過去の失敗パターン)】\n${fails}
-これを参照し、今回の行動が過去の失敗パターンに該当しないか優しく警告してください。
-
-あなたは以下の3つの人格を使い分けます。最初は①として第一声を発してください。
-①${chars[0].name}(${chars[0].persona}) ②${chars[1].name}(${chars[1].persona}) ③${chars[2].name}(${chars[2].persona})
-
-【出力ルール】JSONのみ。{"impulse":"high/mid/low","speaker":"①のキャラ名","message":"最初の指摘(60字)","impulse_reason":"15字以内"}`;
+_jgItem = { id: uid(), name: name, amount: amt, cat: _currentSituation, catIcon: '\uD83D\uDED2', reason: reason, url: url, createdAt: Date.now() };
+if (!data.pendingBuys) data.pendingBuys = [];
+data.pendingBuys.push(_jgItem); save(data);
+showScreen('scAiChat');
+document.getElementById('ai_report_area').style.display = 'none';
+document.getElementById('ai_report_area').innerHTML = '';
+document.getElementById('ai_chat_area').innerHTML = '';
+document.getElementById('chat_action_area').style.display = 'none';
+document.getElementById('chat_loading').style.display = 'block';
+document.getElementById('chat_loading_txt').textContent = '過去データを分析中...';
+if (data.geminiKey) {
+startAiReport(data);
+} else {
+startAiReportMock(data);
 }
-
-async function startAiChat(data) {
-  const apiKey = data.geminiKey;
-  _chatHistory = [{ role: "user", parts: [{ text: buildAiPrompt(data, true) }] }];
-
-  try {
-    const res = await fetch(
-      // ① gemini-2.0-flash → gemini-2.5-flash に変更
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: _chatHistory,
-          generationConfig: { temperature: 0.7, responseMimeType: "application/json" }
-        })
-      }
-    );
-
-    // ② HTTPエラーを詳細取得（何が起きたか画面に表示するため）
-    if (!res.ok) {
-      const errBody = await res.text();
-      let errMsg = `HTTP ${res.status}`;
-      try {
-        const errJson = JSON.parse(errBody);
-        errMsg += ': ' + (errJson?.error?.message || errBody.slice(0, 150));
-      } catch { errMsg += ': ' + errBody.slice(0, 150); }
-      throw new Error(errMsg);
-    }
-
-    const json = await res.json();
-    const raw = json?.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
-
-    // ③ JSONパース失敗でもクラッシュしないよう保護
-    let parsed;
-    try {
-      parsed = JSON.parse(raw.replace(/```[a-z]*/gi, '').replace(/```/g, '').trim());
-    } catch {
-      parsed = { impulse: 'mid', message: raw.slice(0, 100), impulse_reason: 'JSON解析エラー' };
-    }
-
-    _imp = parsed.impulse || 'mid';
-    _impRsn = parsed.impulse_reason || '';
-    _chatHistory.push({ role: "model", parts: [{ text: raw }] });
-    document.getElementById('chat_loading').style.display = 'none';
-    document.getElementById('chat_action_area').style.display = 'block';
-    appendChatBubble((data.chars || DEF_CHARS)[0], parsed.message);
-
-  } catch (e) {
-    console.error('AI Chat Error:', e);
-    _imp = 'mid';
-    _impRsn = '通信エラーにより自動判定';
-    document.getElementById('chat_loading').style.display = 'none';
-    document.getElementById('chat_action_area').style.display = 'block';
-    // ④ エラー詳細をチャット画面に表示
-    appendChatBubble(
-      (data.chars || DEF_CHARS)[0],
-      `⚠️ API接続エラー\n\n${e.message}\n\nAPIキーをSettings画面でご確認ください。「Proceed to Summary」から先へ進むことも可能です。`
-    );
-  }
 }
-
-// レビュー用にAPI通信をスキップし、ダミーで動作するモック関数
-async function startAiChatMock(data) {
-  const chars = data.chars || DEF_CHARS;
-  
-  // 1.5秒後にダミー応答
-  setTimeout(() => {
-    _imp = 'mid'; 
-    _impRsn = 'モックによる静的判定';
-    document.getElementById('chat_loading').style.display = 'none'; 
-    document.getElementById('chat_action_area').style.display = 'block';
-    
-    let sitCtx = '';
-    if(_jgItem.cat==='conv') sitCtx = '本当に今行く必要がありますか？家のコーヒーで一息つきませんか。数百円の積み重ねが月末の予算を圧迫していますよ。';
-    else if(_jgItem.cat==='amazon') sitCtx = 'スペックが高すぎませんか？あなたの本来の目的なら、もっと安価な選択肢もありますよ。';
-    else if(_jgItem.cat==='uber') sitCtx = '店舗より30%割高です。少し歩いて買いに行けば健康にも良く、数百円浮きます。一緒にもう少し考えませんか？';
-    else if(_jgItem.cat==='drink') sitCtx = 'すでに十分楽しんだのではないでしょうか。これ以上の出費は明日のパフォーマンスを落 Millします。今日はゆっくり休みましょう。';
-    else sitCtx = 'このままいくと月末に赤字になるかもしれません。数時間分の労働が消えるのが心配です。';
-
-    const failMsg = (data.failures || []).length > 0 ? '\n※過去の失敗パターンに似ているようです。注意してくださいね。' : '';
-
-    appendChatBubble(chars[0], `【※レビュー用AIモック】\n${sitCtx}${failMsg}`);
-  }, 1500);
+function buildReportPrompt(data) {
+var hr = hourly(data);
+var hrs = hr > 0 ? (_jgItem.amount / hr).toFixed(1) : '不明';
+var free = freeAmt(data); var used = usedAmt(data); var remM = free - used;
+var dRem = remDays(); var dailyLimit = remM > 0 ? Math.round(remM / dRem) : 0;
+var dateNum = new Date().getDate();
+// 過去の同カテゴリ購入
+var allMonths = data.months || {};
+var pastSameCat = [];
+Object.keys(allMonths).forEach(function (k) {
+var recs = allMonths[k].records || [];
+recs.forEach(function (r) {
+if (r.cat === _jgItem.cat && (r.result === 'buy' || r.result === 'late_buy')) {
+pastSameCat.push(r.name + ' (' + r.amount + '円, ' + (r.date || '') + ')');
 }
-
+});
+});
+var pastStr = pastSameCat.length > 0 ? pastSameCat.slice(-5).join('\n') : 'なし';
+// 失敗DB
+var fails = (data.failures || DEF_FAILS).map(function (f) { return f.cat + '「' + f.name + '」: ' + f.cond; }).join('\n');
+var sitCtx = '';
+if (_jgItem.cat === 'conv') sitCtx = 'コンビニへ行こうとしている。';
+else if (_jgItem.cat === 'amazon') sitCtx = 'Amazon等ECで' + _jgItem.name + 'を買おうとしている。URL: ' + (_jgItem.url || 'なし') + '。理由: ' + (_jgItem.reason || 'なし');
+else if (_jgItem.cat === 'uber') sitCtx = 'Uber Eatsを頼もうとしている。';
+else if (_jgItem.cat === 'drink') sitCtx = '飲み会の2次会または深夜タクシーを使おうとしている。';
+else sitCtx = _jgItem.name + 'に' + _jgItem.amount + '円使おうとしている。理由: ' + (_jgItem.reason || 'なし');
+return 'あなたはSoberアプリのAIアナリストです。\n' +
+'出費を分析し否定的なレポートを作成してください。\n' +
+'トーンは厳しいが心配する友人です。\n\n' +
+'【分析対象】' + _jgItem.name + ' / ' + _jgItem.amount + '円\n' +
+'【状況】' + sitCtx + '\n' +
+'【時給換算】約' + hrs + '時間分の労働\n' +
+'【今日の予算残】' + dailyLimit + '円（購入後: ' + (dailyLimit - _jgItem.amount) + '円）\n' +
+'【月末残高予測】' + (remM - _jgItem.amount) + '円\n' +
+'【月の' + dateNum + '日目】\n' +
+'【過去の同カテゴリ購入】\n' + pastStr + '\n' +
+'【失敗パターンDB】\n' + fails + '\n\n' +
+'以下のJSON形式で回答してください。\n' +
+'{"report":{"past_pattern":"過去の失敗パターンとの一致分析(40字)","alternative":"代替案の提案(40字)","budget_warning":"予算への影響警告(40字)"},"first_message":"友人としての一言(60字)"}';
+}
+function buildChatSystemPrompt(data) {
+var hr = hourly(data);
+var hrs = hr > 0 ? (_jgItem.amount / hr).toFixed(1) : '不明';
+var free = freeAmt(data); var used = usedAmt(data); var remM = free - used;
+var fails = (data.failures || DEF_FAILS).map(function (f) { return f.cat + '「' + f.name + '」: ' + f.cond; }).join('\n');
+return 'あなたはSoberアプリのAI友人「Sober」です。無駄遣いに否定的だが心配してくれる友人として振る舞います。\n' +
+'ユーザーは「' + _jgItem.name + '」に' + _jgItem.amount + '円使おうとしています。\n' +
+'労働時間換算: 約' + hrs + '時間。月末残高予測: ' + (remM - _jgItem.amount) + '円。\n' +
+'失敗パターンDB:\n' + fails + '\n\n' +
+'ルール:\n- 常に否定的（買わせない方向）で応答\n- データや数値を根拠にする\n- 代替案を提案する\n- 60字以内で簡潔に\n- JSON形式: {"message":"応答テキスト"}';
+}
+async function startAiReport(data) {
+var apiKey = data.geminiKey;
+try {
+var res = await fetch(
+'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + apiKey,
+{
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({
+contents: [{ role: 'user', parts: [{ text: buildReportPrompt(data) }] }],
+generationConfig: { temperature: 0.7, responseMimeType: 'application/json' }
+})
+}
+);
+if (!res.ok) {
+var errBody = await res.text();
+throw new Error('HTTP ' + res.status + ': ' + errBody.slice(0, 150));
+}
+var json = await res.json();
+var raw = (json.candidates && json.candidates[0] && json.candidates[0].content && json.candidates[0].content.parts && json.candidates[0].content.parts[0] && json.candidates[0].content.parts[0].text) || '{}';
+var parsed;
+try {
+parsed = JSON.parse(raw.replace(/```[a-z]*/gi, '').replace(/```/g, '').trim());
+} catch (e) {
+parsed = { report: { past_pattern: '分析エラー', alternative: '代替案なし', budget_warning: '予算注意' }, first_message: raw.slice(0, 60) };
+}
+// レポート表示
+showAiReport(parsed.report || {});
+// チャット初期化（レポートのfirst_messageを最初のバブルに）
+_chatHistory = [
+{ role: 'user', parts: [{ text: buildChatSystemPrompt(data) }] },
+{ role: 'model', parts: [{ text: JSON.stringify({ message: parsed.first_message || 'この出費、本当に必要？' }) }] }
+];
+document.getElementById('chat_loading').style.display = 'none';
+document.getElementById('chat_action_area').style.display = 'block';
+appendChatBubble(AI_PERSONA, parsed.first_message || 'この出費、本当に必要？');
+} catch (e) {
+console.error('AI Report Error:', e);
+showAiReport({ past_pattern: '通信エラーで分析不可', alternative: 'APIキーを確認してください', budget_warning: '手動で判断してください' });
+document.getElementById('chat_loading').style.display = 'none';
+document.getElementById('chat_action_area').style.display = 'block';
+appendChatBubble(AI_PERSONA, 'API接続エラー: ' + e.message);
+appendRetryButton();
+}
+}
+function startAiReportMock(data) {
+setTimeout(function () {
+var hr = hourly(data); var hrs = hr > 0 ? (_jgItem.amount / hr).toFixed(1) : '---';
+var free = freeAmt(data); var used = usedAmt(data); var remM = free - used;
+var mockReport = { past_pattern: '', alternative: '', budget_warning: '' };
+if (_jgItem.cat === 'conv') {
+mockReport.past_pattern = '「ちょっと寄るだけ」が積み重なり月数千円の浪費パターンに一致。';
+mockReport.alternative = '家のコーヒーや軽食で代用可能。ストックを確認しましょう。';
+} else if (_jgItem.cat === 'uber') {
+mockReport.past_pattern = '悪天候や疲労時のデリバリー依存パターンに該当。';
+mockReport.alternative = '店舗価格より30%割高。歩いて買えば健康面でもプラス。';
+} else if (_jgItem.cat === 'drink') {
+mockReport.past_pattern = '2次会以降の限界効用は低下。翌日パフォーマンスへの悪影響大。';
+mockReport.alternative = '今日はここで帰宅し、浮いたお金で週末の楽しみに回しませんか。';
+} else if (_jgItem.cat === 'amazon') {
+mockReport.past_pattern = '深夜のストレス反動ポチが多いパターン。本当に必要か再考を。';
+mockReport.alternative = '1週間後にまだ欲しければ購入。家にあるもので代用を検討。';
+} else {
+mockReport.past_pattern = '過去の同カテゴリ支出との類似性あり。使わなくなるリスク。';
+mockReport.alternative = '今ある手持ちのもので一旦代用できないか検討を。';
+}
+mockReport.budget_warning = '購入後の月末残高: ' + (remM - _jgItem.amount).toLocaleString() + '円。労働' + hrs + '時間分が消えます。';
+showAiReport(mockReport);
+_chatHistory = [];
+document.getElementById('chat_loading').style.display = 'none';
+document.getElementById('chat_action_area').style.display = 'block';
+var firstMsg = _jgItem.cat === 'conv' ? '本当に今行く必要ある？家にあるもので我慢できない？'
+: _jgItem.cat === 'uber' ? '店舗より割高だよ。少し歩いて買いに行かない？'
+: _jgItem.cat === 'drink' ? 'もう十分楽しんだでしょ。明日のこと考えて帰ろうよ。'
+: 'その出費、本当に今の自分に必要？もう少し考えてみない？';
+appendChatBubble(AI_PERSONA, '【モック】' + firstMsg);
+}, 1500);
+}
+function showAiReport(report) {
+var area = document.getElementById('ai_report_area');
+var cards = '';
+if (report.past_pattern) {
+cards += '<div class="report-card"><div class="rc-title text-orange-500"><i class="fas fa-history mr-1"></i>Past Pattern Match</div><div class="rc-body">' + escapeHtml(report.past_pattern) + '</div></div>';
+}
+if (report.alternative) {
+cards += '<div class="report-card" style="border-left-color:var(--green)"><div class="rc-title text-emerald-500"><i class="fas fa-lightbulb mr-1"></i>Alternative</div><div class="rc-body">' + escapeHtml(report.alternative) + '</div></div>';
+}
+if (report.budget_warning) {
+cards += '<div class="report-card" style="border-left-color:var(--red)"><div class="rc-title text-red-500"><i class="fas fa-chart-line mr-1"></i>Budget Warning</div><div class="rc-body">' + escapeHtml(report.budget_warning) + '</div></div>';
+}
+area.innerHTML = '<div class="sec text-cyan-500 mb-3"><i class="fas fa-file-alt mr-1"></i>AI Denial Report</div>' + cards;
+area.style.display = 'block';
+}
+function escapeHtml(str) {
+var div = document.createElement('div');
+div.appendChild(document.createTextNode(str));
+return div.innerHTML;
+}
 async function sendChat() {
-  const inputEl=document.getElementById('chat_input'); const msg=inputEl.value.trim(); if(!msg) return;
-  appendChatBubble(null,msg); inputEl.value='';
-  document.getElementById('chat_send_btn').disabled=true;
-  document.getElementById('chat_send_btn').innerHTML='<i class="fas fa-circle-notch fa-spin text-xs"></i>';
-  
-  const data=load();
-  const chars = data.chars || DEF_CHARS;
-
-  if (!data.geminiKey) {
-    // モック返答
-    setTimeout(() => {
-      appendChatBubble(chars[1], `【※レビュー用AIモック】\n「${msg}」というお気持ちはわかります。ですが、別の経験に使うか、家のもので代用する選択肢も考えてみましょう。`);
-      document.getElementById('chat_send_btn').disabled=false;
-      document.getElementById('chat_send_btn').innerHTML='<i class="fas fa-paper-plane text-sm"></i>';
-    }, 1500);
-    return;
-  }
-
-  _chatHistory.push({ role: "user", parts: [{ text: `ユーザーの反論:「${msg}」。これに対し、②または③の人格でさらに厳しく、しかし諭すように反論してください。JSONのみ {"speaker":"キャラ名","message":"反論(60字)"}` }] });
-  try {
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${data.geminiKey}`, { 
-      method:'POST', 
-      headers:{'Content-Type':'application/json'}, 
-      body: JSON.stringify({ 
-        contents: _chatHistory, 
-        generationConfig:{temperature:0.7, responseMimeType: "application/json"} 
-      }) 
-    });
-    if(!res.ok) throw new Error('API Error');
-    const json = await res.json(); 
-    const raw = json?.candidates?.[0]?.content?.parts?.[0]?.text || '{}'; 
-    const parsed = JSON.parse(raw.replace(/```[a-z]*/gi, '').replace(/```/g, '').trim());
-    _chatHistory.push({ role: "model", parts: [{ text: raw }] });
-    const matchedChar = chars.find(c => (parsed.speaker||'').includes(c.name)) || chars[1];
-    appendChatBubble(matchedChar, parsed.message);
-  } catch(e) { 
-    // エラー時も手動で進めるように
-    appendChatBubble(chars[2], "通信エラーが発生しました。深呼吸して、右下の「Proceed to Summary」から次へ進んでください。"); 
-  }
-  document.getElementById('chat_send_btn').disabled=false;
-  document.getElementById('chat_send_btn').innerHTML='<i class="fas fa-paper-plane text-sm"></i>';
+var inputEl = document.getElementById('chat_input');
+var msg = inputEl.value.trim(); if (!msg) return;
+appendChatBubble(null, msg); inputEl.value = '';
+var sendBtn = document.getElementById('chat_send_btn');
+sendBtn.disabled = true;
+sendBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin text-xs"></i>';
+var data = load();
+if (!data.geminiKey) {
+setTimeout(function () {
+appendChatBubble(AI_PERSONA, '【モック】「' + msg + '」って言うけどさ、データが全部物語ってるよ。冷静に考えてみて。');
+sendBtn.disabled = false; sendBtn.innerHTML = '<i class="fas fa-paper-plane text-sm"></i>';
+}, 1500);
+return;
 }
-
-function appendChatBubble(char,text) {
-  const chatArea=document.getElementById('ai_chat_area'); const el=document.createElement('div'); el.className="a-fade";
-  if(char){
-    const isRight=char.side==='right'; const iconHtml=char.img?`<img src="${char.img}" style="width:100%;height:100%;object-fit:cover">`:`<span class="text-sm">${char.icon||'👤'}</span>`;
-    el.innerHTML=`<div class="bw ${isRight?'r':'l'}"><div class="bi">${iconHtml}</div><div class="bc"><div class="bn">${char.name}</div><div class="${isRight?'br':'bl'}">${text}</div></div></div>`;
-  } else {
-    el.innerHTML=`<div class="bw r"><div class="bc"><div class="bn text-slate-500">You</div><div style="padding:10px 14px;border-radius:12px 2px 12px 12px;font-size:13px;line-height:1.5;background:rgba(255,255,255,0.05);color:var(--tx);border:1px solid var(--bd)">${text}</div></div></div>`;
-  }
-  chatArea.appendChild(el); el.scrollIntoView({behavior:'smooth',block:'end'});
+_chatHistory.push({ role: 'user', parts: [{ text: 'ユーザー:「' + msg + '」\n否定的な友人として、データを根拠に反論してください。JSON: {"message":"応答(60字)"}' }] });
+try {
+var res = await fetch(
+'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + data.geminiKey,
+{
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({
+contents: _chatHistory,
+generationConfig: { temperature: 0.7, responseMimeType: 'application/json' }
+})
 }
-
-function doAvoidFromChat() { _imp='low'; doAvoid(); }
-
-// ======================================================
-// Step 3: Summary Phase
-// ======================================================
-function goSummary() {
-  showScreen('scSummary'); const data=load();
-  const hr=hourly(data); const hrs=hr>0?(_jgItem.amount/hr).toFixed(1):'---';
-  const free=freeAmt(data); const used=usedAmt(data); const remAfter=free-used-_jgItem.amount;
-
-  const elScore=document.getElementById('sum_impulse');
-  const elRsn=document.getElementById('sum_impulse_reason');
-  if(_imp==='high'){elScore.innerHTML='HIGH 🔴';elScore.className='num text-2xl text-red-500 mb-1';elRsn.textContent=_impRsn||'感情的な判断の可能性が極めて高いです。';}
-  else if(_imp==='mid'){elScore.innerHTML='MID 🟡';elScore.className='num text-2xl text-amber-500 mb-1';elRsn.textContent=_impRsn||'一部不合理な点が見受けられます。';}
-  else {elScore.innerHTML='LOW 🟢';elScore.className='num text-2xl text-green-500 mb-1';elRsn.textContent=_impRsn||'比較的計画的な支出です。';}
-
-  document.getElementById('sum_amt').innerHTML=yenHtml(_jgItem.amount);
-  document.getElementById('sum_hrs').innerHTML=`<span class="text-lg">${hrs}</span><span class="text-[9px] font-sans ml-0.5">h</span>`;
-  document.getElementById('sum_end').innerHTML=yenHtml(remAfter);
-  document.getElementById('sum_end').style.color=remAfter<0?'var(--red)':'var(--tx)';
-
-  const allMonths=Object.values(data.months||{});
-  const pastSameCat=allMonths
-    .flatMap(m=>(m.records||[]))
-    .filter(r=>r.cat===_jgItem.cat && (r.result==='buy'||r.result==='late_buy'))
-    .slice(-3); 
-
-  if(pastSameCat.length>0){
-    document.getElementById('sum_past_area').style.display='block';
-    document.getElementById('sum_past_list').innerHTML=pastSameCat.map(r=>
-      `<div class="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
-        <div>
-          <div class="text-[11px] font-bold text-slate-300">${r.name}</div>
-          <div class="text-[9px] text-slate-500 tracking-widest mt-0.5">${(r.date||'').replace(/-/g,'.')}</div>
-        </div>
-        <span class="mono text-sm text-orange-400">-${yenHtml(r.amount)}</span>
-      </div>`
-    ).join('');
-  } else {
-    document.getElementById('sum_past_area').style.display='none';
-  }
+);
+if (!res.ok) throw new Error('API Error');
+var json = await res.json();
+var raw = (json.candidates && json.candidates[0] && json.candidates[0].content && json.candidates[0].content.parts && json.candidates[0].content.parts[0] && json.candidates[0].content.parts[0].text) || '{}';
+var parsed;
+try { parsed = JSON.parse(raw.replace(/```[a-z]*/gi, '').replace(/```/g, '').trim()); }
+catch (e) { parsed = { message: raw.slice(0, 60) }; }
+_chatHistory.push({ role: 'model', parts: [{ text: raw }] });
+appendChatBubble(AI_PERSONA, parsed.message || '...');
+} catch (e) {
+appendChatBubble(AI_PERSONA, '通信エラーです。もう一度送信するか、「それでも進む」から先へ。');
 }
-
-// ======================================================
-// Step 4 & 5: Mindfulness & Decision
-// ======================================================
-let _mfTimer=null;
+sendBtn.disabled = false; sendBtn.innerHTML = '<i class="fas fa-paper-plane text-sm"></i>';
+}
+function appendChatBubble(persona, text) {
+var chatArea = document.getElementById('ai_chat_area');
+var el = document.createElement('div'); el.className = 'a-fade';
+if (persona) {
+el.innerHTML = '<div class="bw l"><div class="bi"><span class="text-sm">' + persona.icon + '</span></div><div class="bc"><div class="bn">' + escapeHtml(persona.name) + '</div><div class="bl">' + escapeHtml(text) + '</div></div></div>';
+} else {
+el.innerHTML = '<div class="bw r"><div class="bc"><div class="bn text-slate-500">You</div><div style="padding:10px 14px;border-radius:12px 2px 12px 12px;font-size:13px;line-height:1.5;background:rgba(255,255,255,0.05);color:var(--tx);border:1px solid var(--bd)">' + escapeHtml(text) + '</div></div></div>';
+}
+chatArea.appendChild(el);
+el.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+function appendRetryButton() {
+var chatArea = document.getElementById('ai_chat_area');
+var el = document.createElement('div'); el.className = 'a-fade text-center my-3';
+var btn = document.createElement('button');
+btn.className = 'tap px-4 py-2 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] font-bold tracking-widest uppercase';
+btn.innerHTML = '<i class="fas fa-redo mr-1"></i>RETRY';
+btn.addEventListener('click', function () {
+el.remove();
+document.getElementById('chat_loading').style.display = 'block';
+document.getElementById('chat_action_area').style.display = 'none';
+document.getElementById('ai_report_area').style.display = 'none';
+document.getElementById('ai_report_area').innerHTML = '';
+document.getElementById('ai_chat_area').innerHTML = '';
+var data = load();
+if (data && data.geminiKey) { startAiReport(data); } else { startAiReportMock(data); }
+});
+el.appendChild(btn);
+chatArea.appendChild(el);
+el.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+function doAvoidFromChat() { doAvoid(); }
+function goFinalCheck() {
+if (!_jgItem) return;
+showScreen('scFinalCheck');
+var data = load();
+var hr = hourly(data); var hrs = hr > 0 ? (_jgItem.amount / hr).toFixed(1) : '---';
+var free = freeAmt(data); var used = usedAmt(data); var remM = free - used;
+var dRem = remDays(); var dailyLimit = remM > 0 ? Math.round(remM / dRem) : 0;
+var remAfterT = dailyLimit - _jgItem.amount;
+var remAfterM = remM - _jgItem.amount;
+document.getElementById('fc_amt').innerHTML = yenHtml(_jgItem.amount);
+document.getElementById('fc_hrs').innerHTML = '<span class="mono text-xl">' + hrs + '</span><span class="text-[9px] ml-0.5">h</span>';
+var tc = remAfterT > 0 ? 'var(--green)' : 'var(--red)';
+document.getElementById('fc_daily').innerHTML = '<span class="mono line-through text-slate-500 text-sm mr-2">' + yenHtml(dailyLimit) + '</span><span class="mono text-lg" style="color:' + tc + '">' + yenHtml(remAfterT) + '</span>';
+var mc = remAfterM < 0 ? 'var(--red)' : 'var(--green)';
+document.getElementById('fc_month').innerHTML = '<span class="mono text-lg" style="color:' + mc + '">' + yenHtml(remAfterM) + '</span>' + (remAfterM < 0 ? '<span class="text-[8px] tracking-widest text-red-500 uppercase ml-1">Deficit</span>' : '');
+// 過去同カテゴリ
+var allMonths = data.months || {};
+var pastSameCat = [];
+Object.keys(allMonths).forEach(function (k) {
+(allMonths[k].records || []).forEach(function (r) {
+if (r.cat === _jgItem.cat && (r.result === 'buy' || r.result === 'late_buy')) pastSameCat.push(r);
+});
+});
+pastSameCat = pastSameCat.slice(-3);
+if (pastSameCat.length > 0) {
+document.getElementById('fc_past_area').style.display = 'block';
+document.getElementById('fc_past_list').innerHTML = pastSameCat.map(function (r) {
+return '<div class="flex justify-between items-center py-2 border-b border-white/5 last:border-0"><div><div class="text-[11px] font-bold text-slate-300">' + escapeHtml(r.name) + '</div><div class="text-[9px] text-slate-500 tracking-widest mt-0.5">' + (r.date || '').replace(/-/g, '.') + '</div></div><span class="mono text-sm text-orange-400">-' + yenHtml(r.amount) + '</span></div>';
+}).join('');
+} else {
+document.getElementById('fc_past_area').style.display = 'none';
+}
+}
+var _mfTimer = null;
 function goMindful() {
-  showScreen('scMindful');
-  const timerEl=document.getElementById('mf_timer'); const msgEl=document.getElementById('mf_msg');
-  const decisionArea=document.getElementById('mf_decision');
-  timerEl.style.opacity='1'; msgEl.style.opacity='0';
-  decisionArea.style.opacity='0'; decisionArea.style.display='none'; decisionArea.style.pointerEvents='none';
-
-  let sec=60;
-  function tick(){
-    timerEl.textContent=sec;
-    const targetMsg=MINDFUL_MSGS.find(m=>m.t===sec);
-    if(targetMsg){msgEl.style.opacity='0';setTimeout(()=>{msgEl.textContent=targetMsg.msg;msgEl.style.opacity='1';},1000);}
-    if(sec<=0){
-      clearInterval(_mfTimer); timerEl.style.opacity='0'; msgEl.style.opacity='0';
-      setTimeout(()=>{setupDecisionButtons();decisionArea.style.display='block';requestAnimationFrame(()=>{decisionArea.style.opacity='1';decisionArea.style.pointerEvents='all';});},1000);
-      return;
-    }
-    sec--;
-  }
-  tick(); _mfTimer=setInterval(tick,1000);
+showScreen('scMindful');
+var timerEl = document.getElementById('mf_timer');
+var msgEl = document.getElementById('mf_msg');
+var decisionArea = document.getElementById('mf_decision');
+timerEl.style.opacity = '1'; timerEl.textContent = '30'; msgEl.style.opacity = '0';
+decisionArea.style.opacity = '0'; decisionArea.style.display = 'none'; decisionArea.style.pointerEvents = 'none';
+var sec = 30;
+function tick() {
+timerEl.textContent = sec;
+var targetMsg = MINDFUL_MSGS.find(function (m) { return m.t === sec; });
+if (targetMsg) {
+msgEl.style.opacity = '0';
+setTimeout(function () { msgEl.textContent = targetMsg.msg; msgEl.style.opacity = '1'; }, 500);
 }
-
-function setupDecisionButtons() {
-  const data=load();
-  const btn=document.getElementById('btn_buy_locked'); const txtEl=document.getElementById('txt_buy_locked');
-  const dNum=new Date().getDate();
-  const thr = data.wishThreshold || HIGH_PRICE_THRESHOLD;
-  const isPaydayEffect = dNum <= 10 && _jgItem.amount >= thr;
-  
-  btn.disabled=false;
-  if(isPaydayEffect) {
-     btn.className="w-full py-2 rounded-lg bg-transparent border border-red-500/20 text-red-500/50 font-bold text-[9px] tracking-widest uppercase transition-all opacity-80";
-     txtEl.innerHTML='GO (強行する)';
-  } else {
-     btn.className="w-full py-4 rounded-lg bg-transparent border border-white/10 text-slate-400 font-bold text-[11px] tracking-widest uppercase transition-all";
-     txtEl.innerHTML='PROCEED TO BUY / GO';
-  }
+if (sec <= 0) {
+clearInterval(_mfTimer);
+timerEl.style.opacity = '0'; msgEl.style.opacity = '0';
+setTimeout(function () {
+decisionArea.style.display = 'block';
+requestAnimationFrame(function () { decisionArea.style.opacity = '1'; decisionArea.style.pointerEvents = 'all'; });
+}, 800);
+return;
 }
-
-function clearTimers(){ if(_mfTimer){clearInterval(_mfTimer);_mfTimer=null;} }
-
-let _lastAvoidId=null;
-function doAvoid(){
-  if(!_jgItem) return; clearTimers(); const data=load(); const key=mKey(); const month=getMonth(data,key);
-  const rec={id:uid(),date:today(),month:key,name:_jgItem.name,amount:_jgItem.amount,cat:_jgItem.cat,catIcon:_jgItem.catIcon,result:'avoid',impulse:_imp,stopReason:null};
-  month.records.push(rec); data.pendingBuys=(data.pendingBuys||[]).filter(p=>p.id!==_jgItem.id); save(data); 
-  _lastAvoidId=rec.id; _jgItem=null; openWhyOv();
+sec--;
 }
-function doBuy(){
-  if(!_jgItem) return; clearTimers(); const data=load(); const key=mKey(); const month=getMonth(data,key);
-  const rec={id:uid(),date:today(),month:key,name:_jgItem.name,amount:_jgItem.amount,cat:_jgItem.cat,catIcon:_jgItem.catIcon,result:'buy',impulse:_imp};
-  month.records.push(rec); data.pendingBuys=(data.pendingBuys||[]).filter(p=>p.id!==_jgItem.id); save(data); _jgItem=null; navTo('scHome','nb_h'); showToast('PURCHASE VERIFIED');
+tick(); _mfTimer = setInterval(tick, 1000);
 }
-
-// ======================================================
-// Why Overlay
-// ======================================================
-let _whyTimer=null;
-function openWhyOv(){
-  const ov=document.getElementById('whyOv'); const sh=document.getElementById('whySh');
-  document.getElementById('why_opts').innerHTML=WHY_OPTS.map(o=>`<button onclick="selectWhy('${o.id}')" class="tap w-full flex items-center gap-3 px-4 py-3 rounded gc" style="border-color:var(--bd)"><div class="w-6 h-6 rounded flex items-center justify-center gc2 flex-shrink-0"><i class="fa-solid ${o.icon} text-[10px]" style="color:${o.color}"></i></div><span class="text-xs font-bold text-slate-300">${o.label}</span><i class="fa-solid fa-chevron-right text-[8px] ml-auto" style="color:var(--tx3)"></i></button>`).join('');
-  ov.style.opacity='0'; ov.style.pointerEvents='all'; sh.style.transform='translateY(100%)'; ov.style.display='flex';
-  requestAnimationFrame(()=>{ov.style.transition='opacity .25s';ov.style.opacity='1';sh.style.transition='transform .36s cubic-bezier(.16,1,.3,1)';sh.style.transform='translateY(0)';});
-  const bar=document.getElementById('why_bar'); bar.style.transition='none'; bar.style.width='100%'; requestAnimationFrame(()=>{bar.style.transition='width 3s linear';bar.style.width='0%';});
-  if(_whyTimer) clearTimeout(_whyTimer); _whyTimer=setTimeout(()=>selectWhy(null),3000);
+function clearTimers() { if (_mfTimer) { clearInterval(_mfTimer); _mfTimer = null; } }
+var _lastAvoidId = null;
+function doAvoid() {
+if (!_jgItem) return; clearTimers();
+var data = load(); var key = mKey(); var month = getMonth(data, key);
+var rec = { id: uid(), date: today(), month: key, name: _jgItem.name, amount: _jgItem.amount, cat: _jgItem.cat, catIcon: _jgItem.catIcon, result: 'avoid', impulse: null, stopReason: null };
+month.records.push(rec);
+data.pendingBuys = (data.pendingBuys || []).filter(function (p) { return p.id !== _jgItem.id; });
+save(data);
+_lastAvoidId = rec.id; _jgItem = null; openWhyOv();
 }
-function selectWhy(reasonId){
-  if(_whyTimer) clearTimeout(_whyTimer); _whyTimer=null;
-  if(_lastAvoidId){const data=load();const key=mKey();const month=data.months?.[key];if(month){const rec=month.records.find(r=>r.id===_lastAvoidId);if(rec){rec.stopReason=reasonId;save(data);}}}
-  const ov=document.getElementById('whyOv'); const sh=document.getElementById('whySh'); sh.style.transform='translateY(100%)'; setTimeout(()=>{ov.style.opacity='0';ov.style.pointerEvents='none';},360);
-  navTo('scHome','nb_h'); showToast('DATA LOGGED'); _lastAvoidId=null;
+function doBuy() {
+if (!_jgItem) return; clearTimers();
+var data = load(); var key = mKey(); var month = getMonth(data, key);
+var rec = { id: uid(), date: today(), month: key, name: _jgItem.name, amount: _jgItem.amount, cat: _jgItem.cat, catIcon: _jgItem.catIcon, result: 'buy', impulse: null };
+month.records.push(rec);
+data.pendingBuys = (data.pendingBuys || []).filter(function (p) { return p.id !== _jgItem.id; });
+save(data); _jgItem = null;
+navTo('scHome', 'nb_h'); showToast('PURCHASE VERIFIED');
 }
-
-// ======================================================
-// Report
-// ======================================================
-let _rpKey=mKey();
-function renderReport(){
-  document.getElementById('rp_b').textContent=fmtM(_rpKey); document.getElementById('rp_ml').textContent=fmtM(_rpKey); const data=load(); const month=data?.months?.[_rpKey];
-  if(!month||!month.records.length){document.getElementById('rp_score').style.display='none';document.getElementById('rp_emp').style.display='block';document.getElementById('rp_zi').value='';return;}
-  document.getElementById('rp_emp').style.display='none';
-  if(month.zaimTotal!==null&&month.zaimTotal!==undefined){document.getElementById('rp_zi').value=month.zaimTotal;renderReportScore(data,month);} else {document.getElementById('rp_score').style.display='none';}
+var _whyTimer = null;
+function openWhyOv() {
+var ov = document.getElementById('whyOv'); var sh = document.getElementById('whySh');
+document.getElementById('why_opts').innerHTML = WHY_OPTS.map(function (o) {
+return '<button onclick="selectWhy(\'' + o.id + '\')" class="tap w-full flex items-center gap-3 px-4 py-3 rounded gc" style="border-color:var(--bd)"><div class="w-6 h-6 rounded flex items-center justify-center gc2 flex-shrink-0"><i class="fa-solid ' + o.icon + ' text-[10px]" style="color:' + o.color + '"></i></div><span class="text-xs font-bold text-slate-300">' + o.label + '</span><i class="fa-solid fa-chevron-right text-[8px] ml-auto" style="color:var(--tx3)"></i></button>';
+}).join('');
+ov.style.opacity = '0'; ov.style.pointerEvents = 'all'; sh.style.transform = 'translateY(100%)'; ov.style.display = 'flex';
+requestAnimationFrame(function () { ov.style.transition = 'opacity .25s'; ov.style.opacity = '1'; sh.style.transition = 'transform .36s cubic-bezier(.16,1,.3,1)'; sh.style.transform = 'translateY(0)'; });
+var bar = document.getElementById('why_bar'); bar.style.transition = 'none'; bar.style.width = '100%';
+requestAnimationFrame(function () { bar.style.transition = 'width 3s linear'; bar.style.width = '0%'; });
+if (_whyTimer) clearTimeout(_whyTimer);
+_whyTimer = setTimeout(function () { selectWhy(null); }, 3000);
 }
-function saveReport(){
-  const zaim=parseInt(document.getElementById('rp_zi').value)||0; const data=load(); const month=getMonth(data,_rpKey);
-  month.zaimTotal=zaim; save(data); renderReportScore(data,month); showToast('REPORT GENERATED');
+function selectWhy(reasonId) {
+if (_whyTimer) clearTimeout(_whyTimer); _whyTimer = null;
+if (_lastAvoidId) {
+var data = load(); var key = mKey(); var month = data.months ? data.months[key] : null;
+if (month) {
+var rec = month.records.find(function (r) { return r.id === _lastAvoidId; });
+if (rec) { rec.stopReason = reasonId; save(data); }
 }
-function renderReportScore(data,month){
-  document.getElementById('rp_score').style.display='block';
-  const appBought=month.records.filter(r=>r.result==='buy').reduce((s,r)=>s+(Number(r.amount)||0),0); const late=month.records.filter(r=>r.result==='late_buy').reduce((s,r)=>s+(Number(r.amount)||0),0); const avoided=month.records.filter(r=>r.result==='avoid'); const avoidedTot=avoided.reduce((s,r)=>s+(Number(r.amount)||0),0); const zaim=month.zaimTotal||0; const totalDisc=appBought+late+zaim;
-  const rows=[
-    {icon:'fa-shield-check',col:'var(--green)', sign:'+',val:avoidedTot,label:'Avoided (回避)'},
-    {icon:'fa-bag-shopping', col:'var(--tx)',   sign:'-',val:appBought, label:'Verified (計画購入)'},
-    {icon:'fa-clock-rotate-left',col:'var(--orange)',sign:'-',val:late,label:'Unverified (事後記録)'},
-    {icon:'fa-database',     col:'var(--red)',  sign:'-',val:zaim,       label:'External (ZAIM)'}
-  ];
-  document.getElementById('rp_bd').innerHTML=rows.map(r=>`<div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0"><div class="flex items-center gap-2"><div class="w-5 flex items-center justify-center"><i class="fa-solid ${r.icon} text-[10px]" style="color:${r.col}"></i></div><div class="text-[11px] font-bold" style="color:${r.col}">${r.label}</div></div><div class="mono text-sm" style="color:${r.col}">${r.sign}${yenHtml(r.val)}</div></div>`).join('');
-  document.getElementById('rp_tot').innerHTML=yenHtml(totalDisc); document.getElementById('rp_sh').innerHTML='+'+yenHtml(avoidedTot);
-  const total=totalDisc+avoidedTot; const saveRate=total>0?avoidedTot/total:0;
-  const card=document.getElementById('rp_mc'); const icon=document.getElementById('rp_mi'); const ttl=document.getElementById('rp_mt'); const txt=document.getElementById('rp_mx');
-  if(saveRate>=0.4){card.style.cssText='border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.05);';icon.innerHTML='<i class="fa-solid fa-trophy" style="color:var(--green)"></i>';ttl.textContent='EXCELLENT';ttl.style.color='var(--green)';txt.textContent=`節約率 ${Math.round(saveRate*100)}% は極めて優秀な水準です。`;}
-  else if(saveRate>=0.2){card.style.cssText='border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.05);';icon.innerHTML='<i class="fa-solid fa-chart-line" style="color:var(--amber)"></i>';ttl.textContent='NEEDS IMPROVEMENT';ttl.style.color='var(--amber)';txt.textContent=`事後記録 ${yenHtml(late).replace(/<[^>]+>/g,'')} の削減を次月のKPIとします。`;}
-  else{card.style.cssText='border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.05);';icon.innerHTML='<i class="fa-solid fa-triangle-exclamation" style="color:var(--red)"></i>';ttl.textContent='CRITICAL ALERT';ttl.style.color='var(--red)';txt.textContent=`裁量支出が基準値を超過。アプリを経由しない支出の削減が急務です。`;}
 }
-function rpPrev(){ const [y,m]=_rpKey.split('-').map(Number); _rpKey=mKey(new Date(y,m-2,1)); renderReport(); }
-function rpNext(){ const [y,m]=_rpKey.split('-').map(Number); _rpKey=mKey(new Date(y,m,1)); renderReport(); }
-
-// ======================================================
-// Settings & GAS Integration
-// ======================================================
-let _curTab='base';
-function switchTab(name){
-  _curTab=name;
-  ['base','char','fail'].forEach(t=>{ document.getElementById(`tb_${t}`).classList.toggle('on',t===name); document.getElementById(`tb_${t}_b`).style.display=t===name?'block':'none'; });
-  if(name==='char') renderCharTab(); if(name==='fail') renderFailTab();
+var ov = document.getElementById('whyOv'); var sh = document.getElementById('whySh');
+sh.style.transform = 'translateY(100%)';
+setTimeout(function () { ov.style.opacity = '0'; ov.style.pointerEvents = 'none'; }, 360);
+navTo('scHome', 'nb_h'); showToast('DATA LOGGED'); _lastAvoidId = null;
 }
-function renderSettings(){
-  const data=load(); if(!data) return;
-  document.getElementById('st_i').value=data.income||''; document.getElementById('st_g').value=data.savingsGoal||''; document.getElementById('st_f').value=data.fixedCost||''; document.getElementById('st_k').value=data.geminiKey||''; document.getElementById('st_gas').value=data.gasUrl||''; document.getElementById('st_wt').value=data.wishThreshold||HIGH_PRICE_THRESHOLD;
-  updateStFree(); ['st_i','st_g','st_f'].forEach(id=>{const el=document.getElementById(id);if(!el._b){el.addEventListener('input',updateStFree);el._b=true;}}); switchTab(_curTab);
+var _rpKey = mKey();
+function renderReport() {
+document.getElementById('rp_b').textContent = fmtM(_rpKey);
+document.getElementById('rp_ml').textContent = fmtM(_rpKey);
+var data = load(); var month = data ? (data.months ? data.months[_rpKey] : null) : null;
+if (!month || !month.records.length) { document.getElementById('rp_score').style.display = 'none'; document.getElementById('rp_emp').style.display = 'block'; document.getElementById('rp_zi').value = ''; return; }
+document.getElementById('rp_emp').style.display = 'none';
+if (month.zaimTotal !== null && month.zaimTotal !== undefined) { document.getElementById('rp_zi').value = month.zaimTotal; renderReportScore(data, month); }
+else { document.getElementById('rp_score').style.display = 'none'; }
 }
-function updateStFree(){ const i=parseInt(document.getElementById('st_i').value)||0; const g=parseInt(document.getElementById('st_g').value)||0; const f=parseInt(document.getElementById('st_f').value)||0; document.getElementById('st_fp').innerHTML=yenHtml(i-g-f); }
-function saveBase(){
-  const inc=parseInt(document.getElementById('st_i').value); const goal=parseInt(document.getElementById('st_g').value); const fix=parseInt(document.getElementById('st_f').value)||0; const key=document.getElementById('st_k').value.trim(); const gas=document.getElementById('st_gas').value.trim(); const thr=parseInt(document.getElementById('st_wt').value)||HIGH_PRICE_THRESHOLD;
-  if(!inc||inc<1000){showToast('月収を入力してください');return;} if(!goal||goal<100){showToast('貯金目標を入力してください');return;} if(goal>=inc){showToast('目標が月収を超えています');return;}
-  const data=load(); data.income=inc; data.savingsGoal=goal; data.fixedCost=fix; data.geminiKey=key; data.gasUrl=gas; data.wishThreshold=thr; save(data); showToast('SAVED');
+function saveReport() {
+var zaim = parseInt(document.getElementById('rp_zi').value) || 0; var data = load(); var month = getMonth(data, _rpKey);
+month.zaimTotal = zaim; save(data); renderReportScore(data, month); showToast('REPORT GENERATED');
 }
-
-// バックアップをGASに送信
-async function backupToGAS(){
-  const data=load();
-  if(!data?.gasUrl){showToast('GAS URL未設定です');return;}
-  showToast('バックアップ中...');
-  try{
-    const res=await fetch(data.gasUrl,{
-      method:'POST',
-      headers:{'Content-Type':'text/plain'},
-      body:JSON.stringify({ action:'backup', timestamp:new Date().toISOString(), payload:data }),
-      redirect:'follow'
-    });
-    const textRes = await res.text();
-    try{ 
-      const j = JSON.parse(textRes); 
-      showToast(j.success ? 'バックアップ完了' : 'バックアップ失敗'); 
-    } catch(err){ 
-      showToast('バックアップ完了'); 
-    }
-  }catch(e){
-    console.error('GASバックアップエラー:',e);
-    showToast('GAS接続エラー');
-  }
+function renderReportScore(data, month) {
+document.getElementById('rp_score').style.display = 'block';
+var appBought = month.records.filter(function (r) { return r.result === 'buy'; }).reduce(function (s, r) { return s + (Number(r.amount) || 0); }, 0);
+var late = month.records.filter(function (r) { return r.result === 'late_buy'; }).reduce(function (s, r) { return s + (Number(r.amount) || 0); }, 0);
+var avoided = month.records.filter(function (r) { return r.result === 'avoid'; });
+var avoidedTot = avoided.reduce(function (s, r) { return s + (Number(r.amount) || 0); }, 0);
+var zaim = month.zaimTotal || 0; var totalDisc = appBought + late + zaim;
+var rows = [
+{ icon: 'fa-shield-check', col: 'var(--green)', sign: '+', val: avoidedTot, label: 'Avoided' },
+{ icon: 'fa-bag-shopping', col: 'var(--tx)', sign: '-', val: appBought, label: 'Verified' },
+{ icon: 'fa-clock-rotate-left', col: 'var(--orange)', sign: '-', val: late, label: 'Unverified' },
+{ icon: 'fa-database', col: 'var(--red)', sign: '-', val: zaim, label: 'External (ZAIM)' }
+];
+document.getElementById('rp_bd').innerHTML = rows.map(function (r) { return '<div class="flex items-center justify-between py-2 border-b border-white/5 last:border-0"><div class="flex items-center gap-2"><div class="w-5 flex items-center justify-center"><i class="fa-solid ' + r.icon + ' text-[10px]" style="color:' + r.col + '"></i></div><div class="text-[11px] font-bold" style="color:' + r.col + '">' + r.label + '</div></div><div class="mono text-sm" style="color:' + r.col + '">' + r.sign + yenHtml(r.val) + '</div></div>'; }).join('');
+document.getElementById('rp_tot').innerHTML = yenHtml(totalDisc);
+document.getElementById('rp_sh').innerHTML = '+' + yenHtml(avoidedTot);
+var total = totalDisc + avoidedTot; var saveRate = total > 0 ? avoidedTot / total : 0;
+var card = document.getElementById('rp_mc'); var icon = document.getElementById('rp_mi'); var ttl = document.getElementById('rp_mt'); var txt = document.getElementById('rp_mx');
+if (saveRate >= 0.4) { card.style.cssText = 'border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.05);'; icon.innerHTML = '<i class="fa-solid fa-trophy" style="color:var(--green)"></i>'; ttl.textContent = 'EXCELLENT'; ttl.style.color = 'var(--green)'; txt.textContent = '節約率 ' + Math.round(saveRate * 100) + '% は極めて優秀。'; }
+else if (saveRate >= 0.2) { card.style.cssText = 'border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.05);'; icon.innerHTML = '<i class="fa-solid fa-chart-line" style="color:var(--amber)"></i>'; ttl.textContent = 'NEEDS IMPROVEMENT'; ttl.style.color = 'var(--amber)'; txt.textContent = '事後記録の削減を次月KPIに。'; }
+else { card.style.cssText = 'border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.05);'; icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation" style="color:var(--red)"></i>'; ttl.textContent = 'CRITICAL ALERT'; ttl.style.color = 'var(--red)'; txt.textContent = '裁量支出が基準値超過。アプリ経由率の改善が急務。'; }
 }
-
-// GASから失敗DBを同期
-async function fetchFailuresFromGAS(){
-  const data=load();
-  if(!data?.gasUrl){showToast('GAS URL未設定です');return;}
-  showToast('失敗DB同期中...');
-  try{
-    const res=await fetch(`${data.gasUrl}?action=get_failures`,{redirect:'follow'});
-    const textRes = await res.text();
-    let failures = [];
-    try { failures = JSON.parse(textRes); } catch(e) {}
-    
-    if(Array.isArray(failures)&&failures.length>0){
-      data.failures=failures;
-      save(data);
-      renderFailTab();
-      showToast(`${failures.length}件を同期しました`);
-    }else{
-      showToast('スプシにデータがありません');
-    }
-  }catch(e){
-    console.error('GAS失敗DB同期エラー:',e);
-    showToast('GAS接続エラー');
-  }
+function rpPrev() { var parts = _rpKey.split('-').map(Number); _rpKey = mKey(new Date(parts[0], parts[1] - 2, 1)); renderReport(); }
+function rpNext() { var parts = _rpKey.split('-').map(Number); _rpKey = mKey(new Date(parts[0], parts[1], 1)); renderReport(); }
+var _curTab = 'base';
+function switchTab(name) {
+_curTab = name;
+['base', 'fail'].forEach(function (t) {
+document.getElementById('tb_' + t).classList.toggle('on', t === name);
+document.getElementById('tb_' + t + '_b').style.display = t === name ? 'block' : 'none';
+});
+if (name === 'fail') renderFailTab();
 }
-
-function renderCharTab(){ const data=load(); buildCharForm('st_chars',data?.chars||DEF_CHARS); }
-function saveChars(){
-  const data=load(); const chars=data.chars||DEF_CHARS;
-  data.chars=chars.map(c=>({...c,icon:(document.getElementById(`ck_${c.id}`)?.value||c.icon).trim(),name:(document.getElementById(`cn_${c.id}`)?.value||c.name).trim(),persona:(document.getElementById(`cp2_${c.id}`)?.value||c.persona).trim(),img:document.getElementById(`cp_${c.id}`)?.dataset.b64||c.img||''})); save(data); showToast('SAVED');
+function renderSettings() {
+var data = load(); if (!data) return;
+document.getElementById('st_i').value = data.income || '';
+document.getElementById('st_g').value = data.savingsGoal || '';
+document.getElementById('st_f').value = data.fixedCost || '';
+document.getElementById('st_k').value = data.geminiKey || '';
+document.getElementById('st_gas').value = data.gasUrl || '';
+document.getElementById('st_wt').value = data.wishThreshold || HIGH_PRICE_THRESHOLD;
+updateStFree();
+['st_i', 'st_g', 'st_f'].forEach(function (id) {
+var el = document.getElementById(id);
+if (!el._b) { el.addEventListener('input', updateStFree); el._b = true; }
+});
+switchTab(_curTab);
 }
-function renderFailTab(){
-  const data=load(); const fails=data?.failures||DEF_FAILS;
-  document.getElementById('st_fails').innerHTML=fails.map(f=>`<div class="gc p-3 space-y-2"><div class="flex gap-2 items-center"><input type="text" id="fc_${f.id}" value="${f.cat}" class="inp w-24 text-xs" style="padding:6px 10px" placeholder="カテゴリ"><input type="text" id="fn_${f.id}" value="${f.name}" class="inp flex-1 text-xs" style="padding:6px 10px" placeholder="失敗名"><button onclick="delFail('${f.id}')" class="tap w-8 h-8 rounded flex items-center justify-center flex-shrink-0 bg-red-500/10 text-red-500"><i class="fa-solid fa-xmark text-xs"></i></button></div><input type="text" id="fcond_${f.id}" value="${f.cond}" class="inp text-[10px]" placeholder="条件・心理状態 (AI参照用)"></div>`).join('');
+function updateStFree() {
+var i = parseInt(document.getElementById('st_i').value) || 0;
+var g = parseInt(document.getElementById('st_g').value) || 0;
+var f = parseInt(document.getElementById('st_f').value) || 0;
+document.getElementById('st_fp').innerHTML = yenHtml(i - g - f);
 }
-function saveFails(){
-  const data=load(); const fails=data.failures||DEF_FAILS;
-  data.failures=fails.map(f=>({...f,cat:(document.getElementById(`fc_${f.id}`)?.value||f.cat).trim(),name:(document.getElementById(`fn_${f.id}`)?.value||f.name).trim(),cond:(document.getElementById(`fcond_${f.id}`)?.value||f.cond).trim()})); save(data); showToast('SAVED');
+function saveBase() {
+var inc = safeInt(document.getElementById('st_i').value);
+var goal = safeInt(document.getElementById('st_g').value);
+var fix = safeInt(document.getElementById('st_f').value, 0);
+var key = document.getElementById('st_k').value.trim();
+var gas = document.getElementById('st_gas').value.trim();
+var thr = safeInt(document.getElementById('st_wt').value, HIGH_PRICE_THRESHOLD);
+if (!inc || inc < 1000) { showToast('月収を入力してください'); return; }
+if (!goal || goal < 100) { showToast('貯金目標を入力してください'); return; }
+if (goal >= inc) { showToast('目標が月収を超えています'); return; }
+var data = load(); data.income = inc; data.savingsGoal = goal; data.fixedCost = fix; data.geminiKey = key; data.gasUrl = gas; data.wishThreshold = thr; save(data); showToast('SAVED');
 }
-function addFail(){ const data=load(); if(!data.failures) data.failures=[...DEF_FAILS]; data.failures.push({id:Date.now(),cat:'新規',name:'新しい失敗',cond:''}); save(data); renderFailTab(); }
-function delFail(id){ const data=load(); data.failures=(data.failures||DEF_FAILS).filter(f=>String(f.id)!==String(id)); save(data); renderFailTab(); }
-
-// ======================================================
-// History
-// ======================================================
-let _hf='all';
-function setHF(f){
-  _hf=f;
-  ['all','av','bu','la'].forEach(t=>{
-    const btn=document.getElementById(`hf_${t}`); if(!btn) return;
-    const isActive=(f==='all'&&t==='all')||(f==='avoid'&&t==='av')||(f==='buy'&&t==='bu')||(f==='late'&&t==='la');
-    btn.style.background=isActive?'var(--gold-d)':'transparent'; btn.style.color=isActive?'var(--gold)':'var(--tx3)'; btn.style.borderColor=isActive?'rgba(212,175,55,0.3)':'var(--bd)';
-  });
-  renderHistory();
+async function backupToGAS() {
+var data = load();
+if (!data || !data.gasUrl) { showToast('GAS URL未設定'); return; }
+showToast('バックアップ中...');
+try {
+var res = await fetch(data.gasUrl, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ action: 'backup', timestamp: new Date().toISOString(), payload: data }), redirect: 'follow' });
+await res.text(); showToast('バックアップ完了');
+} catch (e) { console.error(e); showToast('GAS接続エラー'); }
 }
-function renderHistory(){
-  const data=load(); if(!data) return; const key=mKey(); const month=data?.months?.[key]; document.getElementById('hi_b').textContent=fmtM(key);
-  const allRecs=month?.records||[]; const filtered=_hf==='all'?allRecs:_hf==='avoid'?allRecs.filter(r=>r.result==='avoid'):_hf==='buy'?allRecs.filter(r=>r.result==='buy'):_hf==='late'?allRecs.filter(r=>r.result==='late_buy'):[];
-  const sorted=[...filtered].reverse(); const listEl=document.getElementById('hi_list'); const emEl=document.getElementById('hi_emp');
-  if(!sorted.length){listEl.innerHTML='';emEl.style.display='block';return;} emEl.style.display='none'; listEl.innerHTML=sorted.map((r,i)=>recRow(r,i,true)).join('');
+async function fetchFailuresFromGAS() {
+var data = load();
+if (!data || !data.gasUrl) { showToast('GAS URL未設定'); return; }
+showToast('失敗DB同期中...');
+try {
+var res = await fetch(data.gasUrl + '?action=get_failures', { redirect: 'follow' });
+var textRes = await res.text(); var failures = [];
+try { failures = JSON.parse(textRes); } catch (e) { /* ignore */ }
+if (Array.isArray(failures) && failures.length > 0) { data.failures = failures; save(data); renderFailTab(); showToast(failures.length + '件を同期'); }
+else { showToast('データなし'); }
+} catch (e) { console.error(e); showToast('GAS接続エラー'); }
 }
-function recRow(r,idx,canDel){
-  const isAvoid=r.result==='avoid'; const isLate=r.result==='late_buy';
-  const col=isAvoid?'var(--green)':isLate?'var(--orange)':'var(--tx)'; const sign=isAvoid?'+':'-';
-  const impIcon=r.impulse?{high:'🔴',mid:'🟡',low:'🟢'}[r.impulse]||'':''; const stopReason=r.stopReason?WHY_OPTS.find(o=>o.id===r.stopReason)?.label||'':'';
-  const tagLabel=isAvoid?'AVOID':isLate?'LATE':'BUY'; const tagCol=isAvoid?'var(--green)':isLate?'var(--orange)':'var(--tx2)';
-  const del=canDel?`<button onclick="delRec('${r.id||''}')" class="tap w-6 h-6 rounded flex items-center justify-center ml-2 border border-white/10 hover:bg-red-500/10 hover:text-red-500"><i class="fa-solid fa-xmark text-[10px]"></i></button>`:'';
-  const numStr=Math.abs(Number(r.amount||0)).toLocaleString(); const formattedYen=`${sign}<span class="text-[10px] text-slate-500 mr-0.5">¥</span>${numStr}`;
-  return `<div class="gc flex items-center justify-between p-3 mb-2" style="animation:fadeUp .3s ${idx*0.04}s ease both; border-left: 2px solid ${tagCol}">
-    <div class="flex flex-col gap-1 min-w-0 flex-1 pl-1">
-      <div class="flex items-center gap-2"><span class="text-[9px] font-bold tracking-widest uppercase" style="color:${tagCol}">${tagLabel}</span>${impIcon?`<span class="text-[8px]">${impIcon}</span>`:''}${stopReason?`<span class="text-[9px] text-slate-400 border-l border-white/20 pl-2">${stopReason}</span>`:''}</div>
-      <div class="text-xs font-bold truncate text-white">${r.name}</div>
-      <div class="text-[9px] font-bold tracking-widest uppercase text-slate-500">${(r.date||'').replace(/-/g,'.')} · ${r.cat||''}</div>
-    </div>
-    <div class="flex items-center flex-shrink-0"><span class="mono text-sm" style="color:${col}">${formattedYen}</span>${del}</div>
-  </div>`;
+function renderFailTab() {
+var data = load(); var fails = (data ? data.failures : null) || DEF_FAILS;
+document.getElementById('st_fails').innerHTML = fails.map(function (f) {
+return '<div class="gc p-3 space-y-2"><div class="flex gap-2 items-center"><input type="text" id="fc_' + f.id + '" value="' + escapeAttr(f.cat) + '" class="inp w-24 text-xs" style="padding:6px 10px" placeholder="カテゴリ"><input type="text" id="fn_' + f.id + '" value="' + escapeAttr(f.name) + '" class="inp flex-1 text-xs" style="padding:6px 10px" placeholder="失敗名"><button onclick="delFail(\'' + f.id + '\')" class="tap w-8 h-8 rounded flex items-center justify-center flex-shrink-0 bg-red-500/10 text-red-500"><i class="fa-solid fa-xmark text-xs"></i></button></div><input type="text" id="fcond_' + f.id + '" value="' + escapeAttr(f.cond) + '" class="inp text-[10px]" placeholder="条件・心理状態"></div>';
+}).join('');
 }
-function delRec(id){ const data=load(); const key=mKey(); const month=getMonth(data,key); month.records=month.records.filter(r=>r.id!==id); save(data); renderHistory(); renderHome(); showToast('DELETED'); }
-
-// ======================================================
-// Late Record
-// ======================================================
-let _ltCat={name:'その他',icon:'🏷️'};
-function openLate(){
-  ['lt_n','lt_a','lt_y','lt_w'].forEach(id=>{const el=document.getElementById(id);if(el) el.value='';});
-  document.getElementById('lt_rep').style.display='none'; _ltCat={name:'その他',icon:'🏷️'};
-  const data = load(); const fails = data?.failures || DEF_FAILS; const uniqueCats = [...new Set(fails.map(f => f.cat))];
-  const catsArea = document.getElementById('lt_cats_area');
-  if(catsArea) {
-    catsArea.innerHTML = uniqueCats.map(cat => `<button onclick="setLtW('${cat}')" class="tap px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400">${cat}</button>`).join('') + `<button onclick="setLtW('その他')" class="tap px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400">その他</button>`;
-  }
-  document.getElementById('lateOv').classList.add('open');
+function escapeAttr(str) { return String(str || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;'); }
+function saveFails() {
+var data = load(); var fails = data.failures || DEF_FAILS;
+data.failures = fails.map(function (f) {
+return {
+id: f.id,
+cat: (document.getElementById('fc_' + f.id) ? document.getElementById('fc_' + f.id).value : f.cat).trim(),
+name: (document.getElementById('fn_' + f.id) ? document.getElementById('fn_' + f.id).value : f.name).trim(),
+cond: (document.getElementById('fcond_' + f.id) ? document.getElementById('fcond_' + f.id).value : f.cond).trim()
+};
+}); save(data); showToast('SAVED');
 }
-function setLtW(v){ document.getElementById('lt_w').value=v; }
-function submitLate(){
-  const name=document.getElementById('lt_n').value.trim(); const amt=parseInt(document.getElementById('lt_a').value); const why=document.getElementById('lt_y').value.trim(); const where=document.getElementById('lt_w').value.trim();
-  if(!name||!amt||amt<=0||!why){showToast('DATA MISSING');return;}
-  const data=load(); const key=mKey(); const month=getMonth(data,key);
-  const rec={id:uid(),date:today(),month:key,name,amount:amt,cat:where||'その他',catIcon:'🏷️',result:'late_buy',where:where||'不明',why};
-  month.records.push(rec); save(data);
-  const lower=why.toLowerCase(); let reply=LATE_TX[LATE_TX.length-1].txt;
-  for(const item of LATE_TX){ if(item.kw.length&&item.kw.some(k=>lower.includes(k.toLowerCase()))){reply=item.txt;break;} }
-  document.getElementById('lt_rt').textContent=reply; document.getElementById('lt_rep').style.display='block';
-  setTimeout(()=>{document.getElementById('lateOv').classList.remove('open');renderHistory();renderHome();showToast('RECORD SAVED');},2500);
+function addFail() { var data = load(); if (!data.failures) data.failures = DEF_FAILS.slice(); data.failures.push({ id: Date.now(), cat: '新規', name: '新しい失敗', cond: '' }); save(data); renderFailTab(); }
+function delFail(id) { var data = load(); data.failures = (data.failures || DEF_FAILS).filter(function (f) { return String(f.id) !== String(id); }); save(data); renderFailTab(); }
+var _hf = 'all';
+function setHF(f) {
+_hf = f;
+['all', 'av', 'bu', 'la'].forEach(function (t) {
+var btn = document.getElementById('hf_' + t); if (!btn) return;
+var isActive = (f === 'all' && t === 'all') || (f === 'avoid' && t === 'av') || (f === 'buy' && t === 'bu') || (f === 'late' && t === 'la');
+btn.style.background = isActive ? 'var(--gold-d)' : 'transparent';
+btn.style.color = isActive ? 'var(--gold)' : 'var(--tx3)';
+btn.style.borderColor = isActive ? 'rgba(212,175,55,0.3)' : 'var(--bd)';
+});
+renderHistory();
 }
-function closeOv(e,id){ if(e.target===document.getElementById(id)) document.getElementById(id).classList.remove('open'); }
-
-(function init(){ const data=load(); if(!data||!data.setup){ document.getElementById('scSetup').style.display='block'; initSetup(); } else { navTo('scHome','nb_h'); } })();
+function renderHistory() {
+var data = load(); if (!data) return;
+var key = mKey(); var month = data.months ? data.months[key] : null;
+document.getElementById('hi_b').textContent = fmtM(key);
+var allRecs = (month ? month.records : null) || [];
+var filtered = _hf === 'all' ? allRecs : _hf === 'avoid' ? allRecs.filter(function (r) { return r.result === 'avoid'; }) : _hf === 'buy' ? allRecs.filter(function (r) { return r.result === 'buy'; }) : allRecs.filter(function (r) { return r.result === 'late_buy'; });
+var sorted = filtered.slice().reverse();
+var listEl = document.getElementById('hi_list'); var emEl = document.getElementById('hi_emp');
+if (!sorted.length) { listEl.innerHTML = ''; emEl.style.display = 'block'; return; }
+emEl.style.display = 'none';
+listEl.innerHTML = sorted.map(function (r, i) { return recRow(r, i, true); }).join('');
+}
+function recRow(r, idx, canDel) {
+var isAvoid = r.result === 'avoid'; var isLate = r.result === 'late_buy';
+var col = isAvoid ? 'var(--green)' : isLate ? 'var(--orange)' : 'var(--tx)';
+var sign = isAvoid ? '+' : '-';
+var stopReason = r.stopReason ? (WHY_OPTS.find(function (o) { return o.id === r.stopReason; }) || {}).label || '' : '';
+var tagLabel = isAvoid ? 'AVOID' : isLate ? 'LATE' : 'BUY';
+var tagCol = isAvoid ? 'var(--green)' : isLate ? 'var(--orange)' : 'var(--tx2)';
+var del = canDel ? '<button onclick="delRec(\'' + (r.id || '') + '\')" class="tap w-6 h-6 rounded flex items-center justify-center ml-2 border border-white/10 hover:bg-red-500/10 hover:text-red-500"><i class="fa-solid fa-xmark text-[10px]"></i></button>' : '';
+var numStr = Math.abs(Number(r.amount || 0)).toLocaleString();
+var formattedYen = sign + '<span class="text-[10px] text-slate-500 mr-0.5">¥</span>' + numStr;
+return '<div class="gc flex items-center justify-between p-3 mb-2" style="animation:fadeUp .3s ' + (idx * 0.04) + 's ease both;border-left:2px solid ' + tagCol + '"><div class="flex flex-col gap-1 min-w-0 flex-1 pl-1"><div class="flex items-center gap-2"><span class="text-[9px] font-bold tracking-widest uppercase" style="color:' + tagCol + '">' + tagLabel + '</span>' + (stopReason ? '<span class="text-[9px] text-slate-400 border-l border-white/20 pl-2">' + stopReason + '</span>' : '') + '</div><div class="text-xs font-bold truncate text-white">' + escapeHtml(r.name) + '</div><div class="text-[9px] font-bold tracking-widest uppercase text-slate-500">' + (r.date || '').replace(/-/g, '.') + ' · ' + escapeHtml(r.cat || '') + '</div></div><div class="flex items-center flex-shrink-0"><span class="mono text-sm" style="color:' + col + '">' + formattedYen + '</span>' + del + '</div></div>';
+}
+function delRec(id) { var data = load(); var key = mKey(); var month = getMonth(data, key); month.records = month.records.filter(function (r) { return r.id !== id; }); save(data); renderHistory(); renderHome(); showToast('DELETED'); }
+function openLate() {
+['lt_n', 'lt_a', 'lt_y', 'lt_w'].forEach(function (id) { var el = document.getElementById(id); if (el) el.value = ''; });
+document.getElementById('lt_rep').style.display = 'none';
+var data = load(); var fails = (data ? data.failures : null) || DEF_FAILS;
+var uniqueCats = []; fails.forEach(function (f) { if (uniqueCats.indexOf(f.cat) < 0) uniqueCats.push(f.cat); });
+var catsArea = document.getElementById('lt_cats_area');
+if (catsArea) {
+catsArea.innerHTML = uniqueCats.map(function (cat) { return '<button onclick="setLtW(\'' + escapeAttr(cat) + '\')" class="tap px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400">' + escapeHtml(cat) + '</button>'; }).join('') + '<button onclick="setLtW(\'その他\')" class="tap px-2 py-1 rounded border border-white/10 text-[10px] text-slate-400">その他</button>';
+}
+document.getElementById('lateOv').classList.add('open');
+}
+function setLtW(v) { document.getElementById('lt_w').value = v; }
+function submitLate() {
+var name = document.getElementById('lt_n').value.trim();
+var amt = safeInt(document.getElementById('lt_a').value);
+var why = document.getElementById('lt_y').value.trim();
+var where = document.getElementById('lt_w').value.trim();
+if (!name || !amt || amt <= 0 || !why) { showToast('DATA MISSING'); return; }
+var data = load(); var key = mKey(); var month = getMonth(data, key);
+var rec = { id: uid(), date: today(), month: key, name: name, amount: amt, cat: where || 'その他', catIcon: '\uD83C\uDFF7\uFE0F', result: 'late_buy', where: where || '不明', why: why };
+month.records.push(rec); save(data);
+var lower = why.toLowerCase(); var reply = LATE_TX[LATE_TX.length - 1].txt;
+for (var i = 0; i < LATE_TX.length; i++) {
+if (LATE_TX[i].kw.length && LATE_TX[i].kw.some(function (k) { return lower.indexOf(k.toLowerCase()) >= 0; })) { reply = LATE_TX[i].txt; break; }
+}
+document.getElementById('lt_rt').textContent = reply; document.getElementById('lt_rep').style.display = 'block';
+setTimeout(function () { document.getElementById('lateOv').classList.remove('open'); renderHistory(); renderHome(); showToast('RECORD SAVED'); }, 2500);
+}
+function closeOv(e, id) { if (e.target === document.getElementById(id)) document.getElementById(id).classList.remove('open'); }
+(function init() {
+var data = load();
+if (!data || !data.setup) { document.getElementById('scSetup').style.display = 'block'; initSetup(); }
+else { navTo('scHome', 'nb_h'); }
+})();
 </script>
 </body>
 </html>
