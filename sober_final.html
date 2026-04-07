@@ -78,7 +78,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
 </head>
 <body>
 
-<!-- ============ SETUP ============ -->
 <div id="scSetup" style="display:none">
 <div class="min-h-screen px-6 py-14 overflow-y-auto" style="padding-bottom:40px">
 <div class="max-w-sm mx-auto">
@@ -112,7 +111,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
 </div></div>
 </div>
 
-<!-- ============ HOME ============ -->
 <div id="scHome" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 flex justify-between items-end border-b border-white/5 mb-4">
     <div><h1 class="text-2xl font-normal mono tracking-tight">Sober</h1><div id="hm_month" class="text-[9px] font-bold tracking-widest uppercase mt-1 text-slate-500"></div></div>
@@ -156,7 +154,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   </div>
 </div>
 
-<!-- ============ CHECKER (Step 1: Input) ============ -->
 <div id="scChecker" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 flex items-center gap-3 border-b border-white/5 mb-5">
     <button onclick="cancelProcess()" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 shrink-0"><i class="fa-solid fa-xmark text-xs"></i></button>
@@ -187,7 +184,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   </div>
 </div>
 
-<!-- ============ AI REPORT + CHAT (Step 2 & 3) ============ -->
 <div id="scAiChat" class="relative bg-[#0A0F1A]" style="display:none">
   <div class="px-6 pt-12 pb-3 flex items-center gap-3 border-b border-white/5 mb-2 bg-[#0A0F1A] sticky top-0 z-20">
     <button onclick="cancelProcess()" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 shrink-0"><i class="fa-solid fa-xmark text-xs"></i></button>
@@ -198,11 +194,8 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
       <i class="fas fa-circle-notch fa-spin text-2xl mb-3 text-cyan-500"></i>
       <div class="text-[9px] tracking-widest uppercase" id="chat_loading_txt">過去データを分析中...</div>
     </div>
-    <!-- AI Report Area -->
     <div id="ai_report_area" style="display:none" class="mb-4 a0"></div>
-    <!-- Chat Area -->
     <div id="ai_chat_area" class="flex-1 overflow-y-auto space-y-4 pb-4 scroll-smooth"></div>
-    <!-- Action Bar -->
     <div class="fixed bottom-0 left-0 right-0 bg-[#0A0F1A] border-t border-white/10 px-5 py-4 z-30" id="chat_action_area" style="display:none;padding-bottom:calc(16px + env(safe-area-inset-bottom));">
       <div class="flex gap-2 mb-3">
         <input type="text" id="chat_input" class="inp flex-1 text-xs" placeholder="反論や質問を入力..." onkeypress="if(event.key==='Enter') sendChat()">
@@ -216,7 +209,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   </div>
 </div>
 
-<!-- ============ FINAL CHECK (Step 4: Financial Impact) ============ -->
 <div id="scFinalCheck" class="relative bg-[#0A0F1A]" style="display:none">
   <div class="px-6 pt-12 pb-3 flex items-center gap-3 border-b border-white/5 mb-5">
     <button onclick="cancelProcess()" class="tap w-8 h-8 rounded border border-white/10 flex items-center justify-center text-slate-400 shrink-0"><i class="fa-solid fa-xmark text-xs"></i></button>
@@ -258,7 +250,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   </div>
 </div>
 
-<!-- ============ MINDFUL (Step 5: 30s Timer + Decision) ============ -->
 <div id="scMindful" class="relative bg-black min-h-screen flex flex-col items-center justify-center overflow-hidden" style="display:none">
   <div class="mindful-ring"></div>
   <div class="relative z-10 text-center w-full px-8">
@@ -271,7 +262,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   </div>
 </div>
 
-<!-- ============ REPORT ============ -->
 <div id="scReport" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 flex justify-between items-end border-b border-white/5 mb-4">
     <div><div class="num text-2xl tracking-tight">Report</div><div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">Monthly Analytics</div></div>
@@ -296,7 +286,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   </div>
 </div>
 
-<!-- ============ SETTINGS ============ -->
 <div id="scSettings" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 border-b border-white/5 mb-4"><div class="num text-2xl tracking-tight">Settings</div><div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">System Config</div></div>
   <div class="flex border-b border-white/5 px-5 mb-4 overflow-x-auto" style="scrollbar-width:none">
@@ -306,7 +295,7 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   <div id="tb_base_b" class="px-5 space-y-5 overflow-y-auto">
     <div class="gc p-5 space-y-4"><div class="sec">Financial Settings</div><div><div class="lbl">月収</div><input id="st_i" type="number" class="inp"></div><div><div class="lbl">貯金目標</div><input id="st_g" type="number" class="inp text-emerald-400"></div><div><div class="lbl">固定費</div><input id="st_f" type="number" class="inp"></div><div class="text-[10px] text-slate-400 mt-2">自由資金: <span id="st_fp" class="mono text-emerald-400 ml-1 text-sm"></span></div></div>
     <div class="gc p-5 space-y-4"><div class="sec">API Keys & Integration</div><div><div class="lbl">Gemini API Key</div><input id="st_k" type="password" class="inp text-xs"></div><div><div class="lbl">GAS Webhook URL</div><input id="st_gas" type="url" placeholder="https://script.google.com/macros/s/..." class="inp text-xs"><div class="flex gap-2 mt-2"><button onclick="backupToGAS()" class="tap flex-1 py-3 rounded font-bold text-[10px] tracking-widest uppercase bg-cyan-500/10 border border-cyan-500/30 text-cyan-400"><i class="fas fa-cloud-upload-alt mr-1"></i>バックアップ</button><button onclick="fetchFailuresFromGAS()" class="tap flex-1 py-3 rounded font-bold text-[10px] tracking-widest uppercase bg-amber-500/10 border border-amber-500/30 text-amber-400"><i class="fas fa-sync mr-1"></i>失敗DB同期</button></div></div><div><div class="lbl">月初ロック対象の高額設定（¥以上）</div><input id="st_wt" type="number" class="inp" placeholder="3000"></div></div>
-    <div class="gc p-5 space-y-4"><div class="sec"><i class="fas fa-robot mr-1 text-cyan-500"></i>AI Persona</div><div class="hint mb-2">AIの性格・口調を設定。空欄ならデフォルト使用。</div><textarea id="st_persona" rows="4" class="inp text-[11px]" placeholder="例：厳しいが心配する友人。データで冷静に引き留める。"></textarea></div>
+    <div class="gc p-5 space-y-4"><div class="sec"><i class="fas fa-robot mr-1 text-cyan-500"></i>AI Persona</div><div><div class="lbl">AIアイコン画像（任意）</div><input id="st_ai_icon" type="file" accept="image/*" class="inp text-xs"></div><div class="hint mb-2">AIの性格・口調を設定。空欄ならデフォルト使用。</div><textarea id="st_persona" rows="4" class="inp text-[11px]" placeholder="例：厳しいが心配する友人。データで冷静に引き留める。"></textarea></div>
     <button onclick="saveBase()" class="tap w-full py-4 rounded font-bold text-[10px] tracking-widest uppercase bg-transparent border border-white/20 text-white">Save Config</button>
     <button onclick="location.reload(true)" class="tap w-full py-4 mt-2 rounded font-bold text-[10px] tracking-widest uppercase bg-white/5 border border-white/10 text-slate-300"><i class="fas fa-sync-alt mr-2"></i>アプリを最新に更新 (Reload)</button>
   </div>
@@ -317,7 +306,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   </div>
 </div>
 
-<!-- ============ HISTORY ============ -->
 <div id="scHistory" class="pb-nav" style="display:none">
   <div class="px-6 pt-12 pb-3 flex justify-between items-end border-b border-white/5 mb-4">
     <div><div class="num text-2xl tracking-tight">History</div><div class="text-[9px] text-slate-500 tracking-widest uppercase mt-1">Transaction Log</div></div>
@@ -334,7 +322,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   <div class="px-5 mt-6 mb-2"><button onclick="openLate()" class="late-btn">+ Add Unverified Record (事後記録)</button></div>
 </div>
 
-<!-- ============ BOTTOM NAV ============ -->
 <div id="botNav" class="bot-nav" style="display:none">
   <div class="nb on" id="nb_h" onclick="navTo('scHome','nb_h')"><i class="fa-solid fa-layer-group"></i><span>Dash</span></div>
   <div class="nb" id="nb_hi" onclick="navTo('scHistory','nb_hi')"><i class="fa-solid fa-list"></i><span>Log</span></div>
@@ -342,7 +329,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   <div class="nb" id="nb_s" onclick="navTo('scSettings','nb_s')"><i class="fa-solid fa-sliders"></i><span>Config</span></div>
 </div>
 
-<!-- ============ WHY OVERLAY ============ -->
 <div id="whyOv" class="s-ov">
   <div id="whySh" class="s-body">
     <div class="drag-h"></div>
@@ -352,7 +338,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   </div>
 </div>
 
-<!-- ============ LATE OVERLAY ============ -->
 <div id="lateOv" class="s-ov" onclick="closeOv(event,'lateOv')">
   <div class="s-body px-6 pt-4 pb-6" onclick="event.stopPropagation()">
     <div class="drag-h"></div>
@@ -368,7 +353,6 @@ textarea.inp{resize:none;line-height:1.6;font-size:12px}
   </div>
 </div>
 
-<!-- ============ REGRET OVERLAY ============ -->
 <div id="regretOv" class="s-ov" onclick="closeOv(event,'regretOv')">
   <div class="s-body px-6 pt-4 pb-6" onclick="event.stopPropagation()">
     <div class="drag-h"></div>
